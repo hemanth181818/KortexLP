@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 import KortexAurora from "@/components/ui/animated-shader-background";
-import { CTAButton } from "@/components/ui/cta-button";
 import { Button } from "@/components/ui/button";
 
 // Rotating word completes the static line: "Run growth from one cortex, not from ___"
@@ -115,14 +114,13 @@ export default function Hero() {
             moves across your stack. Nothing ships without your approval.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
-            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
+            className="mt-9 flex items-center justify-center"
           >
-            <CTAButton text="Book a demo" href="#cta" />
             <Button
               variant="ghost"
               size="lg"

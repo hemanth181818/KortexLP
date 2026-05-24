@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const links = [
   { label: "Approach", href: "#workflow" },
@@ -82,20 +81,6 @@ export function NavHeader() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* CTA */}
-          <div className="hidden sm:flex">
-            <Button
-              size="sm"
-              className="rounded-full"
-              onClick={() => {
-                const el = document.getElementById("cta");
-                el?.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-            >
-              Book a demo
-            </Button>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import SystemBento from "@/components/SystemBento";
 import StatsSection from "@/components/StatsSection";
 import LogoMarquee from "@/components/LogoMarquee";
 import TestimonialQuote from "@/components/TestimonialQuote";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 
@@ -25,7 +24,6 @@ export default function Landing() {
       <StatsSection />
       <LogoMarquee />
       <TestimonialQuote />
-      <CTASection />
       <Footer />
     </main>
   );
