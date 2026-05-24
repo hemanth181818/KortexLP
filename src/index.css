@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  KORTEX DESIGN TOKENS
+  ────────────────────────────────────────────────────────────────
+  Aesthetic: Operator's terminal × editorial spread.
+  Dominant: acid lime on deep ink, with warm cream body type.
+  This intentionally avoids the purple-gradient-on-dark AI cliché.
+*/
+
+@layer base {
+  :root {
+    /* Ink / surface: two-step scale for clearer separation */
+    --ink: 0 0% 4.5%;            /* base background  (~#0B0B0B) */
+    --ink-deep: 0 0% 3.0%;       /* deepest panel    (~#080808) */
+    --ink-soft: 0 0% 9.5%;       /* card surface     (~#181818) */
+    --ink-line: 0 0% 14.0%;      /* hairline / divider */
+
+    /* Acid lime: single dominant signal, slightly less neon */
+    --acid: 72 92% 58%;          /* ~#C4F33B */
+    --acid-dim: 72 80% 42%;
+    --acid-glow: 72 95% 68%;
+
+    /* Warm off-white body */
+    --cream: 42 28% 93%;         /* ~#F2EFE6 */
+    --ash: 0 0% 62%;
+
+    /* shadcn semantic mapping (dark by default) */
+    --background: var(--ink);
+    --foreground: var(--cream);
+    --card: var(--ink-soft);
+    --card-foreground: var(--cream);
+    --popover: var(--ink-soft);
+    --popover-foreground: var(--cream);
+    --primary: var(--acid);
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: var(--cream);
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: var(--acid);
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: var(--acid);
+
+    --radius: 0.5rem;
+
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink text-cream font-sans;
+    font-feature-settings: "ss01", "ss02", "cv11";
+  }
+
+  /* Use tabular figures for any data-ish element */
+  .tabular,
+  [data-tabular] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Editorial italic display */
+  .display-italic {
+    font-family: "Instrument Serif", ui-serif, Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* Section anchors offset for fixed nav */
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+
+  /* Visible focus ring (a11y) */
+  :focus-visible {
+    outline: 2px solid hsl(var(--acid));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: hsl(var(--acid));
+    color: hsl(var(--ink));
+  }
+}
+
+@layer utilities {
+  /* Eyebrow micro-label: `// 01 · CONNECT` (quiet by default) */
+  .eyebrow {
+    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cream/45;
+  }
+
+  /* Reserved for the two signature openers: hero + final CTA */
+  .eyebrow-acid {
+    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-acid;
+  }
+
+  /* Editorial display headline */
+  .h-display {
+    @apply font-display text-display-xl text-cream;
+  }
+
+  .h-section {
+    @apply font-display text-display-lg text-cream;
+  }
+
+  /* Subtle blueprint grid behind sections (quieter than before) */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
+  }
+
+  /* Soft acid halo: used on the brand mark and live indicator only */
+  .acid-glow-soft {
+    box-shadow: 0 0 48px -8px hsl(var(--acid) / 0.28);
+  }
+
+  /* Reveal-on-scroll helper */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Marquee container (logos row) */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
+  /* Terminal-style bracketed tag */
+  .bracket-tag::before { content: "["; @apply text-acid mr-1; }
+  .bracket-tag::after  { content: "]"; @apply text-acid ml-1; }
+}
+
+/* AI Architecture (signal lines): recolored for Kortex */
+.ai-architecture {
+  offset-anchor: 10px 0px;
+  animation: animation-path;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
+}
+.ai-line-1 { offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30"); animation-duration: 5s; animation-delay: 1s; }
+.ai-line-2 { offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40"); animation-delay: 6s; animation-duration: 2s; }
+.ai-line-3 { offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25"); animation-delay: 4s; animation-duration: 6s; }
+.ai-line-4 { offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65"); animation-delay: 3s; animation-duration: 3s; }
+.ai-line-5 { offset-path: path("M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"); animation-delay: 9s; animation-duration: 4s; }
+.ai-line-6 { offset-path: path("M 94.8 95 v -46"); animation-delay: 3s; animation-duration: 7s; }
+.ai-line-7 { offset-path: path("M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"); animation-delay: 4s; animation-duration: 4s; }
+.ai-line-8 { offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35"); animation-delay: 3s; animation-duration: 3s; }
+
+@keyframes animation-path {
+  0%   { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+
+/* Respect reduced motion: disable heavy animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ai-architecture { display: none; }
+}
