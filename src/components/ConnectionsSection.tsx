@@ -25,7 +25,7 @@ export default function ConnectionsSection() {
             <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
               Every signal in
               <span className="block text-cream/40">
-                one cortex.
+                one Kortex.
               </span>
             </h2>
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-cream/70">

@@ -30,7 +30,7 @@ const STATS: Stat[] = [
   {
     value: 24,
     suffix: "/7",
-    label: "Always-on cortex",
+    label: "Always-on Kortex",
     caption: "Every connected source, continuously read",
   },
 ];
@@ -51,7 +51,7 @@ export default function StatsSection() {
           <h2 className="font-sans font-semibold text-[clamp(1.8rem,4vw,3rem)] leading-[1.05] tracking-[-0.03em] text-cream">
             The honest math behind{" "}
             <span className="text-cream/40">
-              one cortex.
+              one Kortex.
             </span>
           </h2>
         </div>

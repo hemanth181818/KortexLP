@@ -59,7 +59,7 @@ const TILES: Tile[] = [
     eyebrow: "Connected stack",
     title: "Reads the whole growth surface.",
     body:
-      "Meta, Google, Shopify, GA4, Search Console, Clarity, Hotjar, YouTube, and your creative tools. All in one cortex.",
+      "Meta, Google, Shopify, GA4, Search Console, Clarity, Hotjar, YouTube, and your creative tools. All in one Kortex.",
     Icon: Layers,
     span: "lg:col-span-3",
   },

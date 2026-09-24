@@ -55,7 +55,7 @@ export default function Footer() {
           </p>
           <p className="flex items-center gap-2 text-[13px] text-cream/40">
             <span className="h-1.5 w-1.5 rounded-full bg-acid" aria-hidden="true" />
-            Status · <span className="text-cream/70">cortex online</span>
+            Status · <span className="text-cream/70">Kortex online</span>
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ import KortexAurora from "@/components/ui/animated-shader-background";
 import { Button } from "@/components/ui/button";
 import { APP_URL } from "@/lib/links";
 
-// Rotating word completes the static line: "Run growth from one cortex, not from ___"
+// Rotating word completes the static line: "Run growth from one Kortex, not from ___"
 // Each word names a real operator pain so readers recognize their own day.
 const ROTATING = [
   "nine dashboards",
@@ -82,7 +82,7 @@ export default function Hero() {
               Run growth from
             </span>
             <span className="block mt-1.5 font-sans font-semibold text-[clamp(1.9rem,6vw,4.6rem)] leading-[1.02] tracking-[-0.03em]">
-              one cortex, not from
+              one Kortex, not from
             </span>
             <span
               aria-live="polite"
@@ -161,7 +161,7 @@ export default function Hero() {
               {
                 step: "01",
                 title: "Connect",
-                body: "Ads, analytics, store, search, creative, heatmaps and growth data flow into one cortex.",
+                body: "Ads, analytics, store, search, creative, heatmaps and growth data flow into one Kortex.",
               },
               {
                 step: "02",
