@@ -60,17 +60,6 @@ export default function Hero() {
 
       <div className="container relative z-10 px-5 sm:px-6 pt-32 pb-20 sm:pt-36 md:pt-44 sm:pb-24">
         <div className="max-w-5xl mx-auto">
-          {/* Eyebrow */}
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="eyebrow-acid mb-6 sm:mb-8 flex items-center justify-center gap-2.5"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-acid acid-glow-soft" />
-            <span>AI command center</span>
-          </motion.p>
-
           {/* Display headline */}
           <motion.h1
             initial={{ opacity: 0, y: 18 }}

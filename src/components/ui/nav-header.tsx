@@ -31,7 +31,7 @@ export function NavHeader() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const onMq = () => mq.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     mq.addEventListener("change", onMq);
@@ -52,14 +52,14 @@ export function NavHeader() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto px-5 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-4">
+      <div className="relative container mx-auto px-5 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-4">
         <a href="#top" aria-label="Kortex home" className="py-2" onClick={() => setOpen(false)}>
           <Wordmark className="text-[15px]" />
         </a>
 
-        {/* Section links: desktop */}
+        {/* Section links: desktop. lg, not md: centred, it would reach the buttons below 1024px */}
         <ul
-          className="hidden md:flex relative items-center gap-0.5 rounded-full border border-cream/10 bg-ink-soft/50 backdrop-blur-xl p-1"
+          className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 rounded-full border border-cream/10 bg-ink-soft/50 backdrop-blur-xl p-1"
           onMouseLeave={() => setPosition((pv) => ({ ...pv, opacity: 0 }))}
         >
           {links.map((l) => (
@@ -86,7 +86,7 @@ export function NavHeader() {
           </a>
           <button
             type="button"
-            className="md:hidden grid h-10 w-10 place-items-center rounded-full text-cream/80 hover:text-cream hover:bg-cream/5"
+            className="lg:hidden grid h-10 w-10 place-items-center rounded-full text-cream/80 hover:text-cream hover:bg-cream/5"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -106,7 +106,7 @@ export function NavHeader() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden overflow-hidden border-t border-cream/10"
+            className="lg:hidden overflow-hidden border-t border-cream/10"
           >
             <ul className="container mx-auto px-5 py-2">
               {links.map((l) => (
