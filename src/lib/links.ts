@@ -5,7 +5,7 @@ export const APP_URL = "https://app.kortexagent.co";
 // renders them in the landing page's frame.
 export const PRIVACY_URL = "/privacy";
 export const TERMS_URL = "/terms";
-export const CONTACT_EMAIL = "hemanth@kreo-tech.com";
+export const CONTACT_EMAIL = "human@kortexagent.co";
 
 // Where the sign-up form posts. The app stores it as a lead for the operator
 // console and sends the thank-you email.
