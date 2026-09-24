@@ -3,7 +3,7 @@
 export const APP_URL = "https://app.kortexagent.co";
 export const PRIVACY_URL = `${APP_URL}/privacy`;
 export const TERMS_URL = `${APP_URL}/terms`;
-export const CONTACT_EMAIL = "data@kreo-tech.com";
+export const CONTACT_EMAIL = "hemanth@kreo-tech.com";
 
 // Where the sign-up form posts. The app stores it as a lead for the operator
 // console and sends the thank-you email.
