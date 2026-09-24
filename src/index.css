@@ -107,26 +107,6 @@
   [data-theme="light"] .glow-blob {
     display: none;
   }
-  .theme-light-only { display: none; }
-  [data-theme="light"] .theme-light-only { display: block; }
-
-  /* The hero's accent word. Lime text on dark; on paper, lime cannot be read
-     as text, so the word goes dark and the lime becomes a highlighter stroke
-     under it. */
-  [data-theme="light"] .accent-mark {
-    color: hsl(var(--cream));
-    background-image: linear-gradient(
-      to bottom,
-      transparent 58%,
-      hsl(var(--acid) / 0.85) 58%,
-      hsl(var(--acid) / 0.85) 90%,
-      transparent 90%
-    );
-    padding: 0 0.08em;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-  }
-
   /* Dark mode's deep shadows read as grime on paper. */
   [data-theme="light"] .shadow-2xl {
     box-shadow: 0 1px 2px rgb(26 23 20 / 0.04), 0 12px 32px -16px rgb(26 23 20 / 0.14);
