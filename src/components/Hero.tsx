@@ -143,7 +143,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="mt-14 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4"
+            className="mt-14 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
             aria-label="How Kortex works"
           >
             {[
@@ -161,6 +161,11 @@ export default function Hero() {
                 step: "03",
                 title: "Approve",
                 body: "Kortex proposes channel actions and waits for your approval before changing anything.",
+              },
+              {
+                step: "04",
+                title: "Learn",
+                body: "Every approved change is measured, so the next recommendation is sharper than the last.",
               },
             ].map((item) => (
               <div

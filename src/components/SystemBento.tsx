@@ -8,6 +8,7 @@ import {
   Layers,
   Workflow,
   Eye,
+  Repeat,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +19,6 @@ type Tile = {
   Icon: React.ComponentType<{ className?: string }>;
   span: string;
   featured?: boolean;
-  wide?: boolean;
 };
 
 const TILES: Tile[] = [
@@ -69,8 +69,15 @@ const TILES: Tile[] = [
     body:
       "Ask the question you would ask in standup. Get an answer that respects budget, brand and timing.",
     Icon: GitBranch,
-    span: "md:col-span-2 lg:col-span-12",
-    wide: true,
+    span: "lg:col-span-6",
+  },
+  {
+    eyebrow: "Self-learning",
+    title: "Gets sharper with every change.",
+    body:
+      "Each approved change is measured before and after. Every week Kortex learns which moves work in which conditions, and proposes better rules for you to approve.",
+    Icon: Repeat,
+    span: "lg:col-span-6",
   },
 ];
 
@@ -141,18 +148,8 @@ export default function SystemBento() {
                   </>
                 )}
 
-                <div
-                  className={cn(
-                    "relative z-10 h-full flex flex-col",
-                    t.wide && "lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center"
-                  )}
-                >
-                  <div
-                    className={cn(
-                      "flex items-start justify-between mb-6",
-                      t.wide && "lg:col-span-3 lg:mb-0 lg:flex-col lg:gap-4"
-                    )}
-                  >
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-6">
                     <div
                       className={cn(
                         "grid place-items-center rounded-lg border h-11 w-11",
@@ -182,7 +179,6 @@ export default function SystemBento() {
                   <h3
                     className={cn(
                       "tracking-[-0.02em] text-balance",
-                      t.wide && "lg:col-span-4",
                       // Size before leading: tailwind-merge drops a leading-*
                       // that comes before a font-size, since text-* sets both.
                       t.featured
@@ -196,7 +192,6 @@ export default function SystemBento() {
                   <p
                     className={cn(
                       "mt-3 leading-relaxed text-cream/60 text-pretty",
-                      t.wide && "lg:col-span-5 lg:mt-0",
                       t.featured ? "text-base sm:text-lg" : "text-sm"
                     )}
                   >
