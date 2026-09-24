@@ -19,8 +19,8 @@ export function SignalMap() {
   return (
     <div role="img" aria-label={`Kortex reads ${COLUMNS.flat().join(", ")}`}>
       {/* Hub */}
-      <div className="mx-auto w-fit rounded-2xl bg-acid/[0.06] p-1.5">
-        <div className="flex items-center gap-3 rounded-xl border border-acid/50 bg-ink-soft px-7 py-4">
+      <div className="mx-auto w-fit rounded-2xl bg-acid/[0.12] p-1.5">
+        <div className="flex items-center gap-3 rounded-xl border border-acid-line bg-ink-soft px-7 py-4">
           <span className="relative flex h-2 w-2" aria-hidden="true">
             <span className="absolute inset-0 rounded-full bg-acid/60 animate-ping motion-reduce:hidden" />
             <span className="relative h-2 w-2 rounded-full bg-acid" />

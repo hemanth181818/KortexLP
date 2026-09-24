@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         // Kortex primary: acid lime, ink-on-acid for max contrast
         default:
-          "bg-acid text-ink-deep hover:bg-acid-glow shadow-[0_10px_40px_-12px_hsl(var(--acid)/0.6)] hover:shadow-[0_18px_60px_-12px_hsl(var(--acid)/0.8)]",
+          "bg-acid text-on-acid hover:bg-acid-glow shadow-[0_10px_40px_-12px_hsl(var(--acid)/0.6)] hover:shadow-[0_18px_60px_-12px_hsl(var(--acid)/0.8)]",
         // Quiet outline
         outline:
           "border border-cream/15 bg-transparent text-cream hover:bg-cream/5 hover:border-cream/25",

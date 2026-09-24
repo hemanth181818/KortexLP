@@ -32,7 +32,7 @@ export default function Hero() {
       id="top"
       className="relative min-h-[100svh] flex items-start justify-center overflow-hidden"
     >
-      {/* Shader aurora */}
+      {/* Shader aurora (dark only) */}
       <KortexAurora />
 
       {/* Atmosphere: only two quiet layers now */}
@@ -55,6 +55,17 @@ export default function Hero() {
         style={{
           background:
             "radial-gradient(ellipse at center, transparent 35%, hsl(var(--ink) / 0.92) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Light mode's atmosphere: a soft lime wash from the top, where dark mode
+          has the aurora. */}
+      <div
+        className="theme-light-only absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(70% 55% at 50% -5%, hsl(73 88% 57% / 0.28) 0%, hsl(73 88% 57% / 0.08) 45%, transparent 75%)",
         }}
         aria-hidden="true"
       />
@@ -94,7 +105,7 @@ export default function Hero() {
                       : { y: i > idx ? "-110%" : "110%", opacity: 0 }
                   }
                 >
-                  {title}.
+                  <span className="accent-mark">{title}.</span>
                 </motion.span>
               ))}
             </span>

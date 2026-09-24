@@ -80,7 +80,7 @@ export function NavHeader() {
               setOpen(false);
               openSignup();
             }}
-            className="inline-flex h-9 sm:h-10 items-center rounded-full bg-acid px-4 sm:px-5 text-sm font-semibold text-ink-deep hover:bg-acid-glow transition-colors"
+            className="inline-flex h-9 sm:h-10 items-center rounded-full bg-acid px-4 sm:px-5 text-sm font-semibold text-on-acid hover:bg-acid-glow transition-colors"
           >
             Sign up
           </button>

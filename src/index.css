@@ -24,6 +24,10 @@
     --acid-glow: 72 95% 68%;
     /* Accent as TEXT. Same as --acid on dark; light mode needs a darker one */
     --acid-ink: 72 92% 58%;
+    /* Text set ON a lime fill. Near-black in both themes. */
+    --on-acid: 0 0% 5%;
+    /* Outline of a lime element: the lime itself on dark, a step darker on paper. */
+    --acid-line: 72 92% 58%;
 
     /* Warm off-white body */
     --cream: 42 28% 93%;         /* ~#F2EFE6 */
@@ -62,14 +66,18 @@
    * olive-lime that keeps the brand without failing legibility. */
   [data-theme="light"] {
     --ink: 36 71% 97%;           /* #FDF9F3 page */
-    --ink-deep: 36 50% 94%;      /* #F7F1E8 alternate band */
+    --ink-deep: 40 60% 99%;      /* #FEFDFA alternate band: lighter, not beige */
     --ink-soft: 0 0% 100%;       /* #FFFFFF card */
     --ink-line: 35 36% 89%;      /* #EDE4D7 */
 
-    --acid: 30 18% 7%;           /* #14110E accent fill */
-    --acid-dim: 30 12% 32%;
-    --acid-glow: 30 17% 14%;     /* #2A241E hover */
-    --acid-ink: 76 100% 24%;     /* ~#687A00 accent text, 4.8:1 on paper */
+    /* Lime stays the FILL on paper, as in the product, carrying near-black
+       text. It is never text here: that is --acid-ink, a deep lime green. */
+    --acid: 73 88% 57%;          /* #CBF232 */
+    --acid-dim: 76 70% 40%;
+    --acid-glow: 74 78% 53%;     /* #BFE62A hover */
+    --acid-ink: 86 78% 27%;      /* #4D7C0F accent text, 5:1 on paper */
+    --on-acid: 30 18% 7%;        /* #14110E */
+    --acid-line: 74 72% 43%;     /* #9DBB1E */
 
     --cream: 30 13% 9%;          /* #1A1714 text */
     --ash: 30 8% 42%;
@@ -80,15 +88,15 @@
     --card-foreground: var(--cream);
     --popover: var(--ink-soft);
     --popover-foreground: var(--cream);
-    --primary-foreground: 36 71% 97%;
+    --primary-foreground: 30 18% 7%;
     --secondary: 36 50% 94%;
     --secondary-foreground: var(--cream);
     --muted: 36 50% 94%;
     --muted-foreground: 30 8% 42%;
-    --accent-foreground: 36 71% 97%;
+    --accent-foreground: 30 18% 7%;
     --border: 35 36% 89%;
     --input: 35 36% 89%;
-    --ring: var(--acid);
+    --ring: var(--acid-ink);
 
     color-scheme: light;
   }
@@ -98,6 +106,33 @@
   [data-theme="light"] .theme-dark-only,
   [data-theme="light"] .glow-blob {
     display: none;
+  }
+  .theme-light-only { display: none; }
+  [data-theme="light"] .theme-light-only { display: block; }
+
+  /* The hero's accent word. Lime text on dark; on paper, lime cannot be read
+     as text, so the word goes dark and the lime becomes a highlighter stroke
+     under it. */
+  [data-theme="light"] .accent-mark {
+    color: hsl(var(--cream));
+    background-image: linear-gradient(
+      to bottom,
+      transparent 58%,
+      hsl(var(--acid) / 0.85) 58%,
+      hsl(var(--acid) / 0.85) 90%,
+      transparent 90%
+    );
+    padding: 0 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Dark mode's deep shadows read as grime on paper. */
+  [data-theme="light"] .shadow-2xl {
+    box-shadow: 0 1px 2px rgb(26 23 20 / 0.04), 0 12px 32px -16px rgb(26 23 20 / 0.14);
+  }
+  [data-theme="light"] :focus-visible {
+    outline-color: hsl(var(--acid-ink));
   }
 
   * {

@@ -52,7 +52,9 @@ export default {
           dim: "hsl(var(--acid-dim))",
           glow: "hsl(var(--acid-glow))",
           ink: "hsl(var(--acid-ink))",
+          line: "hsl(var(--acid-line))",
         },
+        "on-acid": "hsl(var(--on-acid))",
         cream: "hsl(var(--cream))",
         ash: "hsl(var(--ash))",
         primary: {

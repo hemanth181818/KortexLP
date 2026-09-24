@@ -139,7 +139,7 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
 
         {status === "done" ? (
           <div className="py-2">
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-acid text-ink-deep">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-acid text-on-acid">
               <Check className="h-5 w-5" strokeWidth={2.5} />
             </span>
             <h2 id={titleId} className="mt-5 text-[24px] font-semibold tracking-[-0.02em] text-cream">
@@ -196,7 +196,7 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="mt-1.5 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-acid text-[15px] font-semibold text-ink-deep hover:bg-acid-glow transition-colors disabled:opacity-60"
+                className="mt-1.5 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-acid text-[15px] font-semibold text-on-acid hover:bg-acid-glow transition-colors disabled:opacity-60"
               >
                 {status === "sending" ? "Sending…" : "Sign up"}
                 {status !== "sending" && <ArrowRight className="h-4 w-4" aria-hidden="true" />}

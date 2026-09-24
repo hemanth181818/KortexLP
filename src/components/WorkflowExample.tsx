@@ -230,7 +230,7 @@ export default function WorkflowExample() {
                   </p>
                   <span
                     aria-hidden="true"
-                    className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-acid px-3.5 h-8 text-[13px] font-semibold text-ink-deep"
+                    className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-acid px-3.5 h-8 text-[13px] font-semibold text-on-acid"
                   >
                     <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
                     {a.cta}
