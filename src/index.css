@@ -80,14 +80,6 @@
     font-feature-settings: "tnum" 1;
   }
 
-  /* Editorial italic display */
-  .display-italic {
-    font-family: "Instrument Serif", ui-serif, Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-  }
-
   /* Section anchors offset for fixed nav */
   section[id] {
     scroll-margin-top: 96px;
@@ -115,15 +107,6 @@
   /* Reserved for the two signature openers: hero + final CTA */
   .eyebrow-acid {
     @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-acid;
-  }
-
-  /* Editorial display headline */
-  .h-display {
-    @apply font-display text-display-xl text-cream;
-  }
-
-  .h-section {
-    @apply font-display text-display-lg text-cream;
   }
 
   /* Subtle blueprint grid behind sections (quieter than before) */
@@ -187,6 +170,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .signal-pulse { display: none; }
-}

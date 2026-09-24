@@ -100,7 +100,7 @@ export default function SystemBento() {
           <p className="eyebrow mb-5">04 · Why Kortex</p>
           <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
             What makes Kortex
-            <span className="block font-display italic font-normal text-cream/95 mt-1">
+            <span className="block text-cream/40">
               different.
             </span>
           </h2>

@@ -14,12 +14,12 @@ export default function TestimonialQuote() {
       <div className="container relative z-10 mx-auto">
         <figure className="max-w-4xl mx-auto text-center reveal-on-scroll">
           <p className="eyebrow mb-6">The Kortex morning</p>
-          <blockquote className="font-display italic text-cream text-[clamp(1.6rem,3.6vw,2.6rem)] leading-[1.2] tracking-[-0.015em] text-balance">
+          <blockquote className="font-sans font-semibold text-cream text-[clamp(1.5rem,3.2vw,2.4rem)] leading-[1.2] tracking-[-0.025em] text-balance">
             <span className="block">
               At 9am, one question. By 9:03, a diagnosis across Meta, SEO and
               the store.
             </span>
-            <span className="block mt-2 text-cream/85">
+            <span className="block mt-3 text-cream/40">
               By 10am, an approved plan. The growth meeting is now a{" "}
               <span className="whitespace-nowrap">15-minute review.</span>
             </span>

@@ -24,7 +24,7 @@ export default function ConnectionsSection() {
             <p className="eyebrow mb-5">01 · Stack</p>
             <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
               Every signal in
-              <span className="block font-display italic font-normal text-cream/95 mt-1">
+              <span className="block text-cream/40">
                 one cortex.
               </span>
             </h2>
@@ -44,7 +44,7 @@ export default function ConnectionsSection() {
 
           {/* Visual side */}
           <div className="lg:col-span-7 reveal-on-scroll">
-            <Card className="relative p-5 sm:p-8 bg-ink-deep/80 backdrop-blur-md border-cream/10 overflow-hidden">
+            <Card className="relative px-5 py-8 sm:p-10 bg-ink-deep/80 backdrop-blur-md border-cream/10 overflow-hidden">
               <SignalMap />
             </Card>
           </div>

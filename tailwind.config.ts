@@ -16,8 +16,6 @@ export default {
     },
     extend: {
       fontFamily: {
-        // Editorial display — Instrument Serif (distinctive, italic)
-        display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
         // UI sans — Satoshi (already loaded; characterful)
         sans: [
           "Satoshi",

@@ -68,8 +68,7 @@ export default function Hero() {
             className="eyebrow-acid mb-6 sm:mb-8 flex items-center justify-center gap-2.5"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-acid acid-glow-soft" />
-            <span className="hidden sm:inline">AI command center · e-commerce growth</span>
-            <span className="sm:hidden">AI command center</span>
+            <span>AI command center</span>
           </motion.p>
 
           {/* Display headline */}
@@ -87,12 +86,12 @@ export default function Hero() {
             </span>
             <span
               aria-live="polite"
-              className="relative block w-full overflow-hidden mt-4 min-h-[3.2rem] sm:min-h-[4.2rem] md:min-h-[5.6rem] lg:min-h-[6.4rem]"
+              className="relative block w-full overflow-hidden mt-1.5 min-h-[2.4rem] sm:min-h-[3.4rem] md:min-h-[4.6rem] lg:min-h-[5.2rem]"
             >
               {titles.map((title, idx) => (
                 <motion.span
                   key={title}
-                  className="absolute inset-0 flex items-center justify-center font-display italic text-acid text-[clamp(2.2rem,6.6vw,5rem)] leading-[1.08] tracking-[-0.015em] whitespace-nowrap px-2"
+                  className="absolute inset-0 flex items-center justify-center font-sans font-semibold text-acid text-[clamp(1.9rem,6vw,4.6rem)] leading-[1.08] tracking-[-0.03em] whitespace-nowrap px-2"
                   initial={{ y: "100%", opacity: 0 }}
                   transition={{
                     type: "spring",

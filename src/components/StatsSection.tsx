@@ -50,7 +50,7 @@ export default function StatsSection() {
           <p className="eyebrow mb-5">05 · By the numbers</p>
           <h2 className="font-sans font-semibold text-[clamp(1.8rem,4vw,3rem)] leading-[1.05] tracking-[-0.03em] text-cream">
             The honest math behind{" "}
-            <span className="font-display italic font-normal text-cream/95">
+            <span className="text-cream/40">
               one cortex.
             </span>
           </h2>
@@ -67,14 +67,14 @@ export default function StatsSection() {
                 data-tabular
               >
                 {s.prefix && (
-                  <span className="font-display italic text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none mr-0.5">
+                  <span className="font-semibold text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em] mr-0.5">
                     {s.prefix}
                   </span>
                 )}
                 <span className="font-sans font-semibold text-[clamp(2.2rem,5vw,3.6rem)] leading-none tracking-[-0.04em]">
                   {s.value}
                 </span>
-                <span className="font-display italic text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none">
+                <span className="font-semibold text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em]">
                   {s.suffix}
                 </span>
               </div>

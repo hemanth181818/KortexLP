@@ -77,7 +77,7 @@ export default function WorkflowExample() {
           <p className="eyebrow mb-5">03 · Demo</p>
           <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
             From one ROAS question
-            <span className="block font-display italic font-normal text-cream/95 mt-1">
+            <span className="block text-cream/40">
               to four approved moves.
             </span>
           </h2>
