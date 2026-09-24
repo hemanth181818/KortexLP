@@ -40,7 +40,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 42% at 50% 30%, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.55) 55%, transparent 100%)",
+            "radial-gradient(60% 42% at 50% 30%, hsl(var(--ink) / 0.82) 0%, hsl(var(--ink) / 0.55) 55%, transparent 100%)",
         }}
         aria-hidden="true"
       />
@@ -53,7 +53,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 35%, rgba(11,11,11,0.92) 100%)",
+            "radial-gradient(ellipse at center, transparent 35%, hsl(var(--ink) / 0.92) 100%)",
         }}
         aria-hidden="true"
       />
@@ -80,7 +80,7 @@ export default function Hero() {
               {titles.map((title, idx) => (
                 <motion.span
                   key={title}
-                  className="absolute inset-0 flex items-center justify-center font-sans font-semibold text-acid text-[clamp(1.9rem,6vw,4.6rem)] leading-[1.08] tracking-[-0.03em] whitespace-nowrap px-2"
+                  className="absolute inset-0 flex items-center justify-center font-sans font-semibold text-acid-ink text-[clamp(1.9rem,6vw,4.6rem)] leading-[1.08] tracking-[-0.03em] whitespace-nowrap px-2"
                   initial={{ y: "100%", opacity: 0 }}
                   transition={{
                     type: "spring",

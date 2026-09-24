@@ -119,7 +119,7 @@ export default function WorkflowExample() {
                       <div className="flex items-baseline justify-between gap-3 mb-1.5">
                         <span
                           className={`text-[12.5px] font-semibold ${
-                            m.side === "user" ? "text-cream/70" : "text-acid"
+                            m.side === "user" ? "text-cream/70" : "text-acid-ink"
                           }`}
                         >
                           {m.speaker}
@@ -144,7 +144,7 @@ export default function WorkflowExample() {
                               className="rounded-md border border-cream/10 bg-ink-deep/80 px-3 py-2.5"
                             >
                               <div
-                                className="font-mono text-base sm:text-lg text-acid tabular"
+                                className="font-mono text-base sm:text-lg text-acid-ink tabular"
                                 data-tabular
                               >
                                 {d.v}
@@ -164,7 +164,7 @@ export default function WorkflowExample() {
                 <div className="flex justify-start">
                   <div className="max-w-[88%] rounded-lg px-4 py-3.5 bg-ink-soft border border-cream/12">
                     <div className="flex items-baseline justify-between gap-3 mb-1.5">
-                      <span className="text-[12.5px] font-semibold text-acid">
+                      <span className="text-[12.5px] font-semibold text-acid-ink">
                         Kortex
                       </span>
                       <span className="text-[12px] text-cream/35">
@@ -199,7 +199,7 @@ export default function WorkflowExample() {
                 Approval queue
               </span>
               <span className="h-px flex-1 bg-cream/10" />
-              <span className="rounded-full bg-acid/12 px-2.5 py-0.5 text-[12px] font-semibold text-acid tabular" data-tabular>
+              <span className="rounded-full bg-acid/12 px-2.5 py-0.5 text-[12px] font-semibold text-acid-ink tabular" data-tabular>
                 04 pending
               </span>
             </div>

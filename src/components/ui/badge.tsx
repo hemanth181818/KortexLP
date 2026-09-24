@@ -9,7 +9,7 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-acid/40 bg-acid/10 text-acid",
+          "border-acid/40 bg-acid/10 text-acid-ink",
         secondary:
           "border-cream/15 bg-cream/5 text-cream/80",
         destructive:

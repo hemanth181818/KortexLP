@@ -78,7 +78,7 @@ function FooterCol({
           <li key={l.label}>
             <a
               href={l.href}
-              className="text-sm text-cream/60 hover:text-acid transition-colors"
+              className="text-sm text-cream/60 hover:text-acid-ink transition-colors"
             >
               {l.label}
             </a>

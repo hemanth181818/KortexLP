@@ -22,6 +22,8 @@
     --acid: 72 92% 58%;          /* ~#C4F33B */
     --acid-dim: 72 80% 42%;
     --acid-glow: 72 95% 68%;
+    /* Accent as TEXT. Same as --acid on dark; light mode needs a darker one */
+    --acid-ink: 72 92% 58%;
 
     /* Warm off-white body */
     --cream: 42 28% 93%;         /* ~#F2EFE6 */
@@ -51,6 +53,51 @@
     --radius: 0.5rem;
 
     color-scheme: dark;
+  }
+
+  /* ── Light ──────────────────────────────────────────────────────────────
+   * The product's light palette (app/theme.css in Kortex Pilot): warm paper
+   * ground, white panels, near-black ink, and a near-black accent for fills.
+   * Lime text cannot hold contrast on paper, so accent TEXT drops to a deep
+   * olive-lime that keeps the brand without failing legibility. */
+  [data-theme="light"] {
+    --ink: 36 71% 97%;           /* #FDF9F3 page */
+    --ink-deep: 36 50% 94%;      /* #F7F1E8 alternate band */
+    --ink-soft: 0 0% 100%;       /* #FFFFFF card */
+    --ink-line: 35 36% 89%;      /* #EDE4D7 */
+
+    --acid: 30 18% 7%;           /* #14110E accent fill */
+    --acid-dim: 30 12% 32%;
+    --acid-glow: 30 17% 14%;     /* #2A241E hover */
+    --acid-ink: 76 100% 24%;     /* ~#687A00 accent text, 4.8:1 on paper */
+
+    --cream: 30 13% 9%;          /* #1A1714 text */
+    --ash: 30 8% 42%;
+
+    --background: var(--ink);
+    --foreground: var(--cream);
+    --card: var(--ink-soft);
+    --card-foreground: var(--cream);
+    --popover: var(--ink-soft);
+    --popover-foreground: var(--cream);
+    --primary-foreground: 36 71% 97%;
+    --secondary: 36 50% 94%;
+    --secondary-foreground: var(--cream);
+    --muted: 36 50% 94%;
+    --muted-foreground: 30 8% 42%;
+    --accent-foreground: 36 71% 97%;
+    --border: 35 36% 89%;
+    --input: 35 36% 89%;
+    --ring: var(--acid);
+
+    color-scheme: light;
+  }
+
+  /* The aurora and the soft lime glows are light on dark by construction;
+     on paper they read as smudges, so light mode goes without them. */
+  [data-theme="light"] .theme-dark-only,
+  [data-theme="light"] .glow-blob {
+    display: none;
   }
 
   * {
@@ -106,14 +153,14 @@
 
   /* Reserved for the two signature openers: hero + final CTA */
   .eyebrow-acid {
-    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-acid;
+    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-acid-ink;
   }
 
   /* Subtle blueprint grid behind sections (quieter than before) */
   .bg-blueprint {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--cream) / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--cream) / 0.035) 1px, transparent 1px);
     background-size: 64px 64px;
     background-position: -1px -1px;
   }
@@ -154,8 +201,8 @@
   }
 
   /* Terminal-style bracketed tag */
-  .bracket-tag::before { content: "["; @apply text-acid mr-1; }
-  .bracket-tag::after  { content: "]"; @apply text-acid ml-1; }
+  .bracket-tag::before { content: "["; @apply text-acid-ink mr-1; }
+  .bracket-tag::after  { content: "]"; @apply text-acid-ink ml-1; }
 }
 
 /* Respect reduced motion: disable heavy animations */

@@ -23,7 +23,7 @@ const buttonVariants = cva(
         // Secondary: quiet card-tinted
         secondary:
           "bg-ink-soft text-cream hover:bg-cream/10 border border-cream/10",
-        link: "text-acid underline-offset-4 hover:underline",
+        link: "text-acid-ink underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-5 py-2 min-h-[44px]",

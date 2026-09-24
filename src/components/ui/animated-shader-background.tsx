@@ -172,7 +172,7 @@ const KortexAurora = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 w-full h-full overflow-hidden"
+      className="theme-dark-only absolute inset-0 w-full h-full overflow-hidden"
       aria-hidden="true"
     />
   );

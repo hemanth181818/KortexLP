@@ -10,7 +10,7 @@ export default function ConnectionsSection() {
       {/* Soft acid glow upper-left */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-32 -left-32 w-[560px] h-[560px] rounded-full bg-acid/[0.08] blur-3xl"
+        className="pointer-events-none absolute -top-32 -left-32 w-[560px] h-[560px] rounded-full bg-acid/[0.08] blur-3xl glow-blob"
       />
       <div
         aria-hidden="true"

@@ -93,13 +93,13 @@ export default function SystemBento() {
         className="absolute inset-0 -z-0 opacity-[0.5]"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(244,240,230,0.06) 1px, transparent 1px)",
+            "radial-gradient(hsl(var(--cream) / 0.06) 1px, transparent 1px)",
           backgroundSize: "14px 14px",
         }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-acid/[0.06] blur-3xl translate-x-1/3 -translate-y-1/2"
+        className="pointer-events-none absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-acid/[0.06] blur-3xl glow-blob translate-x-1/3 -translate-y-1/2"
       />
 
       <div className="container relative z-10 mx-auto">
@@ -134,14 +134,14 @@ export default function SystemBento() {
                   <>
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute -top-32 -right-24 w-[420px] h-[420px] rounded-full bg-acid/[0.08] blur-3xl"
+                      className="pointer-events-none absolute -top-32 -right-24 w-[420px] h-[420px] rounded-full bg-acid/[0.08] blur-3xl glow-blob"
                     />
                     <div
                       aria-hidden="true"
                       className="absolute inset-0 opacity-30"
                       style={{
                         backgroundImage:
-                          "linear-gradient(to right, rgba(244,240,230,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,240,230,0.04) 1px, transparent 1px)",
+                          "linear-gradient(to right, hsl(var(--cream) / 0.04) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--cream) / 0.04) 1px, transparent 1px)",
                         backgroundSize: "32px 32px",
                       }}
                     />
@@ -162,14 +162,14 @@ export default function SystemBento() {
                       <Icon
                         className={cn(
                           "h-5 w-5",
-                          t.featured ? "text-acid" : "text-cream/75"
+                          t.featured ? "text-acid-ink" : "text-cream/75"
                         )}
                       />
                     </div>
                     <span
                       className={cn(
                         "text-[13px] font-medium",
-                        t.featured ? "text-acid" : "text-cream/45"
+                        t.featured ? "text-acid-ink" : "text-cream/45"
                       )}
                     >
                       {t.eyebrow}
@@ -199,7 +199,7 @@ export default function SystemBento() {
                   </p>
 
                   {t.featured && (
-                    <div className="mt-auto pt-8 flex items-center gap-2 text-sm font-medium text-acid">
+                    <div className="mt-auto pt-8 flex items-center gap-2 text-sm font-medium text-acid-ink">
                       <span className="h-px w-8 bg-acid/60" />
                       Always under operator control
                     </div>

@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Wordmark } from "@/components/ui/wordmark";
 import { APP_URL, SIGN_IN_URL } from "@/lib/links";
 
@@ -70,7 +71,8 @@ export function NavHeader() {
           <Cursor position={position} />
         </ul>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <ThemeToggle />
           <a
             href={SIGN_IN_URL}
             className="hidden sm:inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-cream/70 hover:text-cream transition-colors"

@@ -67,14 +67,14 @@ export default function StatsSection() {
                 data-tabular
               >
                 {s.prefix && (
-                  <span className="font-semibold text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em] mr-0.5">
+                  <span className="font-semibold text-acid-ink text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em] mr-0.5">
                     {s.prefix}
                   </span>
                 )}
                 <span className="font-sans font-semibold text-[clamp(2.2rem,5vw,3.6rem)] leading-none tracking-[-0.04em]">
                   {s.value}
                 </span>
-                <span className="font-semibold text-acid text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em]">
+                <span className="font-semibold text-acid-ink text-[clamp(1.4rem,3vw,2.2rem)] leading-none tracking-[-0.03em]">
                   {s.suffix}
                 </span>
               </div>

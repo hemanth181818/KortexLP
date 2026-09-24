@@ -68,7 +68,7 @@ export default function AgentsCarousel() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 right-0 w-[640px] h-[640px] rounded-full bg-acid/[0.07] blur-3xl translate-x-1/3 translate-y-1/3"
+        className="pointer-events-none absolute bottom-0 right-0 w-[640px] h-[640px] rounded-full bg-acid/[0.07] blur-3xl glow-blob translate-x-1/3 translate-y-1/3"
       />
 
       <div className="container px-5 sm:px-6 mx-auto">
@@ -103,7 +103,7 @@ export default function AgentsCarousel() {
                   className="grid place-items-center h-10 w-10 rounded-lg border border-cream/12 bg-cream/[0.035] mb-5"
                   aria-hidden="true"
                 >
-                  <Icon className="w-[18px] h-[18px] text-cream/70 group-hover:text-acid transition-colors" />
+                  <Icon className="w-[18px] h-[18px] text-cream/70 group-hover:text-acid-ink transition-colors" />
                 </div>
                 <h3 className="font-sans font-semibold text-cream text-[17px] tracking-[-0.01em]">
                   {agent.name}

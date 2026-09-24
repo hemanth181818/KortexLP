@@ -51,6 +51,7 @@ export default {
           DEFAULT: "hsl(var(--acid))",
           dim: "hsl(var(--acid-dim))",
           glow: "hsl(var(--acid-glow))",
+          ink: "hsl(var(--acid-ink))",
         },
         cream: "hsl(var(--cream))",
         ash: "hsl(var(--ash))",
