@@ -1,13 +1,9 @@
 import { Wordmark } from "@/components/ui/wordmark";
-import {
-  APP_URL,
-  CONTACT_EMAIL,
-  PRIVACY_URL,
-  SIGN_IN_URL,
-  TERMS_URL,
-} from "@/lib/links";
+import { useSignup } from "@/components/signup/signup-dialog";
+import { CONTACT_EMAIL, PRIVACY_URL, TERMS_URL } from "@/lib/links";
 
 export default function Footer() {
+  const { open: openSignup } = useSignup();
   return (
     <footer className="relative bg-ink-deep border-t border-cream/10 pt-14 pb-10 px-5 sm:px-6">
       <div className="container mx-auto">
@@ -35,8 +31,7 @@ export default function Footer() {
           <FooterCol
             title="Company"
             links={[
-              { label: "Get started", href: APP_URL },
-              { label: "Sign in", href: SIGN_IN_URL },
+              { label: "Sign up", onClick: openSignup },
               { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
             ]}
           />
@@ -68,7 +63,7 @@ function FooterCol({
   links,
 }: {
   title: string;
-  links: { label: string; href: string }[];
+  links: { label: string; href?: string; onClick?: () => void }[];
 }) {
   return (
     <div>
@@ -76,12 +71,22 @@ function FooterCol({
       <ul className="space-y-2.5">
         {links.map((l) => (
           <li key={l.label}>
-            <a
-              href={l.href}
-              className="text-sm text-cream/60 hover:text-acid-ink transition-colors"
-            >
-              {l.label}
-            </a>
+            {l.onClick ? (
+              <button
+                type="button"
+                onClick={l.onClick}
+                className="text-sm text-cream/60 hover:text-acid-ink transition-colors"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <a
+                href={l.href}
+                className="text-sm text-cream/60 hover:text-acid-ink transition-colors"
+              >
+                {l.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>

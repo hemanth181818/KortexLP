@@ -2,11 +2,11 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Wordmark } from "@/components/ui/wordmark";
-import { APP_URL, SIGN_IN_URL } from "@/lib/links";
+import { useSignup } from "@/components/signup/signup-dialog";
 
 const links = [
   { label: "Approach", href: "#workflow" },
@@ -20,6 +20,7 @@ export function NavHeader() {
   const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { open: openSignup } = useSignup();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -73,19 +74,16 @@ export function NavHeader() {
 
         <div className="flex items-center gap-1 sm:gap-2">
           <ThemeToggle />
-          <a
-            href={SIGN_IN_URL}
-            className="hidden sm:inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-cream/70 hover:text-cream transition-colors"
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openSignup();
+            }}
+            className="inline-flex h-9 sm:h-10 items-center rounded-full bg-acid px-4 sm:px-5 text-sm font-semibold text-ink-deep hover:bg-acid-glow transition-colors"
           >
-            Sign in
-          </a>
-          <a
-            href={APP_URL}
-            className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-full bg-acid pl-4 pr-3.5 text-sm font-semibold text-ink-deep hover:bg-acid-glow transition-colors"
-          >
-            Get started
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+            Sign up
+          </button>
           <button
             type="button"
             className="lg:hidden grid h-10 w-10 place-items-center rounded-full text-cream/80 hover:text-cream hover:bg-cream/5"
@@ -122,14 +120,6 @@ export function NavHeader() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={SIGN_IN_URL}
-                  className="flex h-12 items-center text-[17px] font-medium text-cream/60 hover:text-cream"
-                >
-                  Sign in
-                </a>
-              </li>
             </ul>
           </motion.div>
         )}

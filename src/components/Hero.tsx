@@ -4,7 +4,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 import KortexAurora from "@/components/ui/animated-shader-background";
 import { Button } from "@/components/ui/button";
-import { APP_URL } from "@/lib/links";
+import { useSignup } from "@/components/signup/signup-dialog";
 
 // Rotating word completes the static line: "Run growth from one Kortex, not from ___"
 // Each word names a real operator pain so readers recognize their own day.
@@ -16,6 +16,7 @@ const ROTATING = [
 ];
 
 export default function Hero() {
+  const { open: openSignup } = useSignup();
   const [i, setI] = useState(0);
   const titles = useMemo(() => ROTATING, []);
 
@@ -118,10 +119,8 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
             className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <Button asChild size="lg" className="w-full sm:w-auto">
-              <a href={APP_URL}>
-                Get started <ArrowUpRight className="w-4 h-4" />
-              </a>
+            <Button size="lg" className="w-full sm:w-auto" onClick={openSignup}>
+              Get started <ArrowUpRight className="w-4 h-4" />
             </Button>
             <Button
               variant="ghost"
