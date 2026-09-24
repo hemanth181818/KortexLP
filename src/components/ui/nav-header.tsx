@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
+import { Wordmark } from "@/components/ui/wordmark";
+import { APP_URL, SIGN_IN_URL } from "@/lib/links";
 
 const links = [
   { label: "Approach", href: "#workflow" },
@@ -14,6 +18,7 @@ const links = [
 export function NavHeader() {
   const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -22,68 +27,111 @@ export function NavHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // The mobile sheet closes on Escape and never outlives a resize to desktop.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onMq = () => mq.matches && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    mq.addEventListener("change", onMq);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onMq);
+    };
+  }, [open]);
+
+  const solid = scrolled || open;
+
   return (
     <nav
       aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-[background-color,backdrop-filter,border-color] duration-300 ${
-        scrolled
-          ? "bg-ink/70 backdrop-blur-xl border-b border-cream/10"
+        solid
+          ? "bg-ink/80 backdrop-blur-xl border-b border-cream/10"
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between gap-4">
-          {/* Brand */}
+      <div className="container mx-auto px-5 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-4">
+        <a href="#top" aria-label="Kortex home" className="py-2" onClick={() => setOpen(false)}>
+          <Wordmark className="text-[15px]" />
+        </a>
+
+        {/* Section links: desktop */}
+        <ul
+          className="hidden md:flex relative items-center gap-0.5 rounded-full border border-cream/10 bg-ink-soft/50 backdrop-blur-xl p-1"
+          onMouseLeave={() => setPosition((pv) => ({ ...pv, opacity: 0 }))}
+        >
+          {links.map((l) => (
+            <Tab key={l.href} setPosition={setPosition} href={l.href}>
+              {l.label}
+            </Tab>
+          ))}
+          <Cursor position={position} />
+        </ul>
+
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <a
-            href="#top"
-            className="flex items-center gap-2.5 group"
-            aria-label="Kortex home"
+            href={SIGN_IN_URL}
+            className="hidden sm:inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-cream/70 hover:text-cream transition-colors"
           >
-            <span
-              aria-hidden="true"
-              className="grid place-items-center h-8 w-8 rounded-md border border-acid/40 bg-acid/10 text-acid font-display italic text-lg leading-none acid-glow-soft"
-            >
-              K
-            </span>
-            <span className="font-display italic text-xl text-cream group-hover:text-acid transition-colors">
-              Kortex
-            </span>
+            Sign in
           </a>
+          <a
+            href={APP_URL}
+            className="inline-flex h-9 sm:h-10 items-center gap-1.5 rounded-full bg-acid pl-4 pr-3.5 text-sm font-semibold text-ink-deep hover:bg-acid-glow transition-colors"
+          >
+            Get started
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <button
+            type="button"
+            className="md:hidden grid h-10 w-10 place-items-center rounded-full text-cream/80 hover:text-cream hover:bg-cream/5"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
 
-          {/* Pill nav: desktop */}
-          <div className="hidden md:block">
-            <ul
-              className="relative flex items-center gap-1 rounded-full border border-cream/15 bg-ink-soft/60 backdrop-blur-xl px-2 py-1.5"
-              onMouseLeave={() =>
-                setPosition((pv) => ({ ...pv, opacity: 0 }))
-              }
-            >
-              {links.map((l) => (
-                <Tab key={l.href} setPosition={setPosition} href={l.href}>
-                  {l.label}
-                </Tab>
-              ))}
-              <Cursor position={position} />
-            </ul>
-          </div>
-
-          {/* Mobile: horizontal scroll list */}
-          <div className="md:hidden flex-1 overflow-x-auto -mx-2 px-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <ul className="flex items-center gap-1 whitespace-nowrap">
+      {/* Mobile sheet */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden overflow-hidden border-t border-cream/10"
+          >
+            <ul className="container mx-auto px-5 py-2">
               {links.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="block px-3 py-2 text-xs font-mono uppercase tracking-[0.16em] text-cream/65 hover:text-cream min-h-[44px] flex items-center"
+                    onClick={() => setOpen(false)}
+                    className="flex h-12 items-center border-b border-cream/[0.06] text-[17px] font-medium text-cream/85 hover:text-cream"
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={SIGN_IN_URL}
+                  className="flex h-12 items-center text-[17px] font-medium text-cream/60 hover:text-cream"
+                >
+                  Sign in
+                </a>
+              </li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
@@ -107,17 +155,13 @@ const Tab = ({
       onMouseEnter={() => {
         if (!ref.current) return;
         const { width } = ref.current.getBoundingClientRect();
-        setPosition({
-          width,
-          opacity: 1,
-          left: ref.current.offsetLeft,
-        });
+        setPosition({ width, opacity: 1, left: ref.current.offsetLeft });
       }}
-      className="relative z-10 block cursor-pointer"
+      className="relative z-10 block"
     >
       <a
         href={href}
-        className="block px-4 py-2 text-xs sm:text-[13px] font-mono uppercase tracking-[0.16em] text-cream/65 hover:text-cream transition-colors"
+        className="block rounded-full px-4 py-1.5 text-[13.5px] font-medium text-cream/65 hover:text-cream transition-colors"
       >
         {children}
       </a>
@@ -132,9 +176,10 @@ const Cursor = ({
 }) => {
   return (
     <motion.li
+      aria-hidden="true"
       animate={position}
       transition={{ type: "spring", stiffness: 350, damping: 30 }}
-      className="absolute z-0 h-[34px] rounded-full bg-acid/15 border border-acid/40"
+      className="absolute z-0 top-1 bottom-1 rounded-full bg-cream/[0.07]"
     />
   );
 };

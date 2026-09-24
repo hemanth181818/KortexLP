@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 import KortexAurora from "@/components/ui/animated-shader-background";
 import { Button } from "@/components/ui/button";
+import { APP_URL } from "@/lib/links";
 
 // Rotating word completes the static line: "Run growth from one cortex, not from ___"
 // Each word names a real operator pain so readers recognize their own day.
@@ -34,7 +35,15 @@ export default function Hero() {
       <KortexAurora />
 
       {/* Atmosphere: only two quiet layers now */}
-      <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
+      <div className="absolute inset-0 bg-ink/55" aria-hidden="true" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(60% 42% at 50% 30%, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.55) 55%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
       <div
         className="absolute inset-0 bg-blueprint opacity-40"
         aria-hidden="true"
@@ -107,7 +116,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mt-8 sm:mt-10 max-w-2xl mx-auto text-center text-[15px] sm:text-lg leading-relaxed text-cream/70 px-2"
+            className="mt-8 sm:mt-10 max-w-2xl mx-auto text-center text-[15px] sm:text-lg leading-relaxed text-cream/70 px-2 text-balance"
           >
             Kortex reads your ads, store, SEO, creative and pages. Eight
             specialist agents diagnose what&apos;s broken and draft the next
@@ -119,8 +128,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
-            className="mt-9 flex items-center justify-center"
+            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
           >
+            <Button asChild size="lg" className="w-full sm:w-auto">
+              <a href={APP_URL}>
+                Get started <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </Button>
             <Button
               variant="ghost"
               size="lg"
@@ -129,7 +143,7 @@ export default function Hero() {
                   .getElementById("example")
                   ?.scrollIntoView({ behavior: "smooth", block: "start" })
               }
-              className="text-cream/75"
+              className="w-full sm:w-auto text-cream/75"
             >
               See a live ROAS fix <ArrowDown className="w-4 h-4" />
             </Button>
@@ -171,10 +185,10 @@ export default function Hero() {
                   </span>
                   <span className="h-1.5 w-1.5 rounded-full bg-cream/15 group-hover:bg-acid transition-colors" />
                 </div>
-                <h3 className="font-display italic text-2xl sm:text-3xl text-cream mb-2">
+                <h3 className="font-sans font-semibold text-xl sm:text-[22px] tracking-[-0.02em] text-cream mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-cream/60">
+                <p className="text-sm leading-relaxed text-cream/60 text-pretty">
                   {item.body}
                 </p>
               </div>

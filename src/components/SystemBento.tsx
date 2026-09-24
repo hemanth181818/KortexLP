@@ -18,6 +18,7 @@ type Tile = {
   Icon: React.ComponentType<{ className?: string }>;
   span: string;
   featured?: boolean;
+  wide?: boolean;
 };
 
 const TILES: Tile[] = [
@@ -27,7 +28,7 @@ const TILES: Tile[] = [
     body:
       "Every agent's recommendation lands in one ordered queue, with approval gates and a full diff before anything changes in your tools.",
     Icon: Workflow,
-    span: "lg:col-span-5 lg:row-span-2",
+    span: "md:col-span-2 lg:col-span-6 lg:row-span-2",
     featured: true,
   },
   {
@@ -44,7 +45,7 @@ const TILES: Tile[] = [
     body:
       "ROAS, CTR, frequency, LCP and scroll depth, explained as one cohesive story instead of nine charts.",
     Icon: Activity,
-    span: "lg:col-span-4",
+    span: "lg:col-span-3",
   },
   {
     eyebrow: "Visual DNA",
@@ -52,7 +53,7 @@ const TILES: Tile[] = [
     body:
       "Tags winning and losing patterns across statics and videos. Every next brief is informed by what actually worked.",
     Icon: Eye,
-    span: "lg:col-span-4",
+    span: "lg:col-span-3",
   },
   {
     eyebrow: "Connected stack",
@@ -60,7 +61,7 @@ const TILES: Tile[] = [
     body:
       "Meta, Google, Shopify, GA4, Search Console, Clarity, Hotjar, YouTube, and your creative tools. All in one cortex.",
     Icon: Layers,
-    span: "lg:col-span-4",
+    span: "lg:col-span-3",
   },
   {
     eyebrow: "Operator-first",
@@ -68,7 +69,8 @@ const TILES: Tile[] = [
     body:
       "Ask the question you would ask in standup. Get an answer that respects budget, brand and timing.",
     Icon: GitBranch,
-    span: "lg:col-span-4",
+    span: "md:col-span-2 lg:col-span-12",
+    wide: true,
   },
 ];
 
@@ -98,7 +100,7 @@ export default function SystemBento() {
           <p className="eyebrow mb-5">04 · Why Kortex</p>
           <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
             What makes Kortex
-            <span className="block font-display italic text-cream/95">
+            <span className="block font-display italic font-normal text-cream/95 mt-1">
               different.
             </span>
           </h2>
@@ -139,8 +141,18 @@ export default function SystemBento() {
                   </>
                 )}
 
-                <div className="relative z-10 h-full flex flex-col">
-                  <div className="flex items-start justify-between mb-6">
+                <div
+                  className={cn(
+                    "relative z-10 h-full flex flex-col",
+                    t.wide && "lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "flex items-start justify-between mb-6",
+                      t.wide && "lg:col-span-3 lg:mb-0 lg:flex-col lg:gap-4"
+                    )}
+                  >
                     <div
                       className={cn(
                         "grid place-items-center rounded-lg border h-11 w-11",
@@ -159,8 +171,8 @@ export default function SystemBento() {
                     </div>
                     <span
                       className={cn(
-                        "font-mono text-[10px] uppercase tracking-[0.22em]",
-                        t.featured ? "text-acid/85" : "text-cream/45"
+                        "text-[13px] font-medium",
+                        t.featured ? "text-acid" : "text-cream/45"
                       )}
                     >
                       {t.eyebrow}
@@ -169,10 +181,13 @@ export default function SystemBento() {
 
                   <h3
                     className={cn(
-                      "leading-[1.1] tracking-[-0.02em]",
+                      "tracking-[-0.02em] text-balance",
+                      t.wide && "lg:col-span-4",
+                      // Size before leading: tailwind-merge drops a leading-*
+                      // that comes before a font-size, since text-* sets both.
                       t.featured
-                        ? "font-sans font-semibold text-cream text-[clamp(1.6rem,3vw,2.4rem)]"
-                        : "font-sans font-semibold text-cream text-lg sm:text-xl"
+                        ? "font-sans font-semibold text-cream text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.1]"
+                        : "font-sans font-semibold text-cream text-lg sm:text-xl leading-[1.2]"
                     )}
                   >
                     {t.title}
@@ -180,7 +195,8 @@ export default function SystemBento() {
 
                   <p
                     className={cn(
-                      "mt-3 leading-relaxed text-cream/60",
+                      "mt-3 leading-relaxed text-cream/60 text-pretty",
+                      t.wide && "lg:col-span-5 lg:mt-0",
                       t.featured ? "text-base sm:text-lg" : "text-sm"
                     )}
                   >
@@ -188,7 +204,7 @@ export default function SystemBento() {
                   </p>
 
                   {t.featured && (
-                    <div className="mt-auto pt-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-acid">
+                    <div className="mt-auto pt-8 flex items-center gap-2 text-sm font-medium text-acid">
                       <span className="h-px w-8 bg-acid/60" />
                       Always under operator control
                     </div>

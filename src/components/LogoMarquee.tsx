@@ -33,7 +33,7 @@ export default function LogoMarquee() {
             {items.map((sys, idx) => (
               <span
                 key={`${sys}-${idx}`}
-                className="inline-flex items-center gap-2.5 whitespace-nowrap font-mono text-sm uppercase tracking-[0.22em] text-cream/40"
+                className="inline-flex items-center gap-2.5 whitespace-nowrap font-sans text-[17px] font-medium tracking-[-0.01em] text-cream/40"
               >
                 <span
                   aria-hidden="true"

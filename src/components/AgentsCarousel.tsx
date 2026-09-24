@@ -1,18 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Target,
   Search,
   ShoppingBag,
-  Sparkles,
+  FileSearch,
   PenTool,
   Camera,
   Banknote,
@@ -39,7 +29,7 @@ const AGENTS = [
       "Finds the friction killing add-to-cart. Drafts the fix across checkout, trust blocks, mobile load and offer clarity.",
   },
   {
-    icon: Sparkles,
+    icon: FileSearch,
     name: "SEO + AEO agent",
     blurb:
       "Finds the rankings you almost have, the AI answers you should own, and the schema gaps competitors are using.",
@@ -71,29 +61,6 @@ const AGENTS = [
 ];
 
 export default function AgentsCarousel() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
-
-    const timeout = setTimeout(() => {
-      if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
-        setCurrent(0);
-        api.scrollTo(0);
-      } else {
-        api.scrollNext();
-        setCurrent(current + 1);
-      }
-    }, 3200);
-
-    return () => clearTimeout(timeout);
-  }, [api, current]);
-
   return (
     <section
       id="agents"
@@ -108,8 +75,8 @@ export default function AgentsCarousel() {
         <div className="reveal-on-scroll max-w-3xl mb-12 sm:mb-16">
           <p className="eyebrow mb-5">02 · Agents</p>
           <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
-            Eight specialists.{" "}
-            <span className="font-display italic text-cream/95">
+            Eight specialists.
+            <span className="block font-display italic font-normal text-cream/95 mt-1">
               One prioritized plan.
             </span>
           </h2>
@@ -119,73 +86,35 @@ export default function AgentsCarousel() {
           </p>
         </div>
 
-        <Carousel
-          setApi={setApi}
-          className="w-full reveal-on-scroll"
-          opts={{ align: "start", loop: true }}
+        {/* All eight at once. On a phone they scroll sideways, snapping per card,
+            with the next card peeking so the row reads as scrollable. */}
+        <ul
+          className="reveal-on-scroll -mx-5 px-5 sm:mx-0 sm:px-0 flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Kortex agents"
         >
-          <CarouselContent className="-ml-4">
-            {AGENTS.map((agent, idx) => {
-              const Icon = agent.icon;
-              return (
-                <CarouselItem
-                  key={agent.name}
-                  className="pl-4 md:basis-1/2 lg:basis-1/3"
+          {AGENTS.map((agent) => {
+            const Icon = agent.icon;
+            return (
+              <li
+                key={agent.name}
+                className="group snap-start shrink-0 w-[78%] sm:w-auto flex flex-col rounded-xl border border-cream/10 bg-ink-soft p-5 sm:p-6 transition-colors hover:border-cream/20"
+              >
+                <div
+                  className="grid place-items-center h-10 w-10 rounded-lg border border-cream/12 bg-cream/[0.035] mb-5"
+                  aria-hidden="true"
                 >
-                  <Card className="group h-full bg-ink-soft border-cream/10 hover:border-cream/20 transition-colors">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between mb-5">
-                        <div
-                          className="grid place-items-center h-11 w-11 rounded-lg border border-cream/12 bg-cream/[0.035]"
-                          aria-hidden="true"
-                        >
-                          <Icon className="w-5 h-5 text-cream/75 group-hover:text-acid transition-colors" />
-                        </div>
-                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream/35">
-                          agent · {String(idx + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-                      <CardTitle className="font-display italic text-cream text-2xl">
-                        {agent.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm leading-relaxed text-cream/60">
-                        {agent.blurb}
-                      </p>
-                      <div className="mt-6 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-cream/40 group-hover:text-cream/60 transition-colors">
-                        <span className="h-px w-6 bg-cream/20 group-hover:bg-acid/60 transition-colors" />
-                        Owns this workflow
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-        </Carousel>
-
-        {/* Pagination dots */}
-        <div className="mt-10 flex items-center justify-center gap-2">
-          {AGENTS.map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              aria-label={`Go to agent ${idx + 1}`}
-              onClick={() => {
-                api?.scrollTo(idx);
-                setCurrent(idx);
-              }}
-              className={`h-1.5 rounded-full transition-all min-h-[24px] min-w-[24px] grid place-items-center`}
-            >
-              <span
-                className={`block h-1 rounded-full transition-all ${
-                  current === idx ? "w-8 bg-acid" : "w-3 bg-cream/20"
-                }`}
-              />
-            </button>
-          ))}
-        </div>
+                  <Icon className="w-[18px] h-[18px] text-cream/70 group-hover:text-acid transition-colors" />
+                </div>
+                <h3 className="font-sans font-semibold text-cream text-[17px] tracking-[-0.01em]">
+                  {agent.name}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-cream/60 text-pretty">
+                  {agent.blurb}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

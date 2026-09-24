@@ -7,7 +7,9 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.25rem",
+      // Sections set their own side padding; a container padding on top of
+      // it doubled the phone gutter to 40px.
+      padding: "0",
       screens: {
         "2xl": "1320px",
       },
@@ -24,6 +26,8 @@ export default {
           "-apple-system",
           "sans-serif",
         ],
+        // Wordmark only: Geist 600, uppercase, wide tracking
+        brand: ['"Geist"', "ui-sans-serif", "system-ui", "sans-serif"],
         // Data / eyebrows — JetBrains Mono
         mono: [
           '"JetBrains Mono"',

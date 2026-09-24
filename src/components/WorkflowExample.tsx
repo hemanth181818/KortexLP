@@ -1,4 +1,6 @@
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
+
+import { Wordmark } from "@/components/ui/wordmark";
 
 const CHAT = [
   {
@@ -75,7 +77,7 @@ export default function WorkflowExample() {
           <p className="eyebrow mb-5">03 · Demo</p>
           <h2 className="font-sans font-semibold text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em] text-cream">
             From one ROAS question
-            <span className="block font-display italic text-cream/95">
+            <span className="block font-display italic font-normal text-cream/95 mt-1">
               to four approved moves.
             </span>
           </h2>
@@ -94,14 +96,9 @@ export default function WorkflowExample() {
               role="region"
               aria-label="Example conversation between a growth lead and Kortex"
             >
-              {/* Terminal bar */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-cream/10 bg-ink-soft">
-                <span className="h-2.5 w-2.5 rounded-full bg-cream/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-cream/15" />
-                <span className="h-2.5 w-2.5 rounded-full bg-acid/70" />
-                <span className="ml-3 font-mono text-[11px] uppercase tracking-[0.22em] text-cream/45">
-                  ask-kortex · session · 0x42c
-                </span>
+              <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-cream/10 bg-ink-soft">
+                <span className="h-1.5 w-1.5 rounded-full bg-acid" aria-hidden="true" />
+                <Wordmark className="text-[12px]" />
               </div>
 
               <div className="p-5 sm:p-7 space-y-4">
@@ -121,13 +118,13 @@ export default function WorkflowExample() {
                     >
                       <div className="flex items-baseline justify-between gap-3 mb-1.5">
                         <span
-                          className={`font-mono text-[10px] uppercase tracking-[0.22em] ${
-                            m.side === "user" ? "text-cream/50" : "text-acid"
+                          className={`text-[12.5px] font-semibold ${
+                            m.side === "user" ? "text-cream/70" : "text-acid"
                           }`}
                         >
                           {m.speaker}
                         </span>
-                        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream/30">
+                        <span className="text-[12px] text-cream/35">
                           {m.role}
                         </span>
                       </div>
@@ -152,7 +149,7 @@ export default function WorkflowExample() {
                               >
                                 {d.v}
                               </div>
-                              <div className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-cream/50 mt-0.5 leading-tight">
+                              <div className="text-[11.5px] text-cream/50 mt-1 leading-snug">
                                 {d.note}
                               </div>
                             </div>
@@ -167,10 +164,10 @@ export default function WorkflowExample() {
                 <div className="flex justify-start">
                   <div className="max-w-[88%] rounded-lg px-4 py-3.5 bg-ink-soft border border-cream/12">
                     <div className="flex items-baseline justify-between gap-3 mb-1.5">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-acid">
+                      <span className="text-[12.5px] font-semibold text-acid">
                         Kortex
                       </span>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream/30">
+                      <span className="text-[12px] text-cream/35">
                         Plan
                       </span>
                     </div>
@@ -198,11 +195,11 @@ export default function WorkflowExample() {
           {/* Approval cards */}
           <div className="lg:col-span-5 reveal-on-scroll">
             <div className="mb-5 flex items-center gap-3">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-cream/45">
+              <span className="text-sm font-semibold text-cream/80">
                 Approval queue
               </span>
               <span className="h-px flex-1 bg-cream/10" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-acid tabular" data-tabular>
+              <span className="rounded-full bg-acid/12 px-2.5 py-0.5 text-[12px] font-semibold text-acid tabular" data-tabular>
                 04 pending
               </span>
             </div>
@@ -213,12 +210,16 @@ export default function WorkflowExample() {
                   key={a.title}
                   className="group relative rounded-xl border border-cream/10 bg-ink-soft p-4 sm:p-5 hover:border-cream/20 transition-colors"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream/55">
-                      · {a.agent}
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <span
+                      className="grid h-5 w-5 place-items-center rounded-full border border-cream/15 text-[11px] font-semibold text-cream/60 tabular"
+                      data-tabular
+                      aria-label={`Priority ${idx + 1}`}
+                    >
+                      {idx + 1}
                     </span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-cream/30 tabular" data-tabular>
-                      0{idx + 1}
+                    <span className="text-[12.5px] text-cream/50">
+                      {a.agent}
                     </span>
                   </div>
                   <h3 className="font-sans font-semibold text-cream text-base sm:text-lg leading-tight">
@@ -227,13 +228,13 @@ export default function WorkflowExample() {
                   <p className="mt-1.5 text-[13.5px] leading-relaxed text-cream/60">
                     {a.body}
                   </p>
-                  <button
-                    type="button"
-                    className="mt-4 inline-flex items-center gap-2 rounded-full border border-cream/15 bg-cream/[0.04] px-3 py-1.5 min-h-[36px] text-xs font-mono uppercase tracking-[0.18em] text-cream/80 hover:border-acid/40 hover:bg-acid/10 hover:text-acid transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid focus-visible:ring-offset-2 focus-visible:ring-offset-ink-soft"
+                  <span
+                    aria-hidden="true"
+                    className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-acid px-3.5 h-8 text-[13px] font-semibold text-ink-deep"
                   >
-                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
                     {a.cta}
-                  </button>
+                  </span>
                 </article>
               ))}
             </div>

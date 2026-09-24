@@ -68,6 +68,11 @@
     font-feature-settings: "ss01", "ss02", "cv11";
   }
 
+  /* No one-word last lines on headings */
+  h1, h2, h3, blockquote {
+    text-wrap: balance;
+  }
+
   /* Use tabular figures for any data-ish element */
   .tabular,
   [data-tabular] {
@@ -170,27 +175,6 @@
   .bracket-tag::after  { content: "]"; @apply text-acid ml-1; }
 }
 
-/* AI Architecture (signal lines): recolored for Kortex */
-.ai-architecture {
-  offset-anchor: 10px 0px;
-  animation: animation-path;
-  animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
-}
-.ai-line-1 { offset-path: path("M 10 20 h 79.5 q 5 0 5 5 v 30"); animation-duration: 5s; animation-delay: 1s; }
-.ai-line-2 { offset-path: path("M 180 10 h -69.7 q -5 0 -5 5 v 40"); animation-delay: 6s; animation-duration: 2s; }
-.ai-line-3 { offset-path: path("M 130 20 v 21.8 q 0 5 -5 5 h -25"); animation-delay: 4s; animation-duration: 6s; }
-.ai-line-4 { offset-path: path("M 170 80 v -21.8 q 0 -5 -5 -5 h -65"); animation-delay: 3s; animation-duration: 3s; }
-.ai-line-5 { offset-path: path("M 135 65 h 15 q 5 0 5 5 v 10 q 0 5 -5 5 h -39.8 q -5 0 -5 -5 v -35"); animation-delay: 9s; animation-duration: 4s; }
-.ai-line-6 { offset-path: path("M 94.8 95 v -46"); animation-delay: 3s; animation-duration: 7s; }
-.ai-line-7 { offset-path: path("M 88 88 v -15 q 0 -5 -5 -5 h -10 q -5 0 -5 -5 v -5 q 0 -5 5 -5 h 28"); animation-delay: 4s; animation-duration: 4s; }
-.ai-line-8 { offset-path: path("M 30 30 h 25 q 5 0 5 5 v 6.5 q 0 5 5 5 h 35"); animation-delay: 3s; animation-duration: 3s; }
-
-@keyframes animation-path {
-  0%   { offset-distance: 0%; }
-  100% { offset-distance: 100%; }
-}
-
 /* Respect reduced motion: disable heavy animations */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -201,5 +185,8 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .ai-architecture { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-pulse { display: none; }
 }
