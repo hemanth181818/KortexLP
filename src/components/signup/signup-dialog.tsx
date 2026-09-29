@@ -28,7 +28,50 @@ export function useSignup() {
   return useContext(SignupContext);
 }
 
-type Status = "idle" | "sending" | "done" | "error";
+type Status = "idle" | "sending" | "done" | "already" | "error";
+
+/**
+ * One sign-up per browser.
+ *
+ * SESSION_KEY is a random id sent with the form; the app refuses a second
+ * sign-up from the same id under a different address (and caps sign-ups per
+ * network), so clearing this only moves the refusal to the server. DONE_KEY
+ * remembers who signed up here, so the dialog says "already on the list"
+ * instead of offering the form again. Browser storage can be missing or
+ * blocked (private windows), so every access is guarded.
+ */
+const SESSION_KEY = "kortex:signup-session";
+const DONE_KEY = "kortex:signed-up";
+
+function sessionId(): string | undefined {
+  try {
+    let id = localStorage.getItem(SESSION_KEY);
+    if (!id) {
+      id = crypto.randomUUID().replace(/-/g, "");
+      localStorage.setItem(SESSION_KEY, id);
+    }
+    return id;
+  } catch {
+    return undefined;
+  }
+}
+
+function signedUpHere(): { name: string; email: string } | null {
+  try {
+    const raw = localStorage.getItem(DONE_KEY);
+    return raw ? (JSON.parse(raw) as { name: string; email: string }) : null;
+  } catch {
+    return null;
+  }
+}
+
+function rememberSignup(who: { name: string; email: string }) {
+  try {
+    localStorage.setItem(DONE_KEY, JSON.stringify(who));
+  } catch {
+    // Nothing to do: the server still refuses a repeat.
+  }
+}
 
 export function SignupProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setOpen] = useState(false);
@@ -56,10 +99,14 @@ export function SignupProvider({ children }: { children: React.ReactNode }) {
 function SignupDialog({ onClose }: { onClose: () => void }) {
   const titleId = useId();
   const first = useRef<HTMLInputElement>(null);
-  const [status, setStatus] = useState<Status>("idle");
+  const earlier = signedUpHere();
+  const [status, setStatus] = useState<Status>(earlier ? "already" : "idle");
   const [error, setError] = useState<string | null>(null);
   const [badField, setBadField] = useState<string | null>(null);
-  const [sentTo, setSentTo] = useState({ name: "", email: "" });
+  const [sentTo, setSentTo] = useState(earlier ?? { name: "", email: "" });
+  // "Did you mean": the address the app suggested, and the one typed.
+  const [suggestion, setSuggestion] = useState<{ suggested: string; typed: string } | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Focus the first field, close on Escape, and hold the page still behind it.
   useEffect(() => {
@@ -74,38 +121,74 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
     };
   }, [onClose]);
 
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
+  const send = async (confirmEmail = false) => {
+    const el = formRef.current;
+    if (!el) return;
+    const form = new FormData(el);
     const body = {
       name: String(form.get("name") ?? ""),
       company: String(form.get("company") ?? ""),
       email: String(form.get("email") ?? ""),
       website: String(form.get("website") ?? ""),
       source: "landing",
+      sessionId: sessionId(),
+      ...(confirmEmail ? { confirmEmail: true } : {}),
     };
     setStatus("sending");
     setError(null);
     setBadField(null);
+    setSuggestion(null);
     try {
       const res = await fetch(LEADS_URL, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; field?: string };
+      const json = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        field?: string;
+        suggestion?: string | null;
+        code?: string;
+      };
+      if (json.code === "already_signed_up") {
+        const who = signedUpHere() ?? { name: body.name.trim().split(/\s+/)[0] ?? "", email: "" };
+        setSentTo(who);
+        setStatus("already");
+        return;
+      }
+      if (json.suggestion) {
+        setStatus("error");
+        setBadField("email");
+        setSuggestion({ suggested: json.suggestion, typed: body.email.trim() });
+        return;
+      }
       if (!res.ok || !json.ok) {
         setStatus("error");
         setError(json.error ?? "Could not send that. Try again in a minute.");
         setBadField(json.field ?? null);
         return;
       }
-      setSentTo({ name: body.name.trim().split(/\s+/)[0] ?? "", email: body.email.trim() });
+      const who = { name: body.name.trim().split(/\s+/)[0] ?? "", email: body.email.trim() };
+      rememberSignup(who);
+      setSentTo(who);
       setStatus("done");
     } catch {
       setStatus("error");
       setError("Could not reach Kortex. Check your connection and try again.");
     }
+  };
+
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    void send();
+  };
+
+  /** Take the suggested address into the field and send. */
+  const takeSuggestion = () => {
+    const input = formRef.current?.elements.namedItem("email") as HTMLInputElement | null;
+    if (input && suggestion) input.value = suggestion.suggested;
+    void send();
   };
 
   return (
@@ -137,7 +220,37 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
           <X className="h-[18px] w-[18px]" />
         </button>
 
-        {status === "done" ? (
+        {status === "already" ? (
+          <div className="py-2">
+            <span className="grid h-11 w-11 place-items-center rounded-full bg-acid text-on-acid">
+              <Check className="h-5 w-5" strokeWidth={2.5} />
+            </span>
+            <h2 id={titleId} className="mt-5 text-[24px] font-semibold tracking-[-0.02em] text-cream">
+              You&apos;re already on the list{sentTo.name ? `, ${sentTo.name}` : ""}.
+            </h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-cream/65">
+              {sentTo.email ? (
+                <>
+                  We&apos;ll be in touch at <span className="text-cream">{sentTo.email}</span>.
+                </>
+              ) : (
+                <>We&apos;ll be in touch soon.</>
+              )}{" "}
+              Need to change something? Email{" "}
+              <a href="mailto:human@kortexagent.co" className="text-cream underline underline-offset-2">
+                human@kortexagent.co
+              </a>
+              .
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-7 h-11 w-full rounded-full border border-cream/15 text-sm font-semibold text-cream hover:bg-cream/5"
+            >
+              Done
+            </button>
+          </div>
+        ) : status === "done" ? (
           <div className="py-2">
             <span className="grid h-11 w-11 place-items-center rounded-full bg-acid text-on-acid">
               <Check className="h-5 w-5" strokeWidth={2.5} />
@@ -166,7 +279,7 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
               Tell us who you are and we&apos;ll get you set up.
             </p>
 
-            <form className="mt-6 flex flex-col gap-3.5" onSubmit={submit} noValidate={false}>
+            <form ref={formRef} className="mt-6 flex flex-col gap-3.5" onSubmit={submit} noValidate={false}>
               <Field label="Name" name="name" autoComplete="name" inputRef={first} invalid={badField === "name"} />
               <Field label="Company" name="company" autoComplete="organization" invalid={badField === "company"} />
               <Field
@@ -186,6 +299,30 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
                   <input name="website" type="text" tabIndex={-1} autoComplete="off" />
                 </label>
               </div>
+
+              {suggestion ? (
+                <div role="alert" className="flex flex-col gap-2 text-[13.5px] text-cream/80">
+                  <p>
+                    Did you mean <span className="font-semibold text-cream">{suggestion.suggested}</span>?
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={takeSuggestion}
+                      className="h-9 rounded-full bg-cream/10 px-3.5 text-[13px] font-semibold text-cream hover:bg-cream/15"
+                    >
+                      Use {suggestion.suggested.split("@")[1]}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void send(true)}
+                      className="h-9 rounded-full px-3.5 text-[13px] text-cream/65 underline-offset-2 hover:text-cream hover:underline"
+                    >
+                      Keep {suggestion.typed.split("@")[1]}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
 
               {error ? (
                 <p role="alert" className="text-[13.5px] text-[hsl(0_75%_62%)] [[data-theme=light]_&]:text-[hsl(0_70%_42%)]">
