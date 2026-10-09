@@ -14,7 +14,8 @@ import { cn } from "@/lib/utils";
 /**
  * kortexagent.co, on the same system as the Kortex lead-magnet sites
  * (visibility.kortexagent.co): light first, a sky hero with a glass pill and a
- * serif headline, two pastel bands, the real objections, an ink footer.
+ * serif headline, pastel bands behind the middle sections, the real
+ * objections, an ink footer.
  *
  * One job: get an advertiser onto the early-access list. AIDA for cold
  * visitors: the hero shows a morning's checks waiting for approval; then how a
@@ -180,7 +181,7 @@ function EmailBox({ id }: { id: string }) {
         autoComplete="email"
         placeholder="you@company.com"
         maxLength={254}
-        className="min-w-0 flex-1 bg-transparent px-4 text-[16px] text-cream outline-none placeholder:text-cream/35"
+        className="min-w-0 flex-1 bg-transparent px-4 text-[16px] text-cream outline-none placeholder:text-cream/35 focus-visible:outline-none"
       />
       <InteractiveHoverButton type="submit" text="Get early access" className="h-11 shrink-0 text-[15px]" />
     </form>
@@ -292,8 +293,8 @@ const STEPS = [
 
 function How() {
   return (
-    <section id="how">
-      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+    <section id="how" className="pastel-band pastel-three relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
         <p className="eyebrow">How it works</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
           Connect once. Then a short list to approve each day.
@@ -424,8 +425,8 @@ const FAQ = [
 function Faq() {
   const [openIdx, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 py-20 sm:px-6 lg:grid-cols-[1fr_1.6fr] lg:gap-16 lg:py-28">
+    <section id="faq" className="pastel-band pastel-alt relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16 lg:p-14">
         <div>
           <p className="eyebrow">Questions</p>
           <h2 className="font-display mt-4 text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">Before you connect anything</h2>
