@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 /**
  * kortexagent.co, on the same system as the Kortex lead-magnet sites
  * (visibility.kortexagent.co): light first, a sky hero with a glass pill and a
- * serif headline, pastel bands behind the middle sections, the real
+ * serif headline, pastel bands behind How it works and the FAQ only, the real
  * objections, an ink footer.
  *
  * One job: get an advertiser onto the early-access list. AIDA for cold
@@ -253,9 +253,8 @@ const CHECKS = [
 
 function DailyChecks() {
   return (
-    <section id="checks" className="pastel-band pastel-alt relative px-3 py-16 sm:px-6 sm:py-24">
-      {/* The first of two coloured bands: the daily checks, on a card over it. */}
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:p-14">
+    <section id="checks">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-28">
         <ul className="order-2 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:order-1">
           {CHECKS.map((c) => (
             <li key={c.title} className="bg-ink-soft p-5 sm:p-6">
@@ -344,8 +343,8 @@ const TOOLS: Array<{ name: string; href: string; title: string; body: string; ct
 
 function FreeTools() {
   return (
-    <section id="free" className="pastel-band relative px-3 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+    <section id="free">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
         <p className="eyebrow">Free to use today</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
           Waiting for access? Three Kortex tools are open now.
