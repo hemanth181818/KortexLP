@@ -106,7 +106,7 @@ function Hero() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
             className="font-display mt-7 text-balance text-[clamp(3rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.02em] text-cream"
           >
-            Your ad account, <span className="italic">checked</span> every day.
+            Your ad account, <span className="italic">optimized</span> for ROAS every day.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
