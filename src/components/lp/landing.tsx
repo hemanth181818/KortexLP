@@ -106,7 +106,7 @@ function Hero() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
             className="font-display mt-7 text-balance text-[clamp(3rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.02em] text-cream"
           >
-            Your ad account, <span className="italic">optimized</span> for ROAS every day.
+            Your ad account, <span className="italic">optimized</span> for high ROAS every day.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -125,7 +125,7 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
+            className="mt-10 flex flex-col items-center gap-6"
           >
             <Rail label="Works on" items={LIVE} />
             <Rail label="Coming soon" items={SOON} soon />
@@ -144,14 +144,16 @@ function Hero() {
 /** A labelled row of platform marks: where Kortex works today, or is coming next. */
 function Rail({ label, items, soon = false }: { label: string; items: PlatformId[]; soon?: boolean }) {
   return (
-    <div className={cn("flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5", soon ? "text-cream/40" : "text-cream/60")}>
+    <div className={cn("flex flex-col items-center gap-3", soon ? "text-cream/40" : "text-cream/60")}>
       <span className={cn("text-[12.5px]", soon ? "rounded-full border border-cream/15 px-2 py-0.5 text-cream/45" : "text-cream/40")}>{label}</span>
-      {items.map((p) => (
-        <span key={p} className="flex items-center gap-2 text-[14px] font-medium">
-          <PlatformLogo platform={p} className="size-[18px]" />
-          {PLATFORM_NAME[p]}
-        </span>
-      ))}
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5">
+        {items.map((p) => (
+          <span key={p} className="flex items-center gap-2 text-[14px] font-medium">
+            <PlatformLogo platform={p} className="size-[18px]" />
+            {PLATFORM_NAME[p]}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
