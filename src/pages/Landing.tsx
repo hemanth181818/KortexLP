@@ -1,33 +1,10 @@
-import { NavHeader } from "@/components/ui/nav-header";
-import Hero from "@/components/Hero";
-import ConnectionsSection from "@/components/ConnectionsSection";
-import AgentsCarousel from "@/components/AgentsCarousel";
-import WorkflowExample from "@/components/WorkflowExample";
-import SystemBento from "@/components/SystemBento";
-import StatsSection from "@/components/StatsSection";
-import LogoMarquee from "@/components/LogoMarquee";
-import TestimonialQuote from "@/components/TestimonialQuote";
-import Footer from "@/components/Footer";
+import LandingPage from "@/components/lp/landing";
 import { SignupProvider } from "@/components/signup/signup-dialog";
-import { useRevealOnScroll } from "@/hooks/use-reveal-on-scroll";
 
 export default function Landing() {
-  useRevealOnScroll();
-
   return (
     <SignupProvider>
-    <main className="relative min-h-[100svh] bg-ink text-cream">
-      <NavHeader />
-      <Hero />
-      <ConnectionsSection />
-      <AgentsCarousel />
-      <WorkflowExample />
-      <SystemBento />
-      <StatsSection />
-      <LogoMarquee />
-      <TestimonialQuote />
-      <Footer />
-    </main>
+      <LandingPage />
     </SignupProvider>
   );
 }

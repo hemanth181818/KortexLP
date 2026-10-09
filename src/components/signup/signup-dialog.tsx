@@ -21,7 +21,8 @@ import { LEADS_URL, PRIVACY_URL } from "@/lib/links";
  * request, not an account.
  */
 
-type Ctx = { open: () => void };
+/** open(email?): the hero's email box hands what was typed to the dialog. */
+type Ctx = { open: (email?: string) => void };
 const SignupContext = createContext<Ctx>({ open: () => {} });
 
 export function useSignup() {
@@ -75,10 +76,12 @@ function rememberSignup(who: { name: string; email: string }) {
 
 export function SignupProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setOpen] = useState(false);
+  const [prefill, setPrefill] = useState("");
   const opener = useRef<HTMLElement | null>(null);
 
-  const open = useCallback(() => {
+  const open = useCallback((email?: string) => {
     opener.current = document.activeElement as HTMLElement | null;
+    setPrefill(typeof email === "string" ? email.trim().slice(0, 254) : "");
     setOpen(true);
   }, []);
 
@@ -91,12 +94,12 @@ export function SignupProvider({ children }: { children: React.ReactNode }) {
   return (
     <SignupContext.Provider value={{ open }}>
       {children}
-      <AnimatePresence>{isOpen && <SignupDialog onClose={close} />}</AnimatePresence>
+      <AnimatePresence>{isOpen && <SignupDialog onClose={close} prefill={prefill} />}</AnimatePresence>
     </SignupContext.Provider>
   );
 }
 
-function SignupDialog({ onClose }: { onClose: () => void }) {
+function SignupDialog({ onClose, prefill = "" }: { onClose: () => void; prefill?: string }) {
   const titleId = useId();
   const first = useRef<HTMLInputElement>(null);
   const earlier = signedUpHere();
@@ -288,6 +291,7 @@ function SignupDialog({ onClose }: { onClose: () => void }) {
                 type="email"
                 autoComplete="email"
                 inputMode="email"
+                defaultValue={prefill}
                 invalid={badField === "email"}
               />
 
@@ -361,6 +365,7 @@ function Field({
   inputMode,
   inputRef,
   invalid,
+  defaultValue,
 }: {
   label: string;
   name: string;
@@ -369,6 +374,7 @@ function Field({
   inputMode?: "email" | "text";
   inputRef?: React.Ref<HTMLInputElement>;
   invalid?: boolean;
+  defaultValue?: string;
 }) {
   const id = useId();
   return (
@@ -381,6 +387,7 @@ function Field({
         id={id}
         name={name}
         type={type}
+        defaultValue={defaultValue}
         required
         maxLength={name === "email" ? 254 : name === "company" ? 160 : 120}
         autoComplete={autoComplete}

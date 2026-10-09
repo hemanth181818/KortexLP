@@ -11,7 +11,8 @@
 */
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="dark"] {
     /* Ink / surface: two-step scale for clearer separation */
     --ink: 0 0% 4.5%;            /* base background  (~#0B0B0B) */
     --ink-deep: 0 0% 3.0%;       /* deepest panel    (~#080808) */
@@ -161,14 +162,12 @@
 }
 
 @layer utilities {
-  /* Eyebrow micro-label: `// 01 · CONNECT` (quiet by default) */
+  /* Section labels: the body face, sentence case, quiet (as on the Kortex lead-magnet sites). */
   .eyebrow {
-    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-cream/45;
+    @apply font-sans text-[13px] font-medium tracking-[0.01em] text-cream/50;
   }
-
-  /* Reserved for the two signature openers: hero + final CTA */
   .eyebrow-acid {
-    @apply font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-acid-ink;
+    @apply font-sans text-[13px] font-medium tracking-[0.01em] text-acid-ink;
   }
 
   /* Subtle blueprint grid behind sections (quieter than before) */
@@ -232,3 +231,90 @@
   }
 }
 
+
+/* ── Shared with the Kortex lead-magnet sites (lead-magnets/visibility app/globals.css) ── */
+
+/* Display headlines: large, quiet serif. */
+.font-display { font-family: "Newsreader", "Iowan Old Style", Georgia, serif; font-weight: 400; letter-spacing: -0.025em; }
+
+/* The mark: lime on ink on the dark theme, ink on lime on the light one. */
+.logo-mark-ground { fill: #0F1012; }
+.logo-mark-spokes { stroke: #CCF235; }
+[data-theme="light"] .logo-mark-ground { fill: #CCF235; }
+[data-theme="light"] .logo-mark-spokes { stroke: #141210; }
+
+/* The hero's sky: pale blue into the page, with a faint dot texture. On the dark theme, a low night-blue glow over ink. */
+.sky {
+  background:
+    radial-gradient(hsl(var(--cream) / 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(180deg, #BFDCF5 0%, #D6E8F8 30%, #EAF2F8 55%, hsl(var(--ink)) 100%);
+}
+[data-theme="dark"] .sky {
+  background:
+    radial-gradient(hsl(var(--cream) / 0.05) 1px, transparent 1px) 0 0 / 22px 22px,
+    radial-gradient(70% 55% at 50% 0%, hsl(212 60% 22% / 0.55) 0%, transparent 70%),
+    hsl(var(--ink));
+}
+
+/* The footer: dark ink on the light page; on the dark page, the page itself under a hairline. */
+.footer-block { background: #0F1012; }
+html[data-theme="dark"] .footer-block { background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+
+/* Frosted glass, for small floating pieces over the sky. */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.28));
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(255, 255, 255, 0.25), 0 8px 30px -12px rgba(40, 70, 110, 0.28);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+[data-theme="dark"] .glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 30px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* The page's one coloured band: soft pastel light under a fine halftone. */
+.pastel-band {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.55) 0.9px, transparent 1.2px) 0 0 / 6px 6px,
+    radial-gradient(40% 60% at 8% 30%, rgba(255, 196, 214, 0.85), transparent 70%),
+    radial-gradient(35% 55% at 30% 85%, rgba(186, 222, 247, 0.9), transparent 70%),
+    radial-gradient(40% 60% at 55% 15%, rgba(214, 200, 250, 0.85), transparent 70%),
+    radial-gradient(35% 55% at 78% 80%, rgba(255, 214, 182, 0.9), transparent 70%),
+    radial-gradient(35% 60% at 95% 25%, rgba(196, 238, 214, 0.85), transparent 70%),
+    linear-gradient(180deg, #F6EFF6, #EEF2FA);
+}
+[data-theme="dark"] .pastel-band {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.06) 0.9px, transparent 1.2px) 0 0 / 6px 6px,
+    radial-gradient(40% 60% at 8% 30%, rgba(170, 70, 110, 0.35), transparent 70%),
+    radial-gradient(35% 55% at 30% 85%, rgba(50, 100, 160, 0.4), transparent 70%),
+    radial-gradient(40% 60% at 55% 15%, rgba(110, 80, 180, 0.35), transparent 70%),
+    radial-gradient(35% 55% at 78% 80%, rgba(170, 100, 60, 0.32), transparent 70%),
+    radial-gradient(35% 60% at 95% 25%, rgba(50, 130, 100, 0.3), transparent 70%),
+    #0c0d10;
+}
+[data-theme="dark"] .pastel-band > div { border-color: rgba(255, 255, 255, 0.1); }
+
+/* The hover button's dot and fill: black on paper, white on ink. */
+:root { --hb-fill: #141210; --hb-text: #F2EFE6; }
+html[data-theme="dark"] { --hb-fill: #F2EFE6; --hb-text: #141210; }
+
+/* The header once scrolled: frosted glass over whatever is under it. */
+.glass-bar {
+  background: rgba(253, 249, 243, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 0 rgba(20, 18, 16, 0.04), 0 10px 30px -20px rgba(40, 60, 90, 0.25);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+}
+html[data-theme="dark"] .glass-bar {
+  background: rgba(10, 10, 11, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* A typing caret. */
+@keyframes blink { 50% { opacity: 0; } }
+.caret { animation: blink 1s steps(1) infinite; }

@@ -1,15 +1,12 @@
 import { cn } from "@/lib/utils";
+import { LogoMark } from "@/components/lp/logo-mark";
 
-/** The Kortex wordmark: Geist 600, uppercase, wide tracking. No tile, no glyph. */
+/** The Kortex wordmark: the mark, then "Kortex" in the page's own sans, sentence case, as on the lead-magnet sites. */
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span
-      className={cn(
-        "font-brand font-semibold uppercase tracking-[0.15em] text-cream leading-none",
-        className
-      )}
-    >
-      Kortex
+    <span className={cn("inline-flex items-center gap-2", className)}>
+      <LogoMark />
+      <span className="font-sans text-[17px] font-bold leading-none tracking-[-0.01em] text-cream">Kortex</span>
     </span>
   );
 }

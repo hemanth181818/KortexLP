@@ -1,30 +1,32 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#070707" />
-    <!-- Theme before first paint, so a light-mode visitor never sees a dark flash.
-         Dark unless they chose light, matching the product. -->
+    <meta name="theme-color" content="#FDF9F3" />
+    <!-- Theme before first paint, so a dark-mode visitor never sees a light flash.
+         Light unless they chose dark, as on the Kortex lead-magnet sites. -->
     <script>
       try {
-        if (localStorage.getItem("kortex-theme") === "light") {
-          document.documentElement.setAttribute("data-theme", "light");
-          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#FDF9F3");
+        if (localStorage.getItem("kortex-theme") === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#070707");
         }
       } catch (e) {}
     </script>
-    <title>Kortex · Run growth from one Kortex, not nine dashboards</title>
+    <title>Kortex · Your ad account, checked every day</title>
     <meta
       name="description"
-      content="Kortex coordinates 8 specialist AI agents across ads, store, SEO, creative and pages. Ask one growth question. Approve the moves. Ship growth without nine dashboards."
+      content="Kortex reads your Meta ads every day, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then checks whether it worked."
     />
     <meta name="author" content="Kortex" />
+    <!-- The Kortex mark, inline: the deploy uploads only index.html and assets/. -->
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"%3E%3Crect width="1024" height="1024" rx="230" fill="%230F1012"/%3E%3Cpath d="M512 286V738M286 512H738M352 352L672 672M672 352L352 672" stroke="%23CCF235" stroke-width="62" stroke-linecap="round" fill="none"/%3E%3C/svg%3E' />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap"
       rel="stylesheet"
     />
     <!-- UI sans: Satoshi (Fontshare) -->
@@ -33,10 +35,10 @@
       rel="stylesheet"
     />
 
-    <meta property="og:title" content="Kortex · Run growth from one Kortex, not nine dashboards" />
+    <meta property="og:title" content="Kortex · Your ad account, checked every day" />
     <meta
       property="og:description"
-      content="Connect your stack. Ask one growth question. Approve the moves. Kortex coordinates 8 specialist AI agents across ads, store, SEO, creative and pages."
+      content="An AI agent for Meta ads. It finds where ROAS is leaking, proposes the fix, and makes the change once you approve it."
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
