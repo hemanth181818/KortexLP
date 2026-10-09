@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 /**
  * kortexagent.co, on the same system as the Kortex lead-magnet sites
  * (visibility.kortexagent.co): light first, a sky hero with a glass pill and a
- * serif headline, one pastel band, the real objections, an ink footer.
+ * serif headline, two pastel bands, the real objections, an ink footer.
  *
  * One job: get an advertiser onto the early-access list. AIDA for cold
  * visitors: the hero shows a morning's checks waiting for approval; then how a
@@ -22,7 +22,8 @@ import { cn } from "@/lib/utils";
  * free tools to try today; the objections; the ask again.
  *
  * Every claim is what the product does today (checked against Kortex Pilot,
- * 2026-10-09): Meta only (Google Ads and Shopify are built but switched off),
+ * 2026-10-09; the platform list is Hemanth's call): Meta and Google Ads live,
+ * Shopify, TikTok and ChatGPT ads shown as coming soon,
  * every change approved by a person, daily checks, no pricing yet, and no
  * customer results to quote, so there are none on the page. Names and numbers
  * in the examples are made up and say so.
@@ -76,7 +77,8 @@ function Header() {
 
 /* ---------- Hero ---------- */
 
-const RAIL: PlatformId[] = ["meta", "facebook", "instagram"];
+const LIVE: PlatformId[] = ["meta", "googleads"];
+const SOON: PlatformId[] = ["shopify", "tiktok", "chatgpt"];
 
 function Hero() {
   return (
@@ -94,7 +96,7 @@ function Hero() {
               <span className="relative inline-flex size-1.5 rounded-full bg-acid" />
             </span>
             <span>
-              Early Access<span className="hidden sm:inline"> · AI Agent For Meta Ads</span>
+              AI Agent For High Frequency ROAS Optimization
             </span>
           </motion.p>
           <motion.h1
@@ -111,7 +113,7 @@ function Hero() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
             className="mt-6 max-w-[38rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
           >
-            Kortex reads your Meta ads, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then
+            Kortex reads your Meta and Google ads, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then
             checks whether it worked.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
@@ -122,15 +124,10 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-cream/55"
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
           >
-            <span className="text-[12.5px] text-cream/40">Works on</span>
-            {RAIL.map((p) => (
-              <span key={p} className="flex items-center gap-2 text-[14px] font-medium">
-                <PlatformLogo platform={p} className="size-[18px]" />
-                {p === "meta" ? "Meta Ads" : PLATFORM_NAME[p]}
-              </span>
-            ))}
+            <Rail label="Works on" items={LIVE} />
+            <Rail label="Coming soon" items={SOON} soon />
           </motion.div>
         </div>
 
@@ -140,6 +137,21 @@ function Hero() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+/** A labelled row of platform marks: where Kortex works today, or is coming next. */
+function Rail({ label, items, soon = false }: { label: string; items: PlatformId[]; soon?: boolean }) {
+  return (
+    <div className={cn("flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5", soon ? "text-cream/40" : "text-cream/60")}>
+      <span className={cn("text-[12.5px]", soon ? "rounded-full border border-cream/15 px-2 py-0.5 text-cream/45" : "text-cream/40")}>{label}</span>
+      {items.map((p) => (
+        <span key={p} className="flex items-center gap-2 text-[14px] font-medium">
+          <PlatformLogo platform={p} className="size-[18px]" />
+          {PLATFORM_NAME[p]}
+        </span>
+      ))}
+    </div>
   );
 }
 
@@ -188,7 +200,7 @@ function Approval() {
           </h2>
           <p className="mt-5 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
             Each proposal says what Kortex saw, what it wants to change, and the numbers before and after. You approve it in the chat or in your
-            queue, and Kortex makes the change in Meta.
+            queue, and Kortex makes the change in your ad account.
           </p>
           <p className="mt-4 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
             Limits sit underneath every proposal. A budget can at most double or halve in one step. An ad set Kortex just changed is left alone
@@ -240,8 +252,9 @@ const CHECKS = [
 
 function DailyChecks() {
   return (
-    <section id="checks">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-28">
+    <section id="checks" className="pastel-band pastel-alt relative px-3 py-16 sm:px-6 sm:py-24">
+      {/* The first of two coloured bands: the daily checks, on a card over it. */}
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:p-14">
         <ul className="order-2 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:order-1">
           {CHECKS.map((c) => (
             <li key={c.title} className="bg-ink-soft p-5 sm:p-6">
@@ -256,7 +269,7 @@ function DailyChecks() {
             The leaks you would catch yourself, if you had the time.
           </h2>
           <p className="mt-5 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-            Each day Kortex reads your Meta account and runs its checks. What it finds lands in Needs attention with a proposed fix, so your
+            Each day Kortex reads your ad accounts and runs its checks. What it finds lands in Needs attention with a proposed fix, so your
             morning starts with a short list instead of a dashboard.
           </p>
           <p className="mt-4 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
@@ -271,9 +284,9 @@ function DailyChecks() {
 /* ---------- How it works ---------- */
 
 const STEPS = [
-  { title: "Connect Meta", body: "Sign in through Meta's own screen. Kortex reads your last 30 days and suggests its first three changes." },
+  { title: "Connect your ad accounts", body: "Sign in through Meta's or Google's own screen. Kortex reads your last 30 days and suggests its first three changes." },
   { title: "Read the morning list", body: "Each day's findings, each with a proposed fix and the numbers behind it. Ask follow-up questions in the chat." },
-  { title: "Approve what makes sense", body: "Kortex makes the change in Meta. New ads and ad sets it creates start paused, for you to switch on." },
+  { title: "Approve what makes sense", body: "Kortex makes the change in your ad account. New ads and ad sets it creates start paused, for you to switch on." },
   { title: "See whether it worked", body: "Every change is judged on its ROAS over the following one to two weeks, and the next proposals learn from it." },
 ];
 
@@ -384,7 +397,7 @@ function ToolBars({ rows }: { rows: Array<[string, number]> }) {
 const FAQ = [
   {
     q: "Which ad platforms does it work with?",
-    a: "Meta today, which covers Facebook and Instagram. Google Ads and Shopify are built and being tested, and are not open to new teams yet.",
+    a: "Meta Ads, which covers Facebook and Instagram, and Google Ads. Shopify, TikTok Ads and ChatGPT Ads are coming soon.",
   },
   {
     q: "Will it change my ads without asking?",
@@ -396,7 +409,7 @@ const FAQ = [
   },
   {
     q: "How does it connect to my account?",
-    a: "Through Meta's own sign-in screen. You never give Kortex your password.",
+    a: "Through Meta's and Google's own sign-in screens. You never give Kortex your password.",
   },
   {
     q: "Does it make ads too?",

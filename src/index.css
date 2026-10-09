@@ -296,6 +296,27 @@ html[data-theme="dark"] .footer-block { background: transparent; border-top: 1px
     #0c0d10;
 }
 [data-theme="dark"] .pastel-band > div { border-color: rgba(255, 255, 255, 0.1); }
+/* A second band further up the page: the same light, its colours moved round so the two never look copied. */
+.pastel-band.pastel-alt {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.55) 0.9px, transparent 1.2px) 0 0 / 6px 6px,
+    radial-gradient(40% 60% at 92% 70%, rgba(255, 196, 214, 0.8), transparent 70%),
+    radial-gradient(35% 55% at 70% 10%, rgba(186, 222, 247, 0.9), transparent 70%),
+    radial-gradient(40% 60% at 40% 90%, rgba(214, 200, 250, 0.8), transparent 70%),
+    radial-gradient(35% 55% at 18% 18%, rgba(196, 238, 214, 0.9), transparent 70%),
+    radial-gradient(35% 60% at 5% 80%, rgba(255, 214, 182, 0.85), transparent 70%),
+    linear-gradient(180deg, #EEF6F4, #F6F0FA);
+}
+[data-theme="dark"] .pastel-band.pastel-alt {
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.06) 0.9px, transparent 1.2px) 0 0 / 6px 6px,
+    radial-gradient(40% 60% at 92% 70%, rgba(170, 70, 110, 0.32), transparent 70%),
+    radial-gradient(35% 55% at 70% 10%, rgba(50, 100, 160, 0.4), transparent 70%),
+    radial-gradient(40% 60% at 40% 90%, rgba(110, 80, 180, 0.32), transparent 70%),
+    radial-gradient(35% 55% at 18% 18%, rgba(50, 130, 100, 0.32), transparent 70%),
+    radial-gradient(35% 60% at 5% 80%, rgba(170, 100, 60, 0.28), transparent 70%),
+    #0c0d10;
+}
 
 /* The hover button's dot and fill: black on paper, white on ink. */
 :root { --hb-fill: #141210; --hb-text: #F2EFE6; }
