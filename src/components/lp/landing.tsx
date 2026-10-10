@@ -97,7 +97,7 @@ function Hero() {
               <span className="relative inline-flex size-1.5 rounded-full bg-acid" />
             </span>
             <span>
-              AI Agent For High Frequency ROAS Optimization
+              AI Agents For High Frequency ROAS Optimization
             </span>
           </motion.p>
           <motion.h1
@@ -488,7 +488,7 @@ function Footer({ onSignup }: { onSignup: () => void }) {
             <a href="#top" className="inline-block py-1" aria-label="Kortex, back to top">
               <Wordmark />
             </a>
-            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex, the AI agent for high frequency ROAS optimization.</p>
+            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex, AI agents for high frequency ROAS optimization.</p>
           </div>
           <FooterCol
             title="Product"
