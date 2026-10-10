@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#FDF9F3" />
     <!-- Theme before first paint, so a dark-mode visitor never sees a light flash.
-         Light unless they chose dark, as on the Kortex lead-magnet sites. -->
+         Light unless they chose dark on this site. Its own key, kortex-lp-theme:
+         the old dark-first site saved "dark" under kortex-theme, which must not
+         carry over. -->
     <script>
       try {
-        if (localStorage.getItem("kortex-theme") === "dark") {
+        if (localStorage.getItem("kortex-lp-theme") === "dark") {
           document.documentElement.setAttribute("data-theme", "dark");
           document.querySelector('meta[name="theme-color"]').setAttribute("content", "#070707");
         }

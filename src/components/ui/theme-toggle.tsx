@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 /**
  * Light and dark, the same way the product does it: `data-theme` on <html>,
  * light unless the visitor chose dark, remembered under the same
- * `kortex-theme` key. index.html sets the attribute before first paint, so
+ * `kortex-lp-theme` key. index.html sets the attribute before first paint, so
  * this only ever reads it.
  */
 type Theme = "light" | "dark";
-const KEY = "kortex-theme";
+/** Its own key: "dark" saved by the old dark-first site under kortex-theme must not carry over. */
+const KEY = "kortex-lp-theme";
 
 function current(): Theme {
   return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
