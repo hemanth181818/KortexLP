@@ -1,0 +1,5 @@
+# Kortex: every crawler, search engines and AI assistants alike, may read this site.
+User-agent: *
+Allow: /
+
+Sitemap: https://kortexagent.co/sitemap.xml

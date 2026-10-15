@@ -44,6 +44,32 @@
     />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://kortexagent.co/" />
+    <!-- Who Kortex is, for search engines' rich results and for anything that reads structured data. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://kortexagent.co/#org",
+            "name": "Kortex",
+            "url": "https://kortexagent.co/",
+            "email": "human@kortexagent.co",
+            "description": "AI agents for high frequency ROAS optimization on Meta and Google ads."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Kortex",
+            "url": "https://kortexagent.co/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "publisher": { "@id": "https://kortexagent.co/#org" },
+            "description": "Kortex reads your Meta and Google ads every day, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then checks whether it worked."
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body class="bg-ink text-cream antialiased">
