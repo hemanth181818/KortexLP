@@ -21,6 +21,29 @@ Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
 - [Compete](https://compete.kortexagent.co): reads competitors' live ads from the Meta Ad Library and explains what they are running.
 - [Creators](https://creators.kortexagent.co): finds Instagram creators who fit what a brand sells, for partnership ads.
 
+## Pages
+
+- [About Kortex: AI Agents for ROAS Optimization](https://kortexagent.co/about): Kortex builds AI agents for high frequency ROAS optimization on Meta and Google Ads, for performance marketers, D2C businesses and agencies, India first.
+- [Kortex Blog: Meta and Google Ads ROAS Guides](https://kortexagent.co/blog): Practical guides from Kortex on Meta Ads and Google Ads: why ROAS changes, how to read your account and what to fix first, written for Indian advertisers.
+- [Why Your Meta ROAS Dropped: A Checklist | Kortex](https://kortexagent.co/blog/why-meta-roas-dropped): A checklist for when Meta ads ROAS falls: tracking, attribution, CPM, creative fatigue, the learning phase, budget shifts and what happens after the click.
+- [Compare Kortex with Other Ad Tools](https://kortexagent.co/compare): How Kortex compares with Madgicx, Revealbot and Smartly, and with hiring a media buyer: approval-first changes, daily checks, Meta and Google in one, rupees.
+- [Kortex vs Madgicx: AI Ad Agent Comparison](https://kortexagent.co/compare/madgicx): Kortex vs Madgicx compared fairly: how an approval-first AI agent for Meta and Google Ads, priced for India, differs from a Meta-focused ad platform.
+- [Kortex vs Revealbot: Proposals vs Automation Rules](https://kortexagent.co/compare/revealbot): Kortex vs Revealbot compared fairly: proposals a person approves against automation rules you write, for Meta and Google Ads, with Kortex free in early access.
+- [Kortex vs Smartly: AI Ad Agent vs Enterprise Platform](https://kortexagent.co/compare/smartly): Kortex vs Smartly compared fairly: an approval-first AI agent for growing teams on Meta and Google Ads, next to an enterprise creative and media platform.
+- [Kortex FAQ: AI Ad Agent for Meta and Google Ads](https://kortexagent.co/faq): Answers about Kortex: how the AI ad agent works on Meta and Google Ads, what it can change, approvals, security, pricing, early access and the free tools.
+- [Kortex Features: What the AI Ad Agent Does](https://kortexagent.co/features): What Kortex does in your Meta and Google ad accounts: budget reallocation, creative fatigue checks, placements and audiences, approvals and ad creation.
+- [AI Image Ads Made from Your Products | Kortex](https://kortexagent.co/features/ad-creation): Kortex makes image ads from your products, in your brand's colours and type, and launches them paused in Meta so a person reviews each one before it runs.
+- [Approvals and Guardrails for AI Ad Changes | Kortex](https://kortexagent.co/features/approvals-and-guardrails): Every Kortex change is approved by a person first. Budgets at most double or halve, proposals expire, and new ads start paused. Here is how the limits work.
+- [Budget Reallocation for Meta and Google Ads | Kortex](https://kortexagent.co/features/budget-reallocation): Kortex finds budget sitting on ad sets and campaigns that do not return, and proposes moving it to the ones that do. Each change at most doubles or halves.
+- [Creative Fatigue Detection for Meta Ads | Kortex](https://kortexagent.co/features/creative-fatigue): Kortex spots creative fatigue in Meta ads: frequency rising while click-through falls. It tells tired ads from ads that never worked, then proposes the fix.
+- [Meta Ads Placements and Audiences, Checked Daily | Kortex](https://kortexagent.co/features/placements-and-audiences): Kortex compares placements inside the same ad set and tests saved audiences as a copy of the ad set, so you know what spends without returns before you act.
+- [Meta and Google Ads Glossary: ROAS, MER, CPA | Kortex](https://kortexagent.co/glossary): Plain definitions of the ad terms performance marketers use: ROAS, MER, CPA, CTR, CPM, frequency, creative fatigue, learning phase, Advantage+ and more.
+- [AI Agent for Google Ads | Kortex](https://kortexagent.co/google-ads): Kortex is an AI agent for Google Ads. It checks your campaigns every day, finds spend that is not returning and proposes the fix for you to approve first.
+- [AI Agent for Meta Ads (Facebook and Instagram) | Kortex](https://kortexagent.co/meta-ads): Kortex is an AI agent for Meta Ads. It checks your Facebook and Instagram ads daily, finds where ROAS leaks and proposes the fix. You approve every change.
+- [Kortex Pricing: Free During Early Access](https://kortexagent.co/pricing): Kortex is free during early access. See what is included, how access opens by hand, and what to expect when paid plans arrive, with prices in Indian rupees.
+- [Security and Access: How Kortex Connects | Kortex](https://kortexagent.co/security): How Kortex connects to Meta and Google Ads through their own sign-in screens, with no passwords, what it can and cannot change, and how to remove its access.
+- [AI Ad Agent vs Media Buyer: Kortex Compared](https://kortexagent.co/vs-media-buyer): Kortex vs hiring a media buyer: what an AI ad agent does well, what a person does better, and how the two work together on Meta and Google Ads.
+
 ## Links
 
 - [Home](https://kortexagent.co/)
