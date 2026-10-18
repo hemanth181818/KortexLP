@@ -1,0 +1,26 @@
+[
+  {
+    "q": "Which ad platforms does it work with?",
+    "a": "Meta Ads, which covers Facebook and Instagram, and Google Ads. Shopify, TikTok Ads and ChatGPT Ads are coming soon."
+  },
+  {
+    "q": "Will it change my ads without asking?",
+    "a": "No. Kortex proposes, and a person on your team approves each change before it happens. Proposals nobody approves expire, and anything new Kortex creates in Meta starts paused."
+  },
+  {
+    "q": "What can it change?",
+    "a": "Pause and resume ads, ad sets and campaigns, change budgets, adjust placements and audiences, and launch new ad sets and ads. A single budget change can at most double or halve."
+  },
+  {
+    "q": "How does it connect to my account?",
+    "a": "Through Meta's and Google's own sign-in screens. You never give Kortex your password."
+  },
+  {
+    "q": "Does it make ads too?",
+    "a": "Yes. Kortex can make image ads in your colours and type from your products, and launch them paused for you to review."
+  },
+  {
+    "q": "How do I get access?",
+    "a": "Leave your work email. We open access by hand and email you when it is your turn. Until then, the three free tools above are open to everyone."
+  }
+]

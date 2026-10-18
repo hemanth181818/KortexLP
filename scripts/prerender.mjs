@@ -31,7 +31,16 @@ try {
   const file = "dist/index.html";
   const html = readFileSync(file, "utf8");
   if (!html.includes('<div id="root"></div>')) throw new Error("dist/index.html has no empty #root to fill");
-  writeFileSync(file, html.replace('<div id="root"></div>', `<div id="root">${root}</div>`));
+  // The FAQ's questions as FAQPage structured data, from the same file the page renders them from.
+  const faq = JSON.parse(readFileSync("src/content/faq.json", "utf8"));
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://kortexagent.co/#faq",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+  const ld = `<script type="application/ld+json">${JSON.stringify(faqLd).replace(/</g, "\\u003c")}</script>`;
+  writeFileSync(file, html.replace('<div id="root"></div>', `<div id="root">${root}</div>`).replace("</head>", `    ${ld}\n  </head>`));
   const words = root.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   console.log(`prerendered ${words} words into ${file}`);
   if (words < 200) throw new Error(`only ${words} words rendered; the page did not render`);

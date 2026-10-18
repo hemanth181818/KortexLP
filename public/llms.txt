@@ -1,0 +1,30 @@
+# Kortex
+
+> Kortex is an AI ad agent for Meta Ads (Facebook and Instagram) and Google Ads. Every day it reads the ad account, finds where return on ad spend (ROAS) is leaking and proposes the exact fix. A person on the team approves each change; Kortex then makes it and checks whether it worked.
+
+Kortex is built for performance marketers, D2C and ecommerce brands, and agencies, with prices in Indian rupees. It is in early access: access is free and opened by hand.
+
+## What Kortex does
+
+- Checks Meta Ads and Google Ads accounts daily for wasted spend: fatigued creatives, placements and audiences that spend without returns, budgets on the wrong campaigns.
+- Proposes fixes with the numbers behind them: pause or resume ads, ad sets and campaigns; change budgets (a single change can at most double or halve a budget); adjust placements and audiences; launch new ad sets and ads.
+- Never changes an ad account without approval. Proposals nobody approves expire, and anything new Kortex creates in Meta starts paused.
+- Makes image ads from a brand's products, in its colours and type, and launches them paused for review.
+- Answers questions about the ad account in plain language.
+- Connects through Meta's and Google's own sign-in screens; Kortex never sees a password.
+
+Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
+
+## Free tools
+
+- [Visibility](https://visibility.kortexagent.co): checks whether ChatGPT, Claude, Perplexity and Google recommend a business when its customers ask, who they name instead, and what to fix.
+- [Compete](https://compete.kortexagent.co): reads competitors' live ads from the Meta Ad Library and explains what they are running.
+- [Creators](https://creators.kortexagent.co): finds Instagram creators who fit what a brand sells, for partnership ads.
+
+## Links
+
+- [Home](https://kortexagent.co/)
+- [Sign in](https://app.kortexagent.co/)
+- [Privacy policy](https://kortexagent.co/privacy)
+- [Terms](https://kortexagent.co/terms)
+- Contact: human@kortexagent.co

@@ -10,6 +10,8 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import { useSignup } from "@/components/signup/signup-dialog";
 import { CONTACT_EMAIL, PRIVACY_URL, TERMS_URL } from "@/lib/links";
 import { cn } from "@/lib/utils";
+import { PRERENDERED } from "@/lib/prerendered";
+import faq from "@/content/faq.json";
 
 /**
  * kortexagent.co, on the same system as the Kortex lead-magnet sites
@@ -87,7 +89,7 @@ function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-[1240px] px-5 pb-20 pt-32 sm:px-6 sm:pt-36 lg:pb-28 lg:pt-44">
         <div className="mx-auto flex max-w-[52rem] flex-col items-center text-center">
           <motion.p
-            initial={{ opacity: 0, y: 8 }}
+            initial={PRERENDERED ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
             className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px] font-medium text-cream/75"
@@ -101,7 +103,7 @@ function Hero() {
             </span>
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
+            initial={PRERENDERED ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
             className="font-display mt-7 text-balance text-[clamp(3rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.02em] text-cream"
@@ -109,7 +111,7 @@ function Hero() {
             Your ad account, <span className="italic">optimized</span> for high ROAS every day.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={PRERENDERED ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
             className="mt-6 max-w-[38rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
@@ -117,12 +119,12 @@ function Hero() {
             Kortex reads your Meta and Google ads, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then
             checks whether it worked.
           </motion.p>
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
+          <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
             <EmailBox id="email-hero" />
             <p className="mt-3 text-[13px] text-cream/50">We open access by hand and email you when it is your turn.</p>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={PRERENDERED ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
             className="mt-10 flex flex-col items-center gap-6"
@@ -132,7 +134,7 @@ function Hero() {
           </motion.div>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1000px] lg:mt-20">
+        <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1000px] lg:mt-20">
           <ChecksBoard className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
           <p className="mt-4 text-center text-[12px] text-cream/40">An example morning. Names and numbers are made up.</p>
         </motion.div>
@@ -321,9 +323,9 @@ const TOOLS: Array<{ name: string; href: string; title: string; body: string; ct
     name: "Visibility",
     href: "https://visibility.kortexagent.co",
     title: "Does AI recommend you?",
-    body: "See whether ChatGPT, Gemini, Claude and Google name you when your customers ask, who they name instead, and what to fix.",
+    body: "See whether ChatGPT, Claude, Perplexity and Google name you when your customers ask, who they name instead, and what to fix.",
     cta: "Get my free audit",
-    art: <ToolBars rows={[["ChatGPT", 20], ["Gemini", 70], ["Claude", 8], ["Google", 30]]} />,
+    art: <ToolBars rows={[["ChatGPT", 20], ["Perplexity", 70], ["Claude", 8], ["Google", 30]]} />,
   },
   {
     name: "Compete",
@@ -396,32 +398,8 @@ function ToolBars({ rows }: { rows: Array<[string, number]> }) {
 
 /* ---------- FAQ: the real objections ---------- */
 
-const FAQ = [
-  {
-    q: "Which ad platforms does it work with?",
-    a: "Meta Ads, which covers Facebook and Instagram, and Google Ads. Shopify, TikTok Ads and ChatGPT Ads are coming soon.",
-  },
-  {
-    q: "Will it change my ads without asking?",
-    a: "No. Kortex proposes, and a person on your team approves each change before it happens. Proposals nobody approves expire, and anything new Kortex creates in Meta starts paused.",
-  },
-  {
-    q: "What can it change?",
-    a: "Pause and resume ads, ad sets and campaigns, change budgets, adjust placements and audiences, and launch new ad sets and ads. A single budget change can at most double or halve.",
-  },
-  {
-    q: "How does it connect to my account?",
-    a: "Through Meta's and Google's own sign-in screens. You never give Kortex your password.",
-  },
-  {
-    q: "Does it make ads too?",
-    a: "Yes. Kortex can make image ads in your colours and type from your products, and launch them paused for you to review.",
-  },
-  {
-    q: "How do I get access?",
-    a: "Leave your work email. We open access by hand and email you when it is your turn. Until then, the three free tools above are open to everyone.",
-  },
-];
+// Also read by scripts/prerender.mjs, which writes the same questions into the FAQPage structured data.
+const FAQ: Array<{ q: string; a: string }> = faq;
 
 function Faq() {
   const [openIdx, setOpen] = useState<number | null>(0);
