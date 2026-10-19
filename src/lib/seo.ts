@@ -6,8 +6,12 @@
  */
 export const SITE = "https://kortexagent.co";
 export const OG_IMAGE = `${SITE}/og.png`;
-/** The date the content pages were written or last checked. */
-export const UPDATED = "2026-10-18";
+declare const __CONTENT_UPDATED__: string;
+declare const __HOME_UPDATED__: string;
+/** The day the content pages last changed in git (vite.config.ts), for dateModified and the sitemap. */
+export const UPDATED: string = __CONTENT_UPDATED__;
+/** The day the home page last changed in git. */
+export const HOME_UPDATED: string = __HOME_UPDATED__;
 
 export type Crumb = { name: string; path: string };
 export type JsonLd = Record<string, unknown>;

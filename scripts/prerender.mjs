@@ -11,7 +11,7 @@
 // React's createRoot replaces #root on load, so visitors see the same page as before. The script also
 // writes sitemap.xml and the page list in llms.txt (to dist/ and back to public/ so they stay in git),
 // and fails the build on a page that is unlinked, broken, mis-sized in its head, or carries banned words.
-import { spawn } from "node:child_process";
+import { execSync, spawn } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { chromium } from "playwright-core";
@@ -114,9 +114,28 @@ try {
     "@id": `${SITE}/#faq`,
     mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   };
+  // The home page's own WebPage node, dated the day its files last changed in git (as vite.config.ts does).
+  const homeUpdated = (() => {
+    try {
+      return execSync("git log -1 --format=%cs -- index.html src/pages/Landing.tsx src/components/lp src/content/faq.json", { encoding: "utf8" }).trim();
+    } catch {
+      return "";
+    }
+  })() || new Date().toISOString().slice(0, 10);
+  const homeLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE}/#webpage`,
+    url: `${SITE}/`,
+    name: template.match(/<title>([^<]*)<\/title>/)?.[1] ?? "Kortex",
+    isPartOf: { "@id": `${SITE}/#website` },
+    about: { "@id": `${SITE}/#app` },
+    inLanguage: "en-IN",
+    dateModified: homeUpdated,
+  };
   const out = new Map();
   out.set("/", {
-    html: template.replace('<div id="root"></div>', `<div id="root">${homeRoot}</div>`).replace("</head>", `    ${ldScript(faqLd)}\n  </head>`),
+    html: template.replace('<div id="root"></div>', `<div id="root">${homeRoot}</div>`).replace("</head>", `    ${ldScript(homeLd)}\n    ${ldScript(faqLd)}\n  </head>`),
     head: null,
   });
 
@@ -157,11 +176,10 @@ try {
   }
 
   const pages = [...out.keys()].filter((p) => p !== "/").sort();
-  const lastmods = pages.map((p) => out.get(p).head.lastmod).sort();
   const sitemap = [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-    `  <url><loc>${SITE}/</loc><lastmod>${lastmods[lastmods.length - 1]}</lastmod></url>`,
+    `  <url><loc>${SITE}/</loc><lastmod>${homeUpdated}</lastmod></url>`,
     ...pages.map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${out.get(p).head.lastmod}</lastmod></url>`),
     ...ELSEWHERE.map((p) => `  <url><loc>${SITE}${p}</loc></url>`),
     `</urlset>`,
