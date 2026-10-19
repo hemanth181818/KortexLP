@@ -75,3 +75,7 @@ cd dist && for f in $(find . -name index.html ! -path ./index.html); do
   gcloud storage cp "$f" "gs://kortexagent-landing/$p" --content-type="text/html; charset=utf-8" --cache-control="no-cache"
 done
 ```
+
+## IndexNow
+
+After uploading changed pages, tell Bing (which ChatGPT search reads) and the other IndexNow engines: `node scripts/indexnow.mjs`. It sends every URL in `public/sitemap.xml`; the key is the `public/<32 hex>.txt` file, which must be live in the bucket at the site root.
