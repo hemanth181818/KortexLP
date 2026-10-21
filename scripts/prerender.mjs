@@ -21,7 +21,9 @@ const ORIGIN = `http://localhost:${PORT}`;
 const SITE = "https://kortexagent.co";
 /** Paths served by something else on kortexagent.co: linked to, never rendered here. */
 const ELSEWHERE = ["/privacy", "/terms", "/data-deletion"];
-const BANNED = [/Gemini/i, /Kreo Tech/i, /\u2014/];
+// Never Gemini as Kortex's own model provider (Hemanth, 2026-09-24). Naming it as one of the engines the
+// audit asks is fine (since 2026-10-21, the visibility-first home page), so only provider claims are banned.
+const BANNED = [/(built|runs|running|powered|based)\s+(on|by|with)\s+(Google\s+)?Gemini/i, /Gemini\s+(API|model|models)\b/i, /Kreo Tech/i, /\u2014/];
 
 const server = spawn("npx", ["vite", "preview", "--port", String(PORT), "--strictPort"], { stdio: "ignore" });
 const template = readFileSync("dist/index.html", "utf8");

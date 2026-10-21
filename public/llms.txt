@@ -1,6 +1,6 @@
 # Kortex
 
-> Kortex starts with a free SEO and AI visibility audit (https://visibility.kortexagent.co): it puts 20 questions a company's customers ask to ChatGPT, Claude and other AI assistants, reads Google's page one and AI Overview for its searches, checks the site, shows who is named instead and writes four fixes (an article, an FAQ, llms.txt and structured data). Then an AI agent, Ask Kortex, runs live checks, writes the posts that get the company named, checks again every week and works inside Claude, ChatGPT or Cursor. Every account starts with 50 free credits.
+> Kortex starts with a free SEO and AI visibility audit (https://visibility.kortexagent.co): it puts 20 questions a company's customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for its searches, checks the site, shows who is named instead and writes four fixes (an article, an FAQ, llms.txt and structured data). Then an AI agent, Ask Kortex, runs live checks, writes the posts that get the company named, checks again every week and works inside Claude, ChatGPT or Cursor. Every account starts with 50 free credits.
 
 Kortex also makes an AI ad agent for Meta Ads (Facebook and Instagram) and Google Ads, in early access: every day it reads the ad account, finds where return on ad spend (ROAS) is leaking and proposes the exact fix, which a person approves. Prices are in Indian rupees.
 

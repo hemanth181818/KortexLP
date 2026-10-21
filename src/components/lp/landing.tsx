@@ -1,7 +1,9 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Minus, Plus } from "lucide-react";
-import { AnswersBoard } from "@/components/lp/answers-board";
+import { ArrowUpRight, Minus, Plus } from "lucide-react";
+import { EngineGrid } from "@/components/lp/engine-grid";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { EngineLogo, ENGINE_NAME, type EngineId } from "@/components/lp/engine-logos";
 import { LogoMark } from "@/components/lp/logo-mark";
 import { SiteFooter, SiteHeader } from "@/components/lp/site-chrome";
 import { cn } from "@/lib/utils";
@@ -16,7 +18,7 @@ import faq from "@/content/faq.json";
  * the objections, the ask again. One call to action on the page: the audit.
  *
  * Every claim is what Kortex Visibility does today (checked 2026-10-21): 20 questions put to
- * ChatGPT, Claude and other AI assistants, Google's page one and AI Overview for searches, site checks, four
+ * ChatGPT, Gemini and Claude, Google's page one and AI Overview for searches, site checks, four
  * written fixes (an article, an FAQ, llms.txt, structured data), about four minutes, one free audit
  * per website; then Ask Kortex with 50 free credits. Names and numbers in the examples are made up.
  * Copy rule: "you", "your website", "company", never "brand" or "buyers".
@@ -24,6 +26,8 @@ import faq from "@/content/faq.json";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const AUDIT = "https://visibility.kortexagent.co";
+/** The engines the audit asks, as on visibility.kortexagent.co. */
+const RAIL: EngineId[] = ["chatgpt", "gemini", "claude", "google"];
 
 export default function Landing() {
   return (
@@ -63,16 +67,11 @@ function WebsiteBox({ id }: { id: string }) {
         onChange={(e) => setSite(e.target.value)}
         inputMode="url"
         autoComplete="url"
-        placeholder="Your website"
+        placeholder="yoursite.com"
         maxLength={200}
         className="min-w-0 flex-1 bg-transparent px-4 text-[16px] text-cream outline-none placeholder:text-cream/35 focus-visible:outline-none"
       />
-      <button
-        type="submit"
-        className="inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-acid px-5 text-[15px] font-semibold text-on-acid transition-transform hover:scale-[1.02] active:scale-[0.98]"
-      >
-        Get my free audit <ArrowRight className="size-4" />
-      </button>
+      <InteractiveHoverButton type="submit" text="Get my free audit" className="h-11 shrink-0 text-[15px]" />
     </form>
   );
 }
@@ -102,7 +101,7 @@ function Hero() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
             className="font-display mt-7 text-balance text-[clamp(3rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.02em] text-cream"
           >
-            Does AI <span className="italic">recommend</span> you?
+            Does AI recommend <span className="italic">you?</span>
           </motion.h1>
           <motion.p
             initial={PRERENDERED ? false : { opacity: 0, y: 12 }}
@@ -110,18 +109,31 @@ function Hero() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
             className="mt-6 max-w-[40rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
           >
-            Kortex asks ChatGPT, Claude and Google the questions your customers ask, shows who they name instead of you, and writes the
-            fixes. Then its agent helps you get named.
+            See what ChatGPT, Gemini, Claude and Google tell your customers about what you do. Then chat with Kortex, the agent that finds why
+            you are left out and writes the fixes, here or inside your own AI tool.
           </motion.p>
           <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
             <WebsiteBox id="site-hero" />
-            <p className="mt-3 text-[13px] text-cream/50">Free, one audit per website. About four minutes. No card.</p>
+          </motion.div>
+          <motion.div
+            initial={PRERENDERED ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-cream/55"
+          >
+            <span className="text-[12.5px] text-cream/40">Asks</span>
+            {RAIL.map((e) => (
+              <span key={e} className="flex items-center gap-2 text-[14px] font-medium">
+                <EngineLogo engine={e} className="size-[18px]" />
+                {ENGINE_NAME[e]}
+              </span>
+            ))}
           </motion.div>
         </div>
 
-        <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[860px] lg:mt-20">
-          <AnswersBoard className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
-          <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names and numbers are made up.</p>
+        <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1100px] lg:mt-20">
+          <EngineGrid className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
+          <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names are made up.</p>
         </motion.div>
       </div>
     </section>
@@ -133,7 +145,7 @@ function Hero() {
 const SHOWS: Array<{ title: string; body: string }> = [
   {
     title: "Where AI names you",
-    body: "20 questions your customers ask, put to ChatGPT, Claude and other AI assistants. How often each one names you, and where you rank when it does.",
+    body: "20 questions your customers ask, put to ChatGPT, Gemini and Claude. How often each one names you, and where you rank when it does.",
   },
   {
     title: "Who it names instead",
@@ -174,7 +186,7 @@ function WhatItShows() {
 
 const DOES: Array<{ title: string; body: string }> = [
   { title: "Answers about your report", body: "Ask what it means and what to fix first. Two questions are free on the report itself." },
-  { title: "Checks again, live", body: "Asks ChatGPT, Claude and other AI assistants a new question, or reads Google's page one, while you watch." },
+  { title: "Checks again, live", body: "Asks ChatGPT, Gemini and Claude a new question, or reads Google's page one, while you watch." },
   { title: "Writes what gets you named", body: "Blog posts that answer what your customers ask, and the Medium, LinkedIn and Reddit posts to go with them." },
   { title: "Watches every week", body: "Asks the engines again each Monday and emails you what changed." },
   { title: "Works in your own AI tool", body: "Connect Claude, ChatGPT or Cursor and they can read your report and apply the fixes in your site's code." },

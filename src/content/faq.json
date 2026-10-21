@@ -1,7 +1,7 @@
 [
   {
     "q": "What does the free audit check?",
-    "a": "It puts 20 questions your customers ask to ChatGPT, Claude and other AI assistants, reads Google's page one and AI Overview for your searches, and checks your site. You see where you are named, who is named instead, the pages the answers cite, and four fixes written for you."
+    "a": "It puts 20 questions your customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for your searches, and checks your site. You see where you are named, who is named instead, the pages the answers cite, and four fixes written for you."
   },
   {
     "q": "Is it really free?",
