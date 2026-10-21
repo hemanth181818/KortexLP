@@ -36,6 +36,7 @@ export default function Landing() {
       <Hero />
       <WhatItShows />
       <TheAgent />
+      <AdsToo />
       <How />
       <Pricing />
       <FreeTools />
@@ -218,6 +219,47 @@ function TheAgent() {
   );
 }
 
+/* ---------- Competitors' ads and new ads ---------- */
+
+/**
+ * What the same agent does for ads (Kortex Compete and the creative maker), as its own capabilities say
+ * (lib/agent/tools/compete.ts): competitor reports on Meta ads, any advertiser's live ads, daily watching,
+ * new ads from the products in the company's own look, changed by message, in feed, story and square
+ * sizes and as an Ads Manager pack. Every ad it makes is an image for Meta; it does not run campaigns here.
+ */
+const ADS: Array<{ title: string; body: string }> = [
+  { title: "See what your competitors run", body: "Every live Facebook and Instagram ad from the companies you compete with, which ones they keep running for months, and why they work." },
+  { title: "Read any advertiser", body: "Name any company and Kortex reads the ads it is running right now on Facebook and Instagram, from Meta's Ad Library." },
+  { title: "Watch them every day", body: "Kortex checks your competitors daily and tells you in the chat and by email when they launch something new." },
+  { title: "Make your next ads", body: "Image ads made from your real products, prices and photos, in your own logo, type and colours, on the ideas that keep working." },
+  { title: "Change any ad by message", body: "New words, a new photo or a different angle, just by asking. Only what your store or site says goes on an ad." },
+  { title: "Ready for Ads Manager", body: "Download each ad in feed, story and square sizes, or as an Ads Manager pack ready to upload." },
+];
+
+function AdsToo() {
+  return (
+    <section id="ads">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+        <p className="eyebrow">Ads, too</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Know what your competitors run. Then make better ads.
+        </h2>
+        <p className="mt-5 max-w-[36rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          The same agent reads your competitors&rsquo; ads and makes new ones for you, from your own products.
+        </p>
+        <ul className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:grid-cols-3">
+          {ADS.map((d) => (
+            <li key={d.title} className="bg-ink-soft p-6">
+              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-cream">{d.title}</h3>
+              <p className="mt-2 text-pretty text-[14px] leading-relaxed text-cream/60">{d.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- How it works ---------- */
 
 const STEPS = [
@@ -276,6 +318,8 @@ const PLANS: Array<{ name: string; price: string; per: string; note: string; ite
       "Live checks with ChatGPT, Gemini, Claude and Google",
       "Blog, Medium, LinkedIn and Reddit posts that get you named",
       "Kortex inside Claude, ChatGPT or Cursor",
+      "Competitor ad reports, and your competitors watched every day",
+      "New ads made from your products, in feed, story and square sizes",
       "A monthly usage allowance, reset each month",
       "Top-ups whenever you need more",
     ],
