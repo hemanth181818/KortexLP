@@ -9,6 +9,7 @@ export type NavLink = { label: string; href: string };
 
 /** The header row, from md up. Phones get the full list in the footer. */
 export const HEADER_LINKS: NavLink[] = [
+  { label: "Free AI visibility audit", href: "https://visibility.kortexagent.co" },
   { label: "Meta Ads", href: "/meta-ads" },
   { label: "Google Ads", href: "/google-ads" },
   { label: "Features", href: "/features" },
