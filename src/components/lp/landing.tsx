@@ -284,8 +284,8 @@ const PLANS: Array<{ name: string; price: string; per: string; note: string; ite
 
 function Pricing() {
   return (
-    <section id="pricing">
-      <div className="mx-auto max-w-[1240px] px-5 pb-20 sm:px-6 lg:pb-28">
+    <section id="pricing" className="pastel-band relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
         <p className="eyebrow">Pricing</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
           Start free. Go Pro when you want it done every week.
@@ -356,7 +356,7 @@ const TOOLS: Array<{ name: string; href: string; title: string; body: string; ct
 function FreeTools() {
   return (
     <section id="free">
-      <div className="mx-auto max-w-[1240px] px-5 pb-20 sm:px-6 lg:pb-28">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
         <p className="eyebrow">Also free</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
           Two more Kortex tools, open to everyone.
