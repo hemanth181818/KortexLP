@@ -294,23 +294,23 @@ function How() {
 /* ---------- Pricing ---------- */
 
 /**
- * What Kortex Visibility costs (Hemanth, 2026-10-21: ₹5,000 or $50 a month, top-ups for more). The
+ * What Kortex Visibility costs (Hemanth, 2026-10-21: $50 a month, ₹4,999 in India, top-ups for more). The
  * monthly allowance is not stated until the product meters it in tokens: the page never promises a unit
  * the app does not show yet. Both buttons start the free audit, the page's one call to action.
  */
 const PLANS: Array<{ name: string; price: string; per: string; note: string; items: string[]; featured?: boolean }> = [
   {
     name: "Free",
-    price: "₹0",
+    price: "$0",
     per: "",
     note: "To see where you stand",
     items: ["One full audit per website", "Your four fixes, written", "Two questions to Kortex on your report", "50 free credits to try the agent"],
   },
   {
     name: "Pro",
-    price: "₹5,000",
+    price: "$50",
     per: "a month",
-    note: "$50 a month outside India",
+    note: "₹4,999 a month in India",
     featured: true,
     items: [
       "Everything in Free",
