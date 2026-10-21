@@ -348,7 +348,11 @@ function Pricing() {
                 <span className="text-[13px] text-cream/50">{p.note}</span>
               </div>
               <p className="mt-4 flex items-baseline gap-2">
-                <span className="font-display text-[48px] leading-none text-cream">{p.price}</span>
+                {/* The currency sign in the body face: Newsreader draws "$" with two strokes. */}
+                <span className="font-display text-[48px] leading-none text-cream">
+                  <span className="mr-0.5 align-[0.12em] font-sans text-[38px] font-medium tracking-normal">{p.price.slice(0, 1)}</span>
+                  {p.price.slice(1)}
+                </span>
                 {p.per ? <span className="text-[15px] text-cream/55">{p.per}</span> : null}
               </p>
               <ul className="mt-6 flex-1 space-y-3">
