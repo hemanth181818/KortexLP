@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
+import { ArrowUpRight, Check, Minus, Plus } from "lucide-react";
 import { EngineGrid } from "@/components/lp/engine-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { EngineLogo, ENGINE_NAME, type EngineId } from "@/components/lp/engine-logos";
@@ -37,6 +37,7 @@ export default function Landing() {
       <WhatItShows />
       <TheAgent />
       <How />
+      <Pricing />
       <FreeTools />
       <Faq />
       <FinalAsk />
@@ -243,6 +244,89 @@ function How() {
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Pricing ---------- */
+
+/**
+ * What Kortex Visibility costs (Hemanth, 2026-10-21: ₹5,000 or $50 a month, top-ups for more). The
+ * monthly allowance is not stated until the product meters it in tokens: the page never promises a unit
+ * the app does not show yet. Both buttons start the free audit, the page's one call to action.
+ */
+const PLANS: Array<{ name: string; price: string; per: string; note: string; items: string[]; featured?: boolean }> = [
+  {
+    name: "Free",
+    price: "₹0",
+    per: "",
+    note: "To see where you stand",
+    items: ["One full audit per website", "Your four fixes, written", "Two questions to Kortex on your report", "50 free credits to try the agent"],
+  },
+  {
+    name: "Pro",
+    price: "₹5,000",
+    per: "a month",
+    note: "$50 a month outside India",
+    featured: true,
+    items: [
+      "Everything in Free",
+      "Your website checked every week, with a Monday email of what changed",
+      "Live checks with ChatGPT, Gemini, Claude and Google",
+      "Blog, Medium, LinkedIn and Reddit posts that get you named",
+      "Kortex inside Claude, ChatGPT or Cursor",
+      "A monthly usage allowance, reset each month",
+      "Top-ups whenever you need more",
+    ],
+  },
+];
+
+function Pricing() {
+  return (
+    <section id="pricing">
+      <div className="mx-auto max-w-[1240px] px-5 pb-20 sm:px-6 lg:pb-28">
+        <p className="eyebrow">Pricing</p>
+        <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Start free. Go Pro when you want it done every week.
+        </h2>
+        <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {PLANS.map((p) => (
+            <li
+              key={p.name}
+              className={cn(
+                "flex flex-col rounded-2xl border p-6 sm:p-8",
+                p.featured ? "border-acid/50 bg-ink-soft shadow-[0_30px_80px_-40px_hsl(var(--acid)/0.45)]" : "border-cream/10 bg-ink-soft/70",
+              )}
+            >
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-[20px] font-semibold tracking-[-0.02em] text-cream">{p.name}</h3>
+                <span className="text-[13px] text-cream/50">{p.note}</span>
+              </div>
+              <p className="mt-4 flex items-baseline gap-2">
+                <span className="font-display text-[48px] leading-none text-cream">{p.price}</span>
+                {p.per ? <span className="text-[15px] text-cream/55">{p.per}</span> : null}
+              </p>
+              <ul className="mt-6 flex-1 space-y-3">
+                {p.items.map((it) => (
+                  <li key={it} className="flex items-start gap-2.5 text-[14.5px] leading-snug text-cream/75">
+                    <Check className="mt-0.5 size-4 shrink-0 text-acid-ink" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#top"
+                className={cn(
+                  "mt-8 inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-semibold transition-transform hover:scale-[1.02]",
+                  p.featured ? "bg-acid text-on-acid" : "border border-cream/20 text-cream hover:bg-cream/[0.05]",
+                )}
+              >
+                Start with the free audit
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
