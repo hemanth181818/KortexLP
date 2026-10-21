@@ -129,7 +129,8 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
             <div key={col.title}>
               <h4 className="mb-4 text-[13px] font-semibold text-cream/85">{col.title}</h4>
               <ul className="space-y-2.5">
-                {col.title === "Product" && (
+                {/* Not on the home page: there the one thing to do is the audit. */}
+                {col.title === "Product" && !home && (
                   <li>
                     <button type="button" onClick={() => open()} className="text-left text-sm text-cream/60 transition-colors hover:text-acid-ink">
                       Get early access

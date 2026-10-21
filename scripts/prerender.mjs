@@ -68,6 +68,9 @@ function withHead(page) {
 function check(path, html, head) {
   const problems = [];
   for (const re of BANNED) if (re.test(html)) problems.push(`contains ${re}`);
+  // The home page has no head object: its title is read from the HTML itself, and held to the same limit.
+  const title = head?.title ?? html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+  if (!head && title.length > 60) problems.push(`title is ${title.length} characters (max 60): ${title}`);
   if (head) {
     if (head.title.length > 60) problems.push(`title is ${head.title.length} characters (max 60): ${head.title}`);
     const d = head.description.length;

@@ -17,7 +17,7 @@ Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
 
 ## Free tools
 
-- [Visibility](https://visibility.kortexagent.co): checks whether ChatGPT, Claude and Google recommend a business when its customers ask, who they name instead, and what to fix.
+- [Visibility](https://visibility.kortexagent.co): checks whether ChatGPT, Gemini, Claude and Google recommend a business when its customers ask, who they name instead, and what to fix.
 - [Compete](https://compete.kortexagent.co): reads competitors' live ads from the Meta Ad Library and explains what they are running.
 - [Creators](https://creators.kortexagent.co): finds Instagram creators who fit what a brand sells, for partnership ads.
 
