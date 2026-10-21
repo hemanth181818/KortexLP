@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Minus, Plus } from "lucide-react";
 import { AnswersBoard } from "@/components/lp/answers-board";
 import { LogoMark } from "@/components/lp/logo-mark";
-import { EmailBox, SiteFooter, SiteHeader } from "@/components/lp/site-chrome";
+import { SiteFooter, SiteHeader } from "@/components/lp/site-chrome";
 import { cn } from "@/lib/utils";
 import { PRERENDERED } from "@/lib/prerendered";
 import faq from "@/content/faq.json";
@@ -13,7 +13,7 @@ import faq from "@/content/faq.json";
  * focused for now"). One job: get a cold visitor to run the free SEO and AI visibility audit on
  * visibility.kortexagent.co. The hero shows one customer question and which AI answers leave them
  * out; then what the audit shows, what the agent does after it, how it works, the other free tools,
- * the objections, the ask again. The ads agent keeps a small early-access ask at the foot.
+ * the objections, the ask again. One call to action on the page: the audit.
  *
  * Every claim is what Kortex Visibility does today (checked 2026-10-21): 20 questions put to
  * ChatGPT, Claude and other AI assistants, Google's page one and AI Overview for searches, site checks, four
@@ -36,7 +36,6 @@ export default function Landing() {
       <FreeTools />
       <Faq />
       <FinalAsk />
-      <AdsStrip />
       <SiteFooter home />
     </div>
   );
@@ -355,7 +354,7 @@ function Faq() {
 function FinalAsk() {
   return (
     <section className="relative overflow-hidden">
-      <div className="relative mx-auto max-w-[1240px] px-5 pt-24 text-center sm:px-6 lg:pt-32">
+      <div className="relative mx-auto max-w-[1240px] px-5 py-24 text-center sm:px-6 lg:py-32">
         <h2 className="font-display mx-auto max-w-[44rem] text-balance text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1] tracking-[-0.015em]">
           Find out what AI tells your customers.
         </h2>
@@ -368,21 +367,3 @@ function FinalAsk() {
   );
 }
 
-/** The ads agent, kept quiet under the audit's ask: its early-access list still fills. */
-function AdsStrip() {
-  return (
-    <section className="relative">
-      <div className="mx-auto max-w-[1240px] px-5 py-20 text-center sm:px-6 lg:py-24">
-        <p className="text-[15px] text-cream/65">
-          Running Meta or Google ads? The Kortex ads agent is in early access.{" "}
-          <a href="/meta-ads" className="font-medium text-cream underline underline-offset-4 hover:text-acid-ink">
-            See what it does
-          </a>
-        </p>
-        <div className="mt-5">
-          <EmailBox id="email-ads" />
-        </div>
-      </div>
-    </section>
-  );
-}

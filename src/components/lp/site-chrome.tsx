@@ -33,7 +33,8 @@ export function SiteHeader({ home = false, current }: { home?: boolean; current?
           <Wordmark />
         </a>
         <div className="flex items-center gap-1">
-          <ul className="mr-2 hidden items-center gap-1 md:flex">
+          {/* The home page keeps its header bare: one thing to do there, the audit (Hemanth, 2026-10-21). */}
+          <ul className={cn("mr-2 hidden items-center gap-1", !home && "md:flex")}>
             {HEADER_LINKS.map((l) => {
               const active = current === l.href || (current?.startsWith(l.href + "/") ?? false);
               return (
