@@ -40,7 +40,7 @@ Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
 - [Meta and Google Ads Glossary: ROAS, MER, CPA | Kortex](https://kortexagent.co/glossary): Plain definitions of the ad terms performance marketers use: ROAS, MER, CPA, CTR, CPM, frequency, creative fatigue, learning phase, Advantage+ and more.
 - [AI Agent for Google Ads | Kortex](https://kortexagent.co/google-ads): Kortex is an AI agent for Google Ads. It checks your campaigns every day, finds spend that is not returning and proposes the fix for you to approve first.
 - [AI Agent for Meta Ads (Facebook and Instagram) | Kortex](https://kortexagent.co/meta-ads): Kortex is an AI agent for Meta Ads. It checks your Facebook and Instagram ads daily, finds where ROAS leaks and proposes the fix. You approve every change.
-- [Kortex Pricing: Free Audit, Pro at $50 a Month](https://kortexagent.co/pricing): The SEO and AI visibility audit is free. Kortex Pro is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.
+- [Kortex Pricing: Free Audit, Growth at $50 a Month](https://kortexagent.co/pricing): The SEO and AI visibility audit is free. Growth is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.
 - [Security and Access: How Kortex Connects | Kortex](https://kortexagent.co/security): How Kortex connects to Meta and Google Ads through their own sign-in screens, with no passwords, what it can and cannot change, and how to remove its access.
 - [AI Ad Agent vs Media Buyer: Kortex Compared](https://kortexagent.co/vs-media-buyer): Kortex vs hiring a media buyer: what an AI ad agent does well, what a person does better, and how the two work together on Meta and Google Ads.
 

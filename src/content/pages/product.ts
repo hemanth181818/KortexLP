@@ -171,28 +171,28 @@ export const googleAds: ContentPage = {
 
 export const pricing: ContentPage = {
   path: "/pricing",
-  title: "Kortex Pricing: Free Audit, Pro at $50 a Month",
+  title: "Kortex Pricing: Free Audit, Growth at $50 a Month",
   description:
-    "The SEO and AI visibility audit is free. Kortex Pro is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.",
+    "The SEO and AI visibility audit is free. Growth is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.",
   crumb: "Pricing",
   eyebrow: "Pricing",
-  h1: "Start free. Pro is $50 a month.",
-  lede: "The audit is free, one per website. Kortex Pro is $50 a month, or ₹4,999 a month in India. The ads agent for Meta and Google is free during early access.",
+  h1: "Start free. Growth is $50 a month.",
+  lede: "The audit is free, one per website. Growth is $50 a month, or ₹4,999 a month in India. The ads agent for Meta and Google is free during early access.",
   aboutApp: true,
   faqGroup: "Pricing and access",
   sections: [
     {
       q: "How much does Kortex cost?",
-      a: "The audit is free. Kortex Pro is $50 a month, or ₹4,999 a month in India.",
+      a: "The audit is free. Growth is $50 a month, or ₹4,999 a month in India.",
       body: [
         {
           list: [
             "Free: one full SEO and AI visibility audit per website, your four fixes written, two questions to Kortex on your report, and 50 free credits to try the agent.",
-            "Pro, $50 a month (₹4,999 in India): your website checked every week with a Monday email of what changed, live checks with ChatGPT, Gemini, Claude and Google, blog, Medium, LinkedIn and Reddit posts, competitor ad reports and daily watching, new ads made from your products, Kortex inside Claude, ChatGPT or Cursor, and a monthly usage allowance that resets each month.",
+            "Growth, $50 a month (₹4,999 in India): your website checked every week with a Monday email of what changed, live checks with ChatGPT, Gemini, Claude and Google, blog, Medium, LinkedIn and Reddit posts, competitor ad reports and daily watching, new ads made from your products, Kortex inside Claude, ChatGPT or Cursor, and a monthly usage allowance that resets each month.",
             "Top-ups whenever you need more.",
           ],
         },
-        "[Get Pro](https://rzp.io/rzp/1fANlcjW), or [start with the free audit](https://visibility.kortexagent.co).",
+        "[Get Growth](https://rzp.io/rzp/1fANlcjW), or [start with the free audit](https://visibility.kortexagent.co).",
       ],
     },
     {
@@ -227,7 +227,7 @@ export const pricing: ContentPage = {
       a: "Yes. One full audit per website, with the report and the written fixes, and no card.",
     },
     {
-      q: "How much is Kortex Pro?",
+      q: "How much is the Growth plan?",
       a: "$50 a month, or ₹4,999 a month in India, with a monthly usage allowance that resets each month and top-ups whenever you need more.",
     },
     {

@@ -311,7 +311,7 @@ const PLANS: Array<{ name: string; price: string; per: string; note: string; ite
     cta: { label: "Start with the free audit", href: "#top" },
   },
   {
-    name: "Pro",
+    name: "Growth",
     price: "$50",
     per: "a month",
     note: "₹4,999 a month in India",
@@ -327,7 +327,7 @@ const PLANS: Array<{ name: string; price: string; per: string; note: string; ite
       "A monthly usage allowance, reset each month",
       "Top-ups whenever you need more",
     ],
-    cta: { label: "Get Pro", href: PRO_CHECKOUT },
+    cta: { label: "Get Growth", href: PRO_CHECKOUT },
   },
 ];
 
@@ -337,7 +337,7 @@ function Pricing() {
       <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
         <p className="eyebrow">Pricing</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
-          Start free. Go Pro when you want it done every week.
+          Start free. Move to Growth when you want it done every week.
         </h2>
         <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
           {PLANS.map((p) => (
