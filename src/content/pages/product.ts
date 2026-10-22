@@ -192,6 +192,7 @@ export const pricing: ContentPage = {
             "Top-ups whenever you need more.",
           ],
         },
+        "[Get Pro](https://rzp.io/rzp/1fANlcjW), or [start with the free audit](https://visibility.kortexagent.co).",
       ],
     },
     {

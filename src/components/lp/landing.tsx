@@ -298,13 +298,17 @@ function How() {
  * monthly allowance is not stated until the product meters it in tokens: the page never promises a unit
  * the app does not show yet. Both buttons start the free audit, the page's one call to action.
  */
-const PLANS: Array<{ name: string; price: string; per: string; note: string; items: string[]; featured?: boolean }> = [
+/** Pro's checkout, a Razorpay payment page for now (₹4,999); replaced once the subscription checkout is built. */
+const PRO_CHECKOUT = "https://rzp.io/rzp/1fANlcjW";
+
+const PLANS: Array<{ name: string; price: string; per: string; note: string; items: string[]; featured?: boolean; cta: { label: string; href: string } }> = [
   {
     name: "Free",
     price: "$0",
     per: "",
     note: "To see where you stand",
     items: ["One full audit per website", "Your four fixes, written", "Two questions to Kortex on your report", "50 free credits to try the agent"],
+    cta: { label: "Start with the free audit", href: "#top" },
   },
   {
     name: "Pro",
@@ -323,6 +327,7 @@ const PLANS: Array<{ name: string; price: string; per: string; note: string; ite
       "A monthly usage allowance, reset each month",
       "Top-ups whenever you need more",
     ],
+    cta: { label: "Get Pro", href: PRO_CHECKOUT },
   },
 ];
 
@@ -364,13 +369,14 @@ function Pricing() {
                 ))}
               </ul>
               <a
-                href="#top"
+                href={p.cta.href}
+                {...(p.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
                 className={cn(
                   "mt-8 inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-semibold transition-transform hover:scale-[1.02]",
                   p.featured ? "bg-acid text-on-acid" : "border border-cream/20 text-cream hover:bg-cream/[0.05]",
                 )}
               >
-                Start with the free audit
+                {p.cta.label}
               </a>
             </li>
           ))}
