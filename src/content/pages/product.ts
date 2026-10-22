@@ -55,7 +55,7 @@ export const metaAds: ContentPage = {
       q: "How does Kortex connect to Meta?",
       a: "Through Meta's own sign-in screen, so you never give Kortex your password.",
       body: [
-        "You sign in with Facebook, choose the ad accounts Kortex may use and approve the permissions Meta shows you. Kortex then reads the last 30 days and suggests its first three changes. You can remove its access from your Meta settings at any time. More on [security and access](/security).",
+        "Access is opened by hand during early access. You then sign in with Facebook, choose the ad accounts Kortex may use and approve the permissions Meta shows you. Kortex then reads the last 30 days and suggests its first three changes. You can remove its access from your Meta settings at any time. More on [security and access](/security).",
       ],
     },
     {
@@ -171,80 +171,71 @@ export const googleAds: ContentPage = {
 
 export const pricing: ContentPage = {
   path: "/pricing",
-  title: "Kortex Pricing: Free During Early Access",
+  title: "Kortex Pricing: Free Audit, Pro at $50 a Month",
   description:
-    "Kortex is free during early access. See what is included, how access opens by hand, and what to expect when paid plans arrive, with prices in Indian rupees.",
+    "The SEO and AI visibility audit is free. Kortex Pro is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.",
   crumb: "Pricing",
   eyebrow: "Pricing",
-  h1: "Kortex is free during early access",
-  lede: "Kortex costs nothing during early access: every feature that is live today is included, and access is opened by hand.",
+  h1: "Start free. Pro is $50 a month.",
+  lede: "The audit is free, one per website. Kortex Pro is $50 a month, or ₹4,999 a month in India. The ads agent for Meta and Google is free during early access.",
   aboutApp: true,
   faqGroup: "Pricing and access",
   sections: [
     {
       q: "How much does Kortex cost?",
-      a: "Nothing, while Kortex is in early access.",
-      body: [
-        "There is no card to enter and no trial clock. We have not set paid plans yet. When we do, prices will be in Indian rupees, and early-access users will hear about them before anything changes for their account.",
-      ],
-    },
-    {
-      q: "What is included in early access?",
-      a: "Everything Kortex does today.",
+      a: "The audit is free. Kortex Pro is $50 a month, or ₹4,999 a month in India.",
       body: [
         {
           list: [
-            "Connections to [Meta Ads](/meta-ads) (Facebook and Instagram) and [Google Ads](/google-ads)",
-            "Daily checks of your ad accounts, with findings in Needs attention",
-            "Proposed fixes with the numbers behind them, approved by a person before they run",
-            "Pausing and resuming, budget changes, placement and audience changes, and new ad sets and ads",
-            "[Image ads made from your products](/features/ad-creation), launched paused",
-            "Questions about your ad account, answered in plain words",
+            "Free: one full SEO and AI visibility audit per website, your four fixes written, two questions to Kortex on your report, and 50 free credits to try the agent.",
+            "Pro, $50 a month (₹4,999 in India): your website checked every week with a Monday email of what changed, live checks with ChatGPT, Gemini, Claude and Google, blog, Medium, LinkedIn and Reddit posts, competitor ad reports and daily watching, new ads made from your products, Kortex inside Claude, ChatGPT or Cursor, and a monthly usage allowance that resets each month.",
+            "Top-ups whenever you need more.",
           ],
         },
       ],
     },
     {
-      q: "How do I get access?",
-      a: "Leave your work email; we open access by hand and email you when it is your turn.",
+      q: "How do I start?",
+      a: "Run the free audit on your website; everything else starts from your report.",
+      body: ["Enter your website at [visibility.kortexagent.co](https://visibility.kortexagent.co), confirm your work email with a six-digit code, and your report is ready in about four minutes."],
+    },
+    {
+      q: "What does the ads agent cost?",
+      a: "Nothing, while it is in early access.",
       body: [
-        "Until then, the free tools below are open to everyone. If you have a question before your access opens, write to human@kortexagent.co.",
+        "The Kortex ads agent for [Meta Ads](/meta-ads) and [Google Ads](/google-ads) checks your ad accounts every day and proposes fixes a person approves. Access is opened by hand: leave your work email and we email you when it is your turn. It charges nothing on your ad spend.",
       ],
     },
     {
-      q: "Are the free tools free as well?",
-      a: "Yes. Three Kortex tools are open to everyone now, without waiting for access.",
+      q: "Are the other tools free?",
+      a: "Yes. These Kortex tools are open to everyone.",
       body: [
         {
           cards: [
-            { title: "Visibility", body: "Do ChatGPT, Claude, Perplexity and Google recommend you when your customers ask?", href: "https://visibility.kortexagent.co" },
+            { title: "Visibility", body: "Do ChatGPT, Gemini, Claude and Google recommend you when your customers ask?", href: "https://visibility.kortexagent.co" },
             { title: "Compete", body: "See the Meta ads your competitors are running and which ones they keep.", href: "https://compete.kortexagent.co" },
             { title: "Creators", body: "Find Instagram creators who fit what you sell, for partnership ads.", href: "https://creators.kortexagent.co" },
           ],
         },
       ],
     },
-    {
-      q: "What is coming next?",
-      a: "Shopify, TikTok Ads and ChatGPT Ads are coming soon.",
-    },
   ],
   faq: [
     {
-      q: "Is Kortex really free?",
-      a: "Yes, during early access. There is no card to enter. Paid plans are not set yet; when they are, prices will be in Indian rupees.",
+      q: "Is the audit really free?",
+      a: "Yes. One full audit per website, with the report and the written fixes, and no card.",
+    },
+    {
+      q: "How much is Kortex Pro?",
+      a: "$50 a month, or ₹4,999 a month in India, with a monthly usage allowance that resets each month and top-ups whenever you need more.",
     },
     {
       q: "Does Kortex take a percentage of my ad spend?",
-      a: "No. Kortex is free during early access and charges nothing on your ad spend.",
-    },
-    {
-      q: "When will I get access?",
-      a: "We open access by hand and email you when it is your turn. Until then, the three free tools are open to everyone.",
+      a: "No. Kortex charges nothing on your ad spend.",
     },
   ],
   related: ["/meta-ads", "/google-ads", "/security", "/faq"],
-  ctaTitle: "Get early access. It is free.",
+  ctaTitle: "Start with the free audit.",
 };
 
 export const security: ContentPage = {
@@ -364,7 +355,7 @@ export const about: ContentPage = {
       body: [
         {
           cards: [
-            { title: "Visibility", body: "Check whether ChatGPT, Claude, Perplexity and Google recommend you.", href: "https://visibility.kortexagent.co" },
+            { title: "Visibility", body: "Check whether ChatGPT, Gemini, Claude and Google recommend you.", href: "https://visibility.kortexagent.co" },
             { title: "Compete", body: "Read your competitors' live Meta ads.", href: "https://compete.kortexagent.co" },
             { title: "Creators", body: "Find Instagram creators for partnership ads.", href: "https://creators.kortexagent.co" },
           ],
