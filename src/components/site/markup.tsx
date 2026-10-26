@@ -47,9 +47,10 @@ export type MdBlock =
   | { kind: "h2"; text: string; id: string }
   | { kind: "h3"; text: string; id: string }
   | { kind: "p"; text: string }
-  | { kind: "ul" | "ol"; items: string[] };
+  | { kind: "ul" | "ol"; items: string[] }
+  | { kind: "code"; text: string };
 
-/** Parse the blog's Markdown subset into blocks. */
+/** Parse the blog's Markdown subset into blocks. A \`\`\` fence keeps its lines as they are, unparsed. */
 export function parseMarkdown(src: string): MdBlock[] {
   const blocks: MdBlock[] = [];
   let para: string[] = [];
@@ -60,7 +61,22 @@ export function parseMarkdown(src: string): MdBlock[] {
     if (list) blocks.push(list);
     list = null;
   };
+  let code: string[] | null = null;
   for (const raw of src.split("\n")) {
+    if (raw.trim().startsWith("```")) {
+      if (code) {
+        blocks.push({ kind: "code", text: code.join("\n") });
+        code = null;
+      } else {
+        flush();
+        code = [];
+      }
+      continue;
+    }
+    if (code) {
+      code.push(raw);
+      continue;
+    }
     const line = raw.trim();
     if (!line) {
       flush();

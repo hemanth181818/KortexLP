@@ -46,8 +46,8 @@ export const ORG: JsonLd = {
   name: "Kortex",
   url: `${SITE}/`,
   email: "human@kortexagent.co",
-  logo: { "@type": "ImageObject", url: `${SITE}/logo.png`, width: 1038, height: 360 },
-  description: "AI agents for high frequency ROAS optimization on Meta and Google ads.",
+  logo: { "@type": "ImageObject", url: `${SITE}/logo-mark.png`, width: 512, height: 512 },
+  description: "A free SEO and AI visibility audit, and AI agents that fix what it finds and run Meta and Google ads.",
   contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "human@kortexagent.co" },
 };
 
@@ -56,31 +56,54 @@ export const WEBSITE: JsonLd = {
   "@id": `${SITE}/#website`,
   name: "Kortex",
   url: `${SITE}/`,
-  inLanguage: "en-IN",
+  inLanguage: "en",
   publisher: { "@id": `${SITE}/#org` },
 };
 
-/** The product, as on the home page. Pages that are about the product refer to it by @id. */
+/**
+ * The product. The home page (index.html) carries the same node with the same @id, so every page
+ * describes one Kortex: keep the two in step.
+ */
 export const APP_REF = { "@id": `${SITE}/#app` };
 export const APP: JsonLd = {
   "@type": "SoftwareApplication",
   "@id": `${SITE}/#app`,
   name: "Kortex",
-  url: `${SITE}/`,
+  url: "https://visibility.kortexagent.co/",
   image: OG_IMAGE,
   applicationCategory: "BusinessApplication",
-  applicationSubCategory: "Advertising optimization",
+  applicationSubCategory: "SEO and AI visibility",
   operatingSystem: "Web",
   publisher: { "@id": `${SITE}/#org` },
   description:
-    "Kortex is an AI ad agent for Meta Ads (Facebook and Instagram) and Google Ads. It checks the ad account every day, finds where return on ad spend is leaking and proposes the exact fix. A person approves each change; Kortex makes it, then checks whether it worked.",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "INR",
-    availability: "https://schema.org/PreOrder",
-    description: "Free during early access. Access is opened by hand.",
-  },
+    "A free audit that puts 20 questions your customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview, shows who is named instead of you and writes the fixes. Then an AI agent that helps you get named, and an ads agent for Meta and Google Ads in early access.",
+  featureList: [
+    "How often ChatGPT, Gemini and Claude name you for the questions your customers ask",
+    "Who is named instead, and the sites the answers cite",
+    "Google page one and AI Overview for your searches",
+    "Written fixes: an article, an FAQ, llms.txt and structured data",
+    "An AI agent that runs live checks, writes posts and checks again every week",
+    "Competitor ad reports and new image ads made from your products",
+    "An ads agent for Meta Ads and Google Ads that proposes fixes a person approves (early access)",
+  ],
+  offers: [
+    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "One free audit per website, with the written fixes, and 50 free credits for the agent." },
+    {
+      "@type": "Offer",
+      name: "Growth",
+      price: "50",
+      priceCurrency: "USD",
+      description: "Weekly checks with a Monday email, live checks, posts, competitor ads and new ads, with a monthly usage allowance.",
+      priceSpecification: { "@type": "UnitPriceSpecification", price: "50", priceCurrency: "USD", billingDuration: "P1M" },
+    },
+    {
+      "@type": "Offer",
+      name: "Growth (India)",
+      price: "4999",
+      priceCurrency: "INR",
+      priceSpecification: { "@type": "UnitPriceSpecification", price: "4999", priceCurrency: "INR", billingDuration: "P1M" },
+    },
+  ],
 };
 
 export function breadcrumbLd(crumbs: Crumb[]): JsonLd {
@@ -107,7 +130,7 @@ export function webPageLd(head: Pick<PageHead, "path" | "title" | "description" 
     url: url(head.path),
     name: head.title,
     description: head.description,
-    inLanguage: "en-IN",
+    inLanguage: "en",
     isPartOf: { "@id": `${SITE}/#website` },
     breadcrumb: { "@id": `${url(head.path)}#breadcrumb` },
     dateModified: head.lastmod,

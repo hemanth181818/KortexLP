@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { Body, Cards, Cta, FaqBand, FaqList, Hero, ReadNext, Shell, answerClass, h2Class, paraClass, type Card } from "@/components/site/shell";
 import { Inline, parseMarkdown, slugify } from "@/components/site/markup";
 import type { Block, ContentPage, Faq } from "@/content/types";
-import { about, compareHub, featuresHub, googleAds, metaAds, pricing, security } from "@/content/pages/product";
+import { about, aiVisibility, compareHub, featuresHub, googleAds, metaAds, pricing, security } from "@/content/pages/product";
 import { adCreation, approvals, budgetReallocation, creativeFatigue, placementsAudiences } from "@/content/pages/features";
 import { madgicx, revealbot, smartly, vsMediaBuyer } from "@/content/pages/compare";
 import { GLOSSARY_FAQ, GLOSSARY_META, TERMS } from "@/content/pages/glossary";
@@ -19,6 +19,7 @@ import { APP, APP_REF, OG_IMAGE, UPDATED, faqLd, plain, url, webPageLd, type Cru
 const HOME: Crumb = { name: "Home", path: "/" };
 
 const CONTENT: ContentPage[] = [
+  aiVisibility,
   metaAds,
   googleAds,
   featuresHub,
@@ -39,16 +40,16 @@ const CONTENT: ContentPage[] = [
 
 const FAQ_META = {
   path: "/faq",
-  title: "Kortex FAQ: AI Ad Agent for Meta and Google Ads",
+  title: "Kortex FAQ: AI Visibility Audit, Pricing and Ads Agent",
   description:
-    "Answers about Kortex: how the AI ad agent works on Meta and Google Ads, what it can change, approvals, security, pricing, early access and the free tools.",
+    "Answers about Kortex: the free AI visibility audit, the agent and Growth plan, the ads agent for Meta and Google Ads, approvals, security and the free tools.",
 };
 
 const BLOG_META = {
   path: "/blog",
-  title: "Kortex Blog: Meta and Google Ads ROAS Guides",
+  title: "Kortex Blog: AI Visibility, SEO and Ads Guides",
   description:
-    "Practical guides from Kortex on Meta Ads and Google Ads: why ROAS changes, how to read your account and what to fix first, written for Indian advertisers.",
+    "Practical guides from Kortex: how to get recommended by ChatGPT and Google's AI, what llms.txt is, and why Meta and Google Ads ROAS changes and what to fix.",
 };
 
 /** Titles and one-liners for "Read next" cards. */
@@ -59,7 +60,7 @@ function cardFor(path: string): Card {
   if (post) return { title: post.title, body: post.description, href: path };
   if (path === "/glossary") return { title: "Ads glossary", body: "ROAS, MER, CPA, frequency, the learning phase and more, in plain words.", href: path };
   if (path === "/faq") return { title: "FAQ", body: "Every question about Kortex, in one place.", href: path };
-  if (path === "/blog") return { title: "Blog", body: "Guides to Meta and Google Ads ROAS.", href: path };
+  if (path === "/blog") return { title: "Blog", body: "Guides to AI visibility, SEO and ad ROAS.", href: path };
   throw new Error(`No card for ${path}`);
 }
 
@@ -153,6 +154,7 @@ function ContentView({ page }: { page: ContentPage }) {
         title={page.h1}
         lede={page.lede}
         meta={page.lastChecked ? <>Last checked {page.lastChecked}</> : undefined}
+        action={page.action}
       />
       <Body toc={toc}>
         <div className="space-y-16">
@@ -169,7 +171,7 @@ function ContentView({ page }: { page: ContentPage }) {
       </Body>
       <FaqBand faqs={page.faq} />
       <ReadNext cards={(page.related ?? []).map(cardFor)} />
-      <Cta title={page.ctaTitle} />
+      <Cta title={page.ctaTitle} action={page.action} />
     </Shell>
   );
 }
@@ -298,7 +300,7 @@ function glossaryHead(): PageHead {
         name: "Kortex ads glossary",
         description: GLOSSARY_META.lede,
         url: url(GLOSSARY_META.path),
-        inLanguage: "en-IN",
+        inLanguage: "en",
         hasDefinedTerm: TERMS.map((t) => ({
           "@type": "DefinedTerm",
           "@id": `${url(GLOSSARY_META.path)}#${t.id}`,
@@ -327,7 +329,7 @@ function BlogIndexView() {
         crumbs={crumbs}
         eyebrow="Blog"
         title="The Kortex blog"
-        lede="The Kortex blog publishes practical guides to Meta Ads and Google Ads for performance marketers and D2C businesses: why ROAS moves, how to read your account and what to fix first."
+        lede="The Kortex blog publishes practical guides for marketers and founders: how to get named by ChatGPT, Claude and Google's AI, what to put on your site, and why Meta and Google Ads ROAS moves and what to fix first."
         cta={false}
       />
       <div className="mx-auto max-w-[1240px] px-5 py-16 sm:px-6 lg:py-24">
@@ -415,6 +417,12 @@ function PostView({ post }: { post: Post }) {
                 </p>
               );
             }
+            if (b.kind === "code")
+              return (
+                <pre key={i} className="mt-5 overflow-x-auto rounded-xl border border-cream/10 bg-cream/[0.04] p-4 font-mono text-[13px] leading-[1.65] text-cream/80">
+                  <code>{b.text}</code>
+                </pre>
+              );
             const Tag = b.kind;
             return (
               <Tag key={i} className={`mt-4 space-y-2.5 pl-5 text-[16px] leading-[1.7] text-cream/70 marker:text-acid-ink ${Tag === "ol" ? "list-decimal" : "list-disc"}`}>
@@ -430,7 +438,7 @@ function PostView({ post }: { post: Post }) {
       </Body>
       <FaqBand faqs={post.faq} />
       <ReadNext cards={(post.related ?? []).map(cardFor)} />
-      <Cta />
+      <Cta action={post.action} />
     </Shell>
   );
 }
@@ -452,7 +460,7 @@ function postHead(post: Post): PageHead {
         abstract: post.lede,
         datePublished: post.date,
         dateModified: post.updated ?? post.date,
-        inLanguage: "en-IN",
+        inLanguage: "en",
         image: OG_IMAGE,
         url: url(path),
         mainEntityOfPage: { "@id": `${url(path)}#webpage` },
@@ -474,7 +482,7 @@ function NotFoundView({ path }: { path: string }) {
         crumbs={[HOME, { name: "Not found", path }]}
         eyebrow="404"
         title="That page isn't here."
-        lede="The link may be old or mistyped. Kortex is an AI ad agent for Meta and Google Ads; the [home page](/) explains what it does."
+        lede="The link may be old or mistyped. Kortex shows whether ChatGPT, Gemini, Claude and Google recommend you, and fixes it; the [home page](/) explains how."
         cta={false}
       />
       <Cta />

@@ -237,6 +237,7 @@ export const pricing: ContentPage = {
   ],
   related: ["/meta-ads", "/google-ads", "/security", "/faq"],
   ctaTitle: "Start with the free audit.",
+  action: "audit",
 };
 
 export const security: ContentPage = {
@@ -348,7 +349,7 @@ export const about: ContentPage = {
     {
       q: "Who is Kortex for?",
       a: "Performance marketers, D2C and ecommerce businesses, and agencies, starting with India.",
-      body: ["Amounts are in rupees, and the examples and guides on this site are written with Indian advertisers in mind."],
+      body: ["Prices are in US dollars, with a rupee price in India, and many of the ads guides on this site are written with Indian advertisers in mind."],
     },
     {
       q: "What else does Kortex make?",
@@ -420,7 +421,7 @@ export const compareHub: ContentPage = {
   path: "/compare",
   title: "Compare Kortex with Other Ad Tools",
   description:
-    "How Kortex compares with Madgicx, Revealbot and Smartly, and with hiring a media buyer: approval-first changes, daily checks, Meta and Google in one, rupees.",
+    "How Kortex compares with Madgicx, Revealbot, Smartly and a media buyer: changes a person approves, daily checks, Meta and Google in one, published prices.",
   crumb: "Compare",
   eyebrow: "Compare",
   h1: "How Kortex compares",
@@ -445,4 +446,106 @@ export const compareHub: ContentPage = {
   ],
   faq: [],
   related: ["/features", "/pricing"],
+};
+
+export const aiVisibility: ContentPage = {
+  path: "/ai-visibility",
+  title: "Free AI Visibility Audit for ChatGPT and Google | Kortex",
+  description:
+    "Check if ChatGPT, Gemini, Claude and Google name your company for the questions your customers ask, who they name instead, and get the fixes written for free.",
+  crumb: "AI visibility audit",
+  eyebrow: "AI visibility audit",
+  h1: "Do ChatGPT, Gemini, Claude and Google recommend you?",
+  lede:
+    "The Kortex AI visibility audit puts 20 questions your customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for your searches, checks whether AI crawlers can read your site, and writes four fixes: it is free, one per website.",
+  aboutApp: true,
+  faqGroup: "The AI visibility audit",
+  sections: [
+    {
+      q: "What is AI visibility?",
+      a: "AI visibility is how often AI assistants and AI search name your company when people ask the questions that lead to buying what you sell.",
+      body: [
+        "People now ask ChatGPT, Claude, Gemini and Google's AI Overview which tool to use, which shop to buy from or who to hire. The answer names a few companies and cites a few pages. If you are not one of them, you are not on the shortlist, even if you rank on Google for your own name.",
+        "Search rankings and AI answers overlap but are not the same. Google says its AI features are rooted in its core Search ranking systems, while assistants such as ChatGPT and Claude run their own searches and choose their own sources. Checking one tells you little about the others, which is why the audit asks each engine directly.",
+      ],
+    },
+    {
+      q: "What does the audit check?",
+      a: "Four things: what the AI engines answer, what Google shows, whether your site can be read, and what to fix.",
+      body: [
+        {
+          list: [
+            "**The questions your customers ask.** Kortex reads your site, works out what you sell and who buys it, and writes 20 buying questions for your category, the way a customer would type them into a chat.",
+            "**ChatGPT, Gemini and Claude.** Each question goes to each engine. You see whether you are named, how often, whether you come first, who is named instead, and the pages the answers cite.",
+            "**Google.** Kortex reads Google's page one for five of your searches and the AI Overview for up to ten of your questions, and shows who holds those places.",
+            "**Your site.** It checks, from what your site actually serves, whether search and AI crawlers are allowed in, whether your words are in the page before JavaScript runs, and whether you have structured data, a clear title and description, a sitemap and an optional llms.txt.",
+          ],
+        },
+      ],
+    },
+    {
+      q: "What are the four fixes?",
+      a: "An article, an FAQ, an llms.txt file and structured data, each written from your report and ready to copy onto your site.",
+      body: [
+        {
+          list: [
+            "**An article** that answers the question you are missing most, so there is a page an engine can cite.",
+            "**An FAQ** in your customers' words, for your site.",
+            "**An llms.txt file**, a short plain-text summary of your site for AI tools. See [what llms.txt is](/blog/what-is-llms-txt).",
+            "**Structured data** (JSON-LD) that says who you are and what you sell, matching what your page already shows.",
+          ],
+        },
+        "Kortex does not change your website. You review each fix and put it live yourself, or connect your WordPress blog and Kortex saves the article there as a draft for you to publish.",
+      ],
+    },
+    {
+      q: "How do I run it?",
+      a: "Enter your website, confirm your work email with a six-digit code, and the report is ready in about four minutes.",
+      body: [
+        {
+          list: [
+            "Go to [visibility.kortexagent.co](https://visibility.kortexagent.co) and enter your website.",
+            "Confirm your work email with the six-digit code we send.",
+            "Leave the page if you like: we email you the link when the report is ready.",
+          ],
+          ordered: true,
+        },
+        "Nobody at your company needs to sign anything or connect an account for the audit. It reads only public pages and public answers.",
+      ],
+    },
+    {
+      q: "What happens after the audit?",
+      a: "You can keep going with the Kortex agent: sign in with Google and every account starts with 50 free credits.",
+      body: [
+        "The agent can ask the engines again whenever you like, check a page, write posts for your blog, Medium, LinkedIn or Reddit, and look at your competitors' ads. On the Growth plan it checks your site every week and emails you on Monday with what changed, so you can see whether the fixes are working. It also works inside Claude, ChatGPT or Cursor.",
+        "Read [how to get recommended by ChatGPT](/blog/how-to-get-recommended-by-chatgpt) for what you can do on your own, with or without Kortex.",
+      ],
+    },
+    {
+      q: "How much does it cost?",
+      a: "The audit is free, one per website. Growth is $50 a month, or ₹4,999 a month in India.",
+      body: ["Growth includes the weekly check and Monday email, live checks, posts, competitor ad reports and new ads, with a monthly usage allowance and top-ups whenever you need more. See [pricing](/pricing)."],
+    },
+  ],
+  faq: [
+    {
+      q: "Which AI engines does the Kortex audit check?",
+      a: "ChatGPT, Gemini and Claude, each asked the same 20 questions, plus Google's page one and its AI Overview for your searches.",
+    },
+    {
+      q: "Can I see who AI recommends instead of me?",
+      a: "Yes. For every question the report shows which companies were named, in what order, and the pages the answers cited.",
+    },
+    {
+      q: "Is the AI visibility audit really free?",
+      a: "Yes. One full audit per website, with the report and the four written fixes, and no card.",
+    },
+    {
+      q: "Do I need to give Kortex access to my website?",
+      a: "No. The audit reads only your public pages. Connecting WordPress is optional and only lets Kortex save drafts for you to publish.",
+    },
+  ],
+  related: ["/blog/how-to-get-recommended-by-chatgpt", "/blog/what-is-llms-txt", "/pricing", "/faq"],
+  ctaTitle: "See whether AI recommends you.",
+  action: "audit",
 };

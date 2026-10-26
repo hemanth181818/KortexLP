@@ -1,8 +1,8 @@
 # Kortex
 
-> Kortex starts with a free SEO and AI visibility audit (https://visibility.kortexagent.co): it puts 20 questions a company's customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for its searches, checks the site, shows who is named instead and writes four fixes (an article, an FAQ, llms.txt and structured data). Then an AI agent, Ask Kortex, runs live checks, writes the posts that get the company named, checks again every week and works inside Claude, ChatGPT or Cursor. The same agent reads competitors' Facebook and Instagram ads (Kortex Compete), watches them daily, and makes new image ads from the company's own products, in its look, ready for Ads Manager. Every account starts with 50 free credits.
+> Kortex starts with a free SEO and AI visibility audit (https://visibility.kortexagent.co): it puts 20 questions a company's customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for its searches, checks the site, shows who is named instead and writes four fixes (an article, an FAQ, llms.txt and structured data). Then the Kortex agent runs live checks, writes the posts that get the company named, checks again every week and works inside Claude, ChatGPT or Cursor. The same agent reads competitors' Facebook and Instagram ads (Kortex Compete), watches them daily, and makes new image ads from the company's own products, in its look, ready for Ads Manager. Every account starts with 50 free credits.
 
-Kortex also makes an AI ad agent for Meta Ads (Facebook and Instagram) and Google Ads, in early access: every day it reads the ad account, finds where return on ad spend (ROAS) is leaking and proposes the exact fix, which a person approves. Prices are in Indian rupees.
+Kortex also makes an AI ad agent for Meta Ads (Facebook and Instagram) and Google Ads, in early access: every day it reads the ad account, finds where return on ad spend (ROAS) is leaking and proposes the exact fix, which a person approves. The ads agent is free while it is in early access.
 
 ## What the Kortex ads agent does
 
@@ -15,6 +15,13 @@ Kortex also makes an AI ad agent for Meta Ads (Facebook and Instagram) and Googl
 
 Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
 
+## Pricing
+
+- Free: one full SEO and AI visibility audit per website, with the four written fixes and no card, and 50 free credits for the agent.
+- Growth: $50 a month, or ₹4,999 a month in India. Weekly checks with a Monday email of what changed, live checks with ChatGPT, Gemini, Claude and Google, blog, Medium, LinkedIn and Reddit posts, competitor ad reports and daily watching, new ads from the company's products, and Kortex inside Claude, ChatGPT or Cursor, with a monthly usage allowance and top-ups.
+- The ads agent for Meta Ads and Google Ads: free during early access, and nothing charged on ad spend.
+- Details: [Pricing](https://kortexagent.co/pricing) and [pricing.md](https://kortexagent.co/pricing.md).
+
 ## Free tools
 
 - [Visibility](https://visibility.kortexagent.co): checks whether ChatGPT, Gemini, Claude and Google recommend a business when its customers ask, who they name instead, and what to fix.
@@ -24,13 +31,16 @@ Coming soon: Shopify, TikTok Ads and ChatGPT Ads.
 ## Pages
 
 - [About Kortex: AI Agents for ROAS Optimization](https://kortexagent.co/about): Kortex builds AI agents for high frequency ROAS optimization on Meta and Google Ads, for performance marketers, D2C businesses and agencies, India first.
-- [Kortex Blog: Meta and Google Ads ROAS Guides](https://kortexagent.co/blog): Practical guides from Kortex on Meta Ads and Google Ads: why ROAS changes, how to read your account and what to fix first, written for Indian advertisers.
+- [Free AI Visibility Audit for ChatGPT and Google | Kortex](https://kortexagent.co/ai-visibility): Check if ChatGPT, Gemini, Claude and Google name your company for the questions your customers ask, who they name instead, and get the fixes written for free.
+- [Kortex Blog: AI Visibility, SEO and Ads Guides](https://kortexagent.co/blog): Practical guides from Kortex: how to get recommended by ChatGPT and Google's AI, what llms.txt is, and why Meta and Google Ads ROAS changes and what to fix.
+- [How to Get Recommended by ChatGPT and Google AI | Kortex](https://kortexagent.co/blog/how-to-get-recommended-by-chatgpt): Seven steps to get named when people ask ChatGPT, Claude, Gemini or Google's AI what to buy: check the answers, let the crawlers in, and answer on your site.
+- [What Is llms.txt, and Does Your Site Need One? | Kortex](https://kortexagent.co/blog/what-is-llms-txt): llms.txt is a short Markdown file at your site's root that tells AI tools what your site is and where the key pages are. What goes in it, and whether it helps.
 - [Why Your Meta ROAS Dropped: A Checklist | Kortex](https://kortexagent.co/blog/why-meta-roas-dropped): A checklist for when Meta ads ROAS falls: tracking, attribution, CPM, creative fatigue, the learning phase, budget shifts and what happens after the click.
-- [Compare Kortex with Other Ad Tools](https://kortexagent.co/compare): How Kortex compares with Madgicx, Revealbot and Smartly, and with hiring a media buyer: approval-first changes, daily checks, Meta and Google in one, rupees.
+- [Compare Kortex with Other Ad Tools](https://kortexagent.co/compare): How Kortex compares with Madgicx, Revealbot, Smartly and a media buyer: changes a person approves, daily checks, Meta and Google in one, published prices.
 - [Kortex vs Madgicx: AI Ad Agent Comparison](https://kortexagent.co/compare/madgicx): Kortex vs Madgicx compared fairly: how an approval-first AI agent for Meta and Google Ads, priced for India, differs from a Meta-focused ad platform.
 - [Kortex vs Revealbot: Proposals vs Automation Rules](https://kortexagent.co/compare/revealbot): Kortex vs Revealbot compared fairly: proposals a person approves against automation rules you write, for Meta and Google Ads, with Kortex free in early access.
 - [Kortex vs Smartly: AI Ad Agent vs Enterprise Platform](https://kortexagent.co/compare/smartly): Kortex vs Smartly compared fairly: an approval-first AI agent for growing teams on Meta and Google Ads, next to an enterprise creative and media platform.
-- [Kortex FAQ: AI Ad Agent for Meta and Google Ads](https://kortexagent.co/faq): Answers about Kortex: how the AI ad agent works on Meta and Google Ads, what it can change, approvals, security, pricing, early access and the free tools.
+- [Kortex FAQ: AI Visibility Audit, Pricing and Ads Agent](https://kortexagent.co/faq): Answers about Kortex: the free AI visibility audit, the agent and Growth plan, the ads agent for Meta and Google Ads, approvals, security and the free tools.
 - [Kortex Features: What the AI Ad Agent Does](https://kortexagent.co/features): What Kortex does in your Meta and Google ad accounts: budget reallocation, creative fatigue checks, placements and audiences, approvals and ad creation.
 - [AI Image Ads Made from Your Products | Kortex](https://kortexagent.co/features/ad-creation): Kortex makes image ads from your products, in your brand's colours and type, and launches them paused in Meta so a person reviews each one before it runs.
 - [Approvals and Guardrails for AI Ad Changes | Kortex](https://kortexagent.co/features/approvals-and-guardrails): Every Kortex change is approved by a person first. Budgets at most double or halve, proposals expire, and new ads start paused. Here is how the limits work.

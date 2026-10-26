@@ -43,4 +43,6 @@ export type ContentPage = {
   aboutApp?: boolean;
   /** The final ask's heading; the home page's when unset. */
   ctaTitle?: string;
+  /** What the page asks for: the free audit, or early access to the ads agent (the default). */
+  action?: "audit" | "ads";
 };

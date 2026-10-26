@@ -123,7 +123,7 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
             <a href={home ? "#top" : "/"} className="inline-block py-1" aria-label={home ? "Kortex, back to top" : "Kortex home"}>
               <Wordmark />
             </a>
-            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex, AI agents for high frequency ROAS optimization.</p>
+            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex shows whether AI recommends you, then helps you get named and runs your ads.</p>
           </div>
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>

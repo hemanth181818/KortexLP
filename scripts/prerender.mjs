@@ -135,7 +135,7 @@ try {
     name: template.match(/<title>([^<]*)<\/title>/)?.[1] ?? "Kortex",
     isPartOf: { "@id": `${SITE}/#website` },
     about: { "@id": `${SITE}/#app` },
-    inLanguage: "en-IN",
+    inLanguage: "en",
     dateModified: homeUpdated,
   };
   const out = new Map();
