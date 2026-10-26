@@ -33,7 +33,8 @@ export function SiteHeader({ home = false, current }: { home?: boolean; current?
           <Wordmark />
         </a>
         <div className="flex items-center gap-1">
-          <ul className="mr-2 hidden items-center gap-1 md:flex">
+          {/* The home page keeps its header bare: one thing to do there, the audit (Hemanth, 2026-10-21). */}
+          <ul className={cn("mr-2 hidden items-center gap-1", !home && "md:flex")}>
             {HEADER_LINKS.map((l) => {
               const active = current === l.href || (current?.startsWith(l.href + "/") ?? false);
               return (
@@ -122,13 +123,14 @@ export function SiteFooter({ home = false }: { home?: boolean }) {
             <a href={home ? "#top" : "/"} className="inline-block py-1" aria-label={home ? "Kortex, back to top" : "Kortex home"}>
               <Wordmark />
             </a>
-            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex, AI agents for high frequency ROAS optimization.</p>
+            <p className="mt-4 max-w-sm text-pretty text-sm leading-relaxed text-cream/60">Kortex shows whether AI recommends you, then helps you get named and runs your ads.</p>
           </div>
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
               <h4 className="mb-4 text-[13px] font-semibold text-cream/85">{col.title}</h4>
               <ul className="space-y-2.5">
-                {col.title === "Product" && (
+                {/* Not on the home page: there the one thing to do is the audit. */}
+                {col.title === "Product" && !home && (
                   <li>
                     <button type="button" onClick={() => open()} className="text-left text-sm text-cream/60 transition-colors hover:text-acid-ink">
                       Get early access

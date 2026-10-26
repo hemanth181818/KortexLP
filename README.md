@@ -52,7 +52,7 @@ default Vercel detection works out of the box.
 
 ## Content pages and prerendering (2026-10-18)
 
-Besides the home page, the site has answer-first content pages (`/meta-ads`, `/google-ads`,
+Besides the home page, the site has answer-first content pages (`/ai-visibility`, `/meta-ads`, `/google-ads`,
 `/features/*`, `/pricing`, `/faq`, `/about`, `/security`, `/compare/*`, `/vs-media-buyer`,
 `/glossary`, `/blog`, `/blog/<slug>`). Their words live in `src/content/` (pages in
 `src/content/pages/*.ts`, blog posts in `src/content/blog/posts.ts`); `src/pages/site.tsx` maps each

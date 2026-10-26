@@ -1,26 +1,30 @@
 [
   {
-    "q": "Which ad platforms does it work with?",
-    "a": "Meta Ads, which covers Facebook and Instagram, and Google Ads. Shopify, TikTok Ads and ChatGPT Ads are coming soon."
+    "q": "What does the free audit check?",
+    "a": "It puts 20 questions your customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for your searches, and checks your site. You see where you are named, who is named instead, the pages the answers cite, and four fixes written for you."
   },
   {
-    "q": "Will it change my ads without asking?",
-    "a": "No. Kortex proposes, and a person on your team approves each change before it happens. Proposals nobody approves expire, and anything new Kortex creates in Meta starts paused."
+    "q": "Is it really free?",
+    "a": "Yes. One full audit per website, with the report and the written fixes, and no card. Chatting with Kortex and running new checks use credits, and every account starts with 50 free."
   },
   {
-    "q": "What can it change?",
-    "a": "Pause and resume ads, ad sets and campaigns, change budgets, adjust placements and audiences, and launch new ad sets and ads. A single budget change can at most double or halve."
+    "q": "How long does it take?",
+    "a": "About four minutes. You can leave the page: we email you the link when your report is ready."
   },
   {
-    "q": "How does it connect to my account?",
-    "a": "Through Meta's and Google's own sign-in screens. You never give Kortex your password."
+    "q": "What are the fixes it writes?",
+    "a": "An article that answers the question you are missing most, an FAQ for your site, an llms.txt file, and structured data, ready to copy onto your website."
   },
   {
-    "q": "Does it make ads too?",
-    "a": "Yes. Kortex can make image ads in your colours and type from your products, and launch them paused for you to review."
+    "q": "Does Kortex change my website?",
+    "a": "No. It writes the fixes for you to review. If you connect your WordPress blog, Kortex can put a post there as a draft for you to publish, and only goes live when you say so."
   },
   {
-    "q": "How do I get access?",
-    "a": "Leave your work email. We open access by hand and email you when it is your turn. Until then, the three free tools above are open to everyone."
+    "q": "Who is it for?",
+    "a": "Any company whose customers ask AI for recommendations: online stores, software, apps and services. If people ask ChatGPT what to buy or who to hire in your space, the audit shows whether you are in the answer."
+  },
+  {
+    "q": "Does Kortex do ads too?",
+    "a": "Yes. The same agent reads your competitors' Facebook and Instagram ads, watches them every day, and makes new image ads from your own products in your look, ready for Ads Manager. Kortex's agent for running Meta and Google ad accounts is in early access: see the Meta Ads page to ask for it."
   }
 ]

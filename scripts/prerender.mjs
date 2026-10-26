@@ -21,7 +21,9 @@ const ORIGIN = `http://localhost:${PORT}`;
 const SITE = "https://kortexagent.co";
 /** Paths served by something else on kortexagent.co: linked to, never rendered here. */
 const ELSEWHERE = ["/privacy", "/terms", "/data-deletion"];
-const BANNED = [/Gemini/i, /Kreo Tech/i, /\u2014/];
+// Never Gemini as Kortex's own model provider (Hemanth, 2026-09-24). Naming it as one of the engines the
+// audit asks is fine (since 2026-10-21, the visibility-first home page), so only provider claims are banned.
+const BANNED = [/(built|runs|running|powered|based)\s+(on|by|with)\s+(Google\s+)?Gemini/i, /Gemini\s+(API|model|models)\b/i, /Kreo Tech/i, /\u2014/];
 
 const server = spawn("npx", ["vite", "preview", "--port", String(PORT), "--strictPort"], { stdio: "ignore" });
 const template = readFileSync("dist/index.html", "utf8");
@@ -66,6 +68,9 @@ function withHead(page) {
 function check(path, html, head) {
   const problems = [];
   for (const re of BANNED) if (re.test(html)) problems.push(`contains ${re}`);
+  // The home page has no head object: its title is read from the HTML itself, and held to the same limit.
+  const title = head?.title ?? html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+  if (!head && title.length > 60) problems.push(`title is ${title.length} characters (max 60): ${title}`);
   if (head) {
     if (head.title.length > 60) problems.push(`title is ${head.title.length} characters (max 60): ${head.title}`);
     const d = head.description.length;
@@ -130,7 +135,7 @@ try {
     name: template.match(/<title>([^<]*)<\/title>/)?.[1] ?? "Kortex",
     isPartOf: { "@id": `${SITE}/#website` },
     about: { "@id": `${SITE}/#app` },
-    inLanguage: "en-IN",
+    inLanguage: "en",
     dateModified: homeUpdated,
   };
   const out = new Map();

@@ -44,6 +44,7 @@ export function Hero({
   lede,
   meta,
   cta = true,
+  action = "ads",
 }: {
   crumbs: Crumb[];
   eyebrow: string;
@@ -51,6 +52,8 @@ export function Hero({
   lede: string;
   meta?: ReactNode;
   cta?: boolean;
+  /** What the page asks for: the free audit, or early access to the ads agent. */
+  action?: Action;
 }) {
   const { open } = useSignup();
   return (
@@ -64,7 +67,13 @@ export function Hero({
             <Inline text={lede} />
           </p>
           {meta && <div className="mt-4 text-[13px] text-cream/55">{meta}</div>}
-          {cta && (
+          {cta && action === "audit" && (
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <AuditLink />
+              <span className="text-[13px] text-cream/55">Free, one per website. Ready in about four minutes.</span>
+            </div>
+          )}
+          {cta && action === "ads" && (
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
               <InteractiveHoverButton type="button" onClick={() => open()} text="Get early access" className="h-11 text-[15px]" />
               <span className="text-[13px] text-cream/55">Free during early access. We open access by hand.</span>
@@ -210,8 +219,39 @@ export function ReadNext({ cards }: { cards: Card[] }) {
   );
 }
 
-export function Cta({ title }: { title?: string }) {
-  return <EarlyAccess title={title} />;
+export type Action = "audit" | "ads";
+
+export const AUDIT_URL = "https://visibility.kortexagent.co";
+
+/** The free audit, as the home page's lime pill, but a link: it opens the audit app. */
+function AuditLink() {
+  return (
+    <a
+      href={AUDIT_URL}
+      className="inline-flex h-11 items-center gap-2 rounded-full bg-acid px-6 text-[15px] font-semibold text-on-acid transition-colors hover:bg-[var(--hb-fill)] hover:text-[var(--hb-text)]"
+    >
+      Run the free audit <ArrowUpRight className="size-4" aria-hidden />
+    </a>
+  );
+}
+
+export function Cta({ title, action = "ads" }: { title?: string; action?: Action }) {
+  if (action === "ads") return <EarlyAccess title={title} />;
+  return (
+    <section className="relative overflow-hidden">
+      <div className="relative mx-auto max-w-[1240px] px-5 py-24 text-center sm:px-6 lg:py-32">
+        <h2 className="font-display mx-auto max-w-[44rem] text-balance text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1] tracking-[-0.015em]">
+          {title ?? "See whether AI recommends you."}
+        </h2>
+        <p className="mx-auto mt-5 max-w-[34rem] text-[16px] text-cream/65">
+          20 questions your customers ask, put to ChatGPT, Gemini and Claude, plus Google, and four fixes written for you. Free, one per website.
+        </p>
+        <div className="mt-9 flex justify-center">
+          <AuditLink />
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export const sectionId = slugify;

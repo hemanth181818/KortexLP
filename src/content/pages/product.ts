@@ -55,7 +55,7 @@ export const metaAds: ContentPage = {
       q: "How does Kortex connect to Meta?",
       a: "Through Meta's own sign-in screen, so you never give Kortex your password.",
       body: [
-        "You sign in with Facebook, choose the ad accounts Kortex may use and approve the permissions Meta shows you. Kortex then reads the last 30 days and suggests its first three changes. You can remove its access from your Meta settings at any time. More on [security and access](/security).",
+        "Access is opened by hand during early access. You then sign in with Facebook, choose the ad accounts Kortex may use and approve the permissions Meta shows you. Kortex then reads the last 30 days and suggests its first three changes. You can remove its access from your Meta settings at any time. More on [security and access](/security).",
       ],
     },
     {
@@ -171,80 +171,73 @@ export const googleAds: ContentPage = {
 
 export const pricing: ContentPage = {
   path: "/pricing",
-  title: "Kortex Pricing: Free During Early Access",
+  title: "Kortex Pricing: Free Audit, Growth at $50 a Month",
   description:
-    "Kortex is free during early access. See what is included, how access opens by hand, and what to expect when paid plans arrive, with prices in Indian rupees.",
+    "The SEO and AI visibility audit is free. Growth is $50 a month, or ₹4,999 in India, with weekly checks, posts and ads. The ads agent is free for now.",
   crumb: "Pricing",
   eyebrow: "Pricing",
-  h1: "Kortex is free during early access",
-  lede: "Kortex costs nothing during early access: every feature that is live today is included, and access is opened by hand.",
+  h1: "Start free. Growth is $50 a month.",
+  lede: "The audit is free, one per website. Growth is $50 a month, or ₹4,999 a month in India. The ads agent for Meta and Google is free during early access.",
   aboutApp: true,
   faqGroup: "Pricing and access",
   sections: [
     {
       q: "How much does Kortex cost?",
-      a: "Nothing, while Kortex is in early access.",
-      body: [
-        "There is no card to enter and no trial clock. We have not set paid plans yet. When we do, prices will be in Indian rupees, and early-access users will hear about them before anything changes for their account.",
-      ],
-    },
-    {
-      q: "What is included in early access?",
-      a: "Everything Kortex does today.",
+      a: "The audit is free. Growth is $50 a month, or ₹4,999 a month in India.",
       body: [
         {
           list: [
-            "Connections to [Meta Ads](/meta-ads) (Facebook and Instagram) and [Google Ads](/google-ads)",
-            "Daily checks of your ad accounts, with findings in Needs attention",
-            "Proposed fixes with the numbers behind them, approved by a person before they run",
-            "Pausing and resuming, budget changes, placement and audience changes, and new ad sets and ads",
-            "[Image ads made from your products](/features/ad-creation), launched paused",
-            "Questions about your ad account, answered in plain words",
+            "Free: one full SEO and AI visibility audit per website, your four fixes written, two questions to Kortex on your report, and 50 free credits to try the agent.",
+            "Growth, $50 a month (₹4,999 in India): your website checked every week with a Monday email of what changed, live checks with ChatGPT, Gemini, Claude and Google, blog, Medium, LinkedIn and Reddit posts, competitor ad reports and daily watching, new ads made from your products, Kortex inside Claude, ChatGPT or Cursor, and a monthly usage allowance that resets each month.",
+            "Top-ups whenever you need more.",
           ],
         },
+        "[Get Growth](https://rzp.io/rzp/1fANlcjW), or [start with the free audit](https://visibility.kortexagent.co).",
       ],
     },
     {
-      q: "How do I get access?",
-      a: "Leave your work email; we open access by hand and email you when it is your turn.",
+      q: "How do I start?",
+      a: "Run the free audit on your website; everything else starts from your report.",
+      body: ["Enter your website at [visibility.kortexagent.co](https://visibility.kortexagent.co), confirm your work email with a six-digit code, and your report is ready in about four minutes."],
+    },
+    {
+      q: "What does the ads agent cost?",
+      a: "Nothing, while it is in early access.",
       body: [
-        "Until then, the free tools below are open to everyone. If you have a question before your access opens, write to human@kortexagent.co.",
+        "The Kortex ads agent for [Meta Ads](/meta-ads) and [Google Ads](/google-ads) checks your ad accounts every day and proposes fixes a person approves. Access is opened by hand: leave your work email and we email you when it is your turn. It charges nothing on your ad spend.",
       ],
     },
     {
-      q: "Are the free tools free as well?",
-      a: "Yes. Three Kortex tools are open to everyone now, without waiting for access.",
+      q: "Are the other tools free?",
+      a: "Yes. These Kortex tools are open to everyone.",
       body: [
         {
           cards: [
-            { title: "Visibility", body: "Do ChatGPT, Claude, Perplexity and Google recommend you when your customers ask?", href: "https://visibility.kortexagent.co" },
+            { title: "Visibility", body: "Do ChatGPT, Gemini, Claude and Google recommend you when your customers ask?", href: "https://visibility.kortexagent.co" },
             { title: "Compete", body: "See the Meta ads your competitors are running and which ones they keep.", href: "https://compete.kortexagent.co" },
             { title: "Creators", body: "Find Instagram creators who fit what you sell, for partnership ads.", href: "https://creators.kortexagent.co" },
           ],
         },
       ],
     },
-    {
-      q: "What is coming next?",
-      a: "Shopify, TikTok Ads and ChatGPT Ads are coming soon.",
-    },
   ],
   faq: [
     {
-      q: "Is Kortex really free?",
-      a: "Yes, during early access. There is no card to enter. Paid plans are not set yet; when they are, prices will be in Indian rupees.",
+      q: "Is the audit really free?",
+      a: "Yes. One full audit per website, with the report and the written fixes, and no card.",
+    },
+    {
+      q: "How much is the Growth plan?",
+      a: "$50 a month, or ₹4,999 a month in India, with a monthly usage allowance that resets each month and top-ups whenever you need more.",
     },
     {
       q: "Does Kortex take a percentage of my ad spend?",
-      a: "No. Kortex is free during early access and charges nothing on your ad spend.",
-    },
-    {
-      q: "When will I get access?",
-      a: "We open access by hand and email you when it is your turn. Until then, the three free tools are open to everyone.",
+      a: "No. Kortex charges nothing on your ad spend.",
     },
   ],
   related: ["/meta-ads", "/google-ads", "/security", "/faq"],
-  ctaTitle: "Get early access. It is free.",
+  ctaTitle: "Start with the free audit.",
+  action: "audit",
 };
 
 export const security: ContentPage = {
@@ -356,7 +349,7 @@ export const about: ContentPage = {
     {
       q: "Who is Kortex for?",
       a: "Performance marketers, D2C and ecommerce businesses, and agencies, starting with India.",
-      body: ["Amounts are in rupees, and the examples and guides on this site are written with Indian advertisers in mind."],
+      body: ["Prices are in US dollars, with a rupee price in India, and many of the ads guides on this site are written with Indian advertisers in mind."],
     },
     {
       q: "What else does Kortex make?",
@@ -364,7 +357,7 @@ export const about: ContentPage = {
       body: [
         {
           cards: [
-            { title: "Visibility", body: "Check whether ChatGPT, Claude, Perplexity and Google recommend you.", href: "https://visibility.kortexagent.co" },
+            { title: "Visibility", body: "Check whether ChatGPT, Gemini, Claude and Google recommend you.", href: "https://visibility.kortexagent.co" },
             { title: "Compete", body: "Read your competitors' live Meta ads.", href: "https://compete.kortexagent.co" },
             { title: "Creators", body: "Find Instagram creators for partnership ads.", href: "https://creators.kortexagent.co" },
           ],
@@ -428,7 +421,7 @@ export const compareHub: ContentPage = {
   path: "/compare",
   title: "Compare Kortex with Other Ad Tools",
   description:
-    "How Kortex compares with Madgicx, Revealbot and Smartly, and with hiring a media buyer: approval-first changes, daily checks, Meta and Google in one, rupees.",
+    "How Kortex compares with Madgicx, Revealbot, Smartly and a media buyer: changes a person approves, daily checks, Meta and Google in one, published prices.",
   crumb: "Compare",
   eyebrow: "Compare",
   h1: "How Kortex compares",
@@ -453,4 +446,106 @@ export const compareHub: ContentPage = {
   ],
   faq: [],
   related: ["/features", "/pricing"],
+};
+
+export const aiVisibility: ContentPage = {
+  path: "/ai-visibility",
+  title: "Free AI Visibility Audit for ChatGPT and Google | Kortex",
+  description:
+    "Check if ChatGPT, Gemini, Claude and Google name your company for the questions your customers ask, who they name instead, and get the fixes written for free.",
+  crumb: "AI visibility audit",
+  eyebrow: "AI visibility audit",
+  h1: "Do ChatGPT, Gemini, Claude and Google recommend you?",
+  lede:
+    "The Kortex AI visibility audit puts 20 questions your customers ask to ChatGPT, Gemini and Claude, reads Google's page one and AI Overview for your searches, checks whether AI crawlers can read your site, and writes four fixes: it is free, one per website.",
+  aboutApp: true,
+  faqGroup: "The AI visibility audit",
+  sections: [
+    {
+      q: "What is AI visibility?",
+      a: "AI visibility is how often AI assistants and AI search name your company when people ask the questions that lead to buying what you sell.",
+      body: [
+        "People now ask ChatGPT, Claude, Gemini and Google's AI Overview which tool to use, which shop to buy from or who to hire. The answer names a few companies and cites a few pages. If you are not one of them, you are not on the shortlist, even if you rank on Google for your own name.",
+        "Search rankings and AI answers overlap but are not the same. Google says its AI features are rooted in its core Search ranking systems, while assistants such as ChatGPT and Claude run their own searches and choose their own sources. Checking one tells you little about the others, which is why the audit asks each engine directly.",
+      ],
+    },
+    {
+      q: "What does the audit check?",
+      a: "Four things: what the AI engines answer, what Google shows, whether your site can be read, and what to fix.",
+      body: [
+        {
+          list: [
+            "**The questions your customers ask.** Kortex reads your site, works out what you sell and who buys it, and writes 20 buying questions for your category, the way a customer would type them into a chat.",
+            "**ChatGPT, Gemini and Claude.** Each question goes to each engine. You see whether you are named, how often, whether you come first, who is named instead, and the pages the answers cite.",
+            "**Google.** Kortex reads Google's page one for five of your searches and the AI Overview for up to ten of your questions, and shows who holds those places.",
+            "**Your site.** It checks, from what your site actually serves, whether search and AI crawlers are allowed in, whether your words are in the page before JavaScript runs, and whether you have structured data, a clear title and description, a sitemap and an optional llms.txt.",
+          ],
+        },
+      ],
+    },
+    {
+      q: "What are the four fixes?",
+      a: "An article, an FAQ, an llms.txt file and structured data, each written from your report and ready to copy onto your site.",
+      body: [
+        {
+          list: [
+            "**An article** that answers the question you are missing most, so there is a page an engine can cite.",
+            "**An FAQ** in your customers' words, for your site.",
+            "**An llms.txt file**, a short plain-text summary of your site for AI tools. See [what llms.txt is](/blog/what-is-llms-txt).",
+            "**Structured data** (JSON-LD) that says who you are and what you sell, matching what your page already shows.",
+          ],
+        },
+        "Kortex does not change your website. You review each fix and put it live yourself, or connect your WordPress blog and Kortex saves the article there as a draft for you to publish.",
+      ],
+    },
+    {
+      q: "How do I run it?",
+      a: "Enter your website, confirm your work email with a six-digit code, and the report is ready in about four minutes.",
+      body: [
+        {
+          list: [
+            "Go to [visibility.kortexagent.co](https://visibility.kortexagent.co) and enter your website.",
+            "Confirm your work email with the six-digit code we send.",
+            "Leave the page if you like: we email you the link when the report is ready.",
+          ],
+          ordered: true,
+        },
+        "Nobody at your company needs to sign anything or connect an account for the audit. It reads only public pages and public answers.",
+      ],
+    },
+    {
+      q: "What happens after the audit?",
+      a: "You can keep going with the Kortex agent: sign in with Google and every account starts with 50 free credits.",
+      body: [
+        "The agent can ask the engines again whenever you like, check a page, write posts for your blog, Medium, LinkedIn or Reddit, and look at your competitors' ads. On the Growth plan it checks your site every week and emails you on Monday with what changed, so you can see whether the fixes are working. It also works inside Claude, ChatGPT or Cursor.",
+        "Read [how to get recommended by ChatGPT](/blog/how-to-get-recommended-by-chatgpt) for what you can do on your own, with or without Kortex.",
+      ],
+    },
+    {
+      q: "How much does it cost?",
+      a: "The audit is free, one per website. Growth is $50 a month, or ₹4,999 a month in India.",
+      body: ["Growth includes the weekly check and Monday email, live checks, posts, competitor ad reports and new ads, with a monthly usage allowance and top-ups whenever you need more. See [pricing](/pricing)."],
+    },
+  ],
+  faq: [
+    {
+      q: "Which AI engines does the Kortex audit check?",
+      a: "ChatGPT, Gemini and Claude, each asked the same 20 questions, plus Google's page one and its AI Overview for your searches.",
+    },
+    {
+      q: "Can I see who AI recommends instead of me?",
+      a: "Yes. For every question the report shows which companies were named, in what order, and the pages the answers cited.",
+    },
+    {
+      q: "Is the AI visibility audit really free?",
+      a: "Yes. One full audit per website, with the report and the four written fixes, and no card.",
+    },
+    {
+      q: "Do I need to give Kortex access to my website?",
+      a: "No. The audit reads only your public pages. Connecting WordPress is optional and only lets Kortex save drafts for you to publish.",
+    },
+  ],
+  related: ["/blog/how-to-get-recommended-by-chatgpt", "/blog/what-is-llms-txt", "/pricing", "/faq"],
+  ctaTitle: "See whether AI recommends you.",
+  action: "audit",
 };

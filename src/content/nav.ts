@@ -9,9 +9,11 @@ export type NavLink = { label: string; href: string };
 
 /** The header row, from md up. Phones get the full list in the footer. */
 export const HEADER_LINKS: NavLink[] = [
+  { label: "Free AI visibility audit", href: "https://visibility.kortexagent.co" },
   { label: "Meta Ads", href: "/meta-ads" },
   { label: "Google Ads", href: "/google-ads" },
   { label: "Features", href: "/features" },
+  { label: "Case studies", href: "/case-studies" },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
 ];
@@ -20,6 +22,7 @@ export const FOOTER_COLUMNS: Array<{ title: string; links: NavLink[] }> = [
   {
     title: "Product",
     links: [
+      { label: "AI visibility audit", href: "/ai-visibility" },
       { label: "AI agent for Meta Ads", href: "/meta-ads" },
       { label: "AI agent for Google Ads", href: "/google-ads" },
       { label: "Pricing", href: "/pricing" },
@@ -49,6 +52,9 @@ export const FOOTER_COLUMNS: Array<{ title: string; links: NavLink[] }> = [
   {
     title: "Learn",
     links: [
+      { label: "Kreo case study", href: "/case-studies/kreo" },
+      { label: "Get recommended by ChatGPT", href: "/blog/how-to-get-recommended-by-chatgpt" },
+      { label: "What is llms.txt", href: "/blog/what-is-llms-txt" },
       { label: "FAQ", href: "/faq" },
       { label: "Ads glossary", href: "/glossary" },
       { label: "Blog", href: "/blog" },

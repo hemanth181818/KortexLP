@@ -41,7 +41,7 @@ export const madgicx: ContentPage = {
     },
     {
       q: "How do Kortex and Madgicx differ?",
-      a: "Kortex is built around one daily list of proposed changes that a person approves, across Meta and Google, with amounts in rupees.",
+      a: "Kortex is built around one daily list of proposed changes that a person approves, across Meta and Google.",
       body: [
         {
           table: {
@@ -52,7 +52,7 @@ export const madgicx: ContentPage = {
               ["How changes happen", "Every change approved by a person first", "See madgicx.com for how its automation works"],
               ["Platforms", "Meta Ads and Google Ads", "Focused mainly on Meta ads"],
               ["Daily work", "A short list of fixes each morning, with the numbers", "Dashboards and tools you work through"],
-              ["Pricing", "Free during early access; rupees", "Published plans; see madgicx.com"],
+              ["Pricing", "Ads agent free during early access", "Published plans; see madgicx.com"],
             ],
           },
         },
@@ -82,7 +82,7 @@ export const madgicx: ContentPage = {
     },
     {
       q: "How much does Kortex cost compared with Madgicx?",
-      a: "Kortex is free during early access, and paid plans will be priced in rupees. For Madgicx's prices, see its website.",
+      a: "The Kortex ads agent is free during early access, and Kortex's Growth plan is $50 a month (₹4,999 in India); see [pricing](/pricing). For Madgicx's prices, see its website.",
     },
   ],
   related: ["/compare/revealbot", "/compare/smartly", "/features/approvals-and-guardrails", "/pricing"],
@@ -129,7 +129,7 @@ export const revealbot: ContentPage = {
               ["Setup", "Connect your accounts; first three suggestions from the last 30 days", "Build or pick the rules you want"],
               ["Explanations", "Each proposal shows what Kortex saw and the numbers", "Rules run on the conditions you set"],
               ["Limits", "Budgets at most double or halve per change; new ads start paused", "Set within your rules"],
-              ["Pricing", "Free during early access; rupees", "Published plans; see its website"],
+              ["Pricing", "Ads agent free during early access", "Published plans; see its website"],
             ],
           },
         },
@@ -188,7 +188,7 @@ export const smartly: ContentPage = {
       q: "Who is each product for?",
       a: "Smartly targets large brands with big creative and media teams; Kortex targets performance marketers, D2C businesses and agencies, starting with India.",
       body: [
-        "Kortex connects through Meta's and Google's own sign-in screens, shows amounts in rupees and needs no sales call: you leave your email and we open access by hand.",
+        "Kortex connects through Meta's and Google's own sign-in screens, has published prices and needs no sales call: you leave your email and we open access by hand.",
       ],
     },
     {
@@ -204,7 +204,7 @@ export const smartly: ContentPage = {
               ["Core job", "Daily ROAS checks and approved fixes", "Creative production and campaign management at scale"],
               ["Platforms", "Meta Ads and Google Ads", "Many channels; see smartly.io"],
               ["Getting started", "Leave your email; access opened by hand", "Through their sales team"],
-              ["Pricing", "Free during early access; rupees", "Not published; see smartly.io"],
+              ["Pricing", "Ads agent free during early access", "Not published; see smartly.io"],
             ],
           },
         },

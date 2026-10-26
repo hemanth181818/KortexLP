@@ -1,43 +1,52 @@
-import { useState, type ReactNode } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
-import { ChecksBoard } from "@/components/lp/checks-board";
-import { PlatformLogo, PLATFORM_NAME, type PlatformId } from "@/components/lp/platform-logos";
+import { ArrowRight, ArrowUpRight, Check, Minus, Play, Plus } from "lucide-react";
+import { EngineGrid } from "@/components/lp/engine-grid";
+import { WeekChart } from "@/components/lp/case-study";
+import { PERIOD, RESULTS, times } from "@/content/case-studies/kreo";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { EngineLogo, ENGINE_NAME, type EngineId } from "@/components/lp/engine-logos";
 import { LogoMark } from "@/components/lp/logo-mark";
-import { EarlyAccess, EmailBox, SiteFooter, SiteHeader } from "@/components/lp/site-chrome";
+import { SiteFooter, SiteHeader } from "@/components/lp/site-chrome";
 import { cn } from "@/lib/utils";
 import { PRERENDERED } from "@/lib/prerendered";
 import faq from "@/content/faq.json";
 
 /**
- * kortexagent.co, on the same system as the Kortex lead-magnet sites
- * (visibility.kortexagent.co): light first, a sky hero with a glass pill and a
- * serif headline, pastel bands behind How it works and the FAQ only, the real
- * objections, an ink footer.
+ * kortexagent.co, visibility first (Hemanth, 2026-10-21: "turn the main landing page to visibility
+ * focused for now"). One job: get a cold visitor to run the free SEO and AI visibility audit on
+ * visibility.kortexagent.co. The hero shows one customer question and which AI answers leave them
+ * out; then what the audit shows, what the agent does after it, how it works, the other free tools,
+ * the objections, the ask again. One call to action on the page: the audit.
  *
- * One job: get an advertiser onto the early-access list. AIDA for cold
- * visitors: the hero shows a morning's checks waiting for approval; then how a
- * change is made and bounded; what Kortex checks each day; how it works; the
- * free tools to try today; the objections; the ask again.
+ * Every claim is what Kortex Visibility does today (checked 2026-10-21): 20 questions put to
+ * ChatGPT, Gemini and Claude, Google's page one and AI Overview for searches, site checks, four
+ * written fixes (an article, an FAQ, llms.txt, structured data), about four minutes, one free audit
+ * per website; then Ask Kortex with 50 free credits. Names and numbers in the examples are made up.
  *
- * Every claim is what the product does today (checked against Kortex Pilot,
- * 2026-10-09; the platform list is Hemanth's call): Meta and Google Ads live,
- * Shopify, TikTok and ChatGPT ads shown as coming soon,
- * every change approved by a person, daily checks, no pricing yet, and no
- * customer results to quote, so there are none on the page. Names and numbers
- * in the examples are made up and say so.
+ * 2026-10-26 (Hemanth: "the landing page isn't doing the work"): the hero carries the 54-second film of
+ * the agent at work, the problem gets its own section, and Kreo's own Search Console and GA4 numbers are
+ * the proof (content/case-studies/kreo.ts, /case-studies/kreo).
+ * Copy rule: "you", "your website", "company", never "brand" or "buyers".
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+const AUDIT = "https://visibility.kortexagent.co";
+/** The engines the audit asks, as on visibility.kortexagent.co. */
+const RAIL: EngineId[] = ["chatgpt", "gemini", "claude", "google"];
 
 export default function Landing() {
   return (
     <div className="min-h-[100svh] overflow-x-clip bg-ink text-cream">
       <SiteHeader home />
       <Hero />
-      <Approval />
-      <DailyChecks />
+      <Problem />
+      <WhatItShows />
+      <Proof />
+      <TheAgent />
       <How />
+      <AdsToo />
+      <Pricing />
       <FreeTools />
       <Faq />
       <FinalAsk />
@@ -46,10 +55,38 @@ export default function Landing() {
   );
 }
 
-/* ---------- Hero ---------- */
+/** The website box: what they type opens the audit on visibility.kortexagent.co, already filled in. */
+function WebsiteBox({ id }: { id: string }) {
+  const [site, setSite] = useState("");
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    const s = site.trim().slice(0, 200);
+    window.location.assign(`${AUDIT}/${s ? `?site=${encodeURIComponent(s)}` : ""}`);
+  };
+  return (
+    <form
+      onSubmit={submit}
+      className="mx-auto flex w-full max-w-[34rem] items-center gap-1.5 rounded-full border border-cream/15 bg-ink-soft/90 p-1.5 transition-colors focus-within:border-acid/60"
+    >
+      <label htmlFor={id} className="sr-only">
+        Your website
+      </label>
+      <input
+        id={id}
+        value={site}
+        onChange={(e) => setSite(e.target.value)}
+        inputMode="url"
+        autoComplete="url"
+        placeholder="yoursite.com"
+        maxLength={200}
+        className="min-w-0 flex-1 bg-transparent px-4 text-[16px] text-cream outline-none placeholder:text-cream/35 focus-visible:outline-none"
+      />
+      <InteractiveHoverButton type="submit" text="Get my free audit" className="h-11 shrink-0 text-[15px]" />
+    </form>
+  );
+}
 
-const LIVE: PlatformId[] = ["meta", "googleads"];
-const SOON: PlatformId[] = ["shopify", "tiktok", "chatgpt"];
+/* ---------- Hero ---------- */
 
 function Hero() {
   return (
@@ -66,9 +103,7 @@ function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-acid opacity-70" />
               <span className="relative inline-flex size-1.5 rounded-full bg-acid" />
             </span>
-            <span>
-              AI Agents For High Frequency ROAS Optimization
-            </span>
+            <span>Free AI visibility audit</span>
           </motion.p>
           <motion.h1
             initial={PRERENDERED ? false : { opacity: 0, y: 16 }}
@@ -76,146 +111,273 @@ function Hero() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
             className="font-display mt-7 text-balance text-[clamp(3rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.02em] text-cream"
           >
-            Your ad account, <span className="italic">optimized</span> for high ROAS every day.
+            Does AI recommend <span className="italic">you?</span>
           </motion.h1>
           <motion.p
             initial={PRERENDERED ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
-            className="mt-6 max-w-[38rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
+            className="mt-6 max-w-[40rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
           >
-            Kortex reads your Meta and Google ads, finds where ROAS is leaking and proposes the exact fix. You approve it, Kortex makes the change, then
-            checks whether it worked.
+            Your customers ask ChatGPT, Gemini, Claude and Google what to buy. Kortex shows whether you are in the answer and who is named
+            instead, then writes the fixes that get you named.
           </motion.p>
           <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
-            <EmailBox id="email-hero" />
-            <p className="mt-3 text-[13px] text-cream/50">We open access by hand and email you when it is your turn.</p>
+            <WebsiteBox id="site-hero" />
           </motion.div>
           <motion.div
             initial={PRERENDERED ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-10 flex flex-col items-center gap-6"
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-cream/55"
           >
-            <Rail label="Works on" items={LIVE} />
-            <Rail label="Coming soon" items={SOON} soon />
+            <span className="text-[12.5px] text-cream/40">Asks</span>
+            {RAIL.map((e) => (
+              <span key={e} className="flex items-center gap-2 text-[14px] font-medium">
+                <EngineLogo engine={e} className="size-[18px]" />
+                {ENGINE_NAME[e]}
+              </span>
+            ))}
           </motion.div>
         </div>
 
-        <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1000px] lg:mt-20">
-          <ChecksBoard className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
-          <p className="mt-4 text-center text-[12px] text-cream/40">An example morning. Names and numbers are made up.</p>
+        <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1100px] lg:mt-20">
+          <Film />
+          <p className="mt-4 text-center text-[12px] text-cream/40">Kortex at work, in 54 seconds. The numbers in it are an example.</p>
         </motion.div>
       </div>
     </section>
   );
 }
 
-/** A labelled row of platform marks: where Kortex works today, or is coming next. */
-function Rail({ label, items, soon = false }: { label: string; items: PlatformId[]; soon?: boolean }) {
+/**
+ * The film: Kortex running an audit, reading the answers and the page, writing the fixes and watching
+ * every week. Encoded for the web from kortex-visibility-wide.mp4 (1600 wide, faststart). Nothing plays
+ * until the visitor asks: then it plays with sound and the browser's own controls.
+ */
+function Film() {
+  const [playing, setPlaying] = useState(false);
+  const start = (v: HTMLVideoElement | null) => {
+    if (!v) return;
+    v.play().catch(() => undefined);
+  };
   return (
-    <div className={cn("flex flex-col items-center gap-3", soon ? "text-cream/40" : "text-cream/60")}>
-      <span className={cn("text-[12.5px]", soon ? "rounded-full border border-cream/15 px-2 py-0.5 text-cream/45" : "text-cream/40")}>{label}</span>
-      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5">
-        {items.map((p) => (
-          <span key={p} className="flex items-center gap-2 text-[14px] font-medium">
-            <PlatformLogo platform={p} className="size-[18px]" />
-            {PLATFORM_NAME[p]}
+    <div className="relative overflow-hidden rounded-[22px] border border-cream/15 bg-[#F6F4EE] shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]">
+      {playing ? (
+        <video
+          ref={start}
+          className="block aspect-video w-full"
+          src="/video/kortex-visibility.mp4"
+          poster="/video/kortex-visibility-poster.jpg"
+          controls
+          playsInline
+          preload="auto"
+        >
+          A 54-second film of Kortex auditing a website.
+        </video>
+      ) : (
+        <button type="button" onClick={() => setPlaying(true)} className="group relative block w-full" aria-label="Play the 54-second film of Kortex at work">
+          <img
+            src="/video/kortex-visibility-poster.jpg"
+            alt="Kortex's audit showing how often ChatGPT, Gemini, Claude and Google AI Overview name a company"
+            width={1600}
+            height={900}
+            className="block aspect-video w-full object-cover"
+          />
+          <span className="absolute inset-0 grid place-items-center bg-[#141210]/10 transition-colors group-hover:bg-[#141210]/20">
+            <span className="flex items-center gap-3 rounded-full bg-[#141210] py-3 pl-3 pr-6 text-[15px] font-semibold text-[#F6F4EE] shadow-xl transition-transform group-hover:scale-[1.03]">
+              <span className="grid size-10 place-items-center rounded-full bg-acid text-on-acid">
+                <Play className="ml-0.5 size-4 fill-current" aria-hidden="true" />
+              </span>
+              Watch how it works
+            </span>
           </span>
-        ))}
-      </div>
+        </button>
+      )}
     </div>
   );
 }
 
-/* ---------- How a change is made ---------- */
+/* ---------- The problem ---------- */
 
-function Approval() {
+function Problem() {
   return (
-    <section id="approval">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 py-20 sm:px-6 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-28">
-        <div>
-          <p className="eyebrow">Nothing changes without you</p>
-          <h2 className="font-display mt-4 text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
-            You approve every change. Kortex shows its working first.
-          </h2>
-          <p className="mt-5 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-            Each proposal says what Kortex saw, what it wants to change, and the numbers before and after. You approve it in the chat or in your
-            queue, and Kortex makes the change in your ad account.
-          </p>
-          <p className="mt-4 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-            Limits sit underneath every proposal. A budget can at most double or halve in one step. An ad set Kortex just changed is left alone
-            for a few days so the result can show. A proposal you ignore expires.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-cream/10 bg-ink-soft/70 p-5 sm:p-7">
-          <p className="text-[12px] font-medium text-acid-ink">Proposed change</p>
-          <p className="mt-2 text-[18px] font-semibold tracking-[-0.01em] text-cream">Halve the daily budget on Prospecting, broad</p>
-          <p className="mt-2 text-[14px] leading-relaxed text-cream/60">
-            It spent ₹18,400 in two days at 0.9 ROAS, against 2.8 for the rest of the account.
-          </p>
-          <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-cream/10 bg-cream/10">
-            {[
-              ["Daily budget now", "₹9,000"],
-              ["After the change", "₹4,500"],
-              ["ROAS, last 2 days", "0.9"],
-              ["Account ROAS", "2.8"],
-            ].map(([k, v]) => (
-              <div key={k} className="bg-ink-soft px-4 py-3">
-                <dt className="text-[12px] text-cream/50">{k}</dt>
-                <dd className="mt-0.5 font-mono text-[20px] font-semibold tabular-nums text-cream">{v}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="inline-flex h-10 items-center rounded-full bg-cream px-5 text-[14px] font-semibold text-ink">Approve</span>
-            <span className="inline-flex h-10 items-center rounded-full border border-cream/15 px-5 text-[14px] text-cream/70">Skip</span>
-            <span className="ml-auto text-[12px] text-cream/45">Expires in 2 days</span>
-          </div>
-          <p className="mt-5 border-t border-cream/10 pt-4 text-[12.5px] text-cream/45">An example proposal. Names and numbers are made up.</p>
+    <section id="problem">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+        <p className="eyebrow">Why it matters</p>
+        <h2 className="font-display mt-4 max-w-[48rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          One question. Four answers. You might be in none of them.
+        </h2>
+        <p className="mt-5 max-w-[40rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          Ask an AI what to buy and it names a handful of companies, then stops. If you are not one of them, the customer never hears of
+          you, and you never see it happen: there is no ranking to check and no click to count. The audit is how you see it.
+        </p>
+        <div className="relative mx-auto mt-12 max-w-[1100px]">
+          <EngineGrid className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
+          <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names are made up.</p>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------- What it checks ---------- */
+/* ---------- Proof: Kreo's audit ---------- */
 
-const CHECKS = [
-  { title: "Money going where it should not", body: "Spend shifting toward ads whose ROAS is falling, ranked by the money at risk rather than the worst ratio." },
-  { title: "Winners held back", body: "Ads beating your account's ROAS while a budget cap holds them flat and weaker ones spend more." },
-  { title: "Creative wearing out", body: "Frequency rising while click-through falls, told apart from an ad that never worked." },
-  { title: "Budget on the wrong placement", body: "Placements compared inside the same ad set, so the only difference is where the ad ran." },
-  { title: "Audiences you own and don't use", body: "Saved audiences worth excluding or testing, tested as a copy of the ad set so the result is clean." },
-  { title: "Clicks that don't convert", body: "Strong click-through with weak ROAS, which points at the page, price or stock rather than the ad." },
+function Proof() {
+  const R = RESULTS;
+  const fmt = (n: number) => n.toLocaleString("en-IN");
+  const stats = [
+    { value: times(R.aiVisits.before, R.aiVisits.after), label: `visits from AI assistants, ${fmt(R.aiVisits.before)} to ${fmt(R.aiVisits.after)}` },
+    { value: fmt(R.aiOrders.after), label: `orders from those visits, up from ${R.aiOrders.before}` },
+    { value: times(R.searchOrders.before, R.searchOrders.after), label: `orders from Google search, ${fmt(R.searchOrders.before)} to ${fmt(R.searchOrders.after)}` },
+    { value: `${R.position.before} to ${R.position.after}`, label: "average position on Google" },
+  ];
+  return (
+    <section id="case-study" className="pastel-band pastel-alt relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+        <p className="eyebrow">Case study</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Kreo got 7 times the visits from AI assistants.
+        </h2>
+        <p className="mt-5 max-w-[40rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          Kreo sells gaming and creator gear in India and runs Kortex in-house. Its own Search Console and Google Analytics, {PERIOD.label} against
+          the same weeks a year before:
+        </p>
+        <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_1fr]">
+          <WeekChart metric="ai" title="Visits from AI assistants, per week" />
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10">
+            {stats.map((s) => (
+              <div key={s.label} className="bg-ink-soft p-5">
+                <dt className="sr-only">{s.label}</dt>
+                <dd>
+                  <span className="font-display block text-[clamp(1.9rem,3.4vw,2.6rem)] leading-none text-cream">{s.value}</span>
+                  <span className="mt-2.5 block text-pretty text-[13px] leading-snug text-cream/60">{s.label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <a href="/case-studies/kreo" className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-acid-ink hover:underline">
+          Read the Kreo case study <ArrowRight className="size-4" aria-hidden="true" />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- What the audit shows ---------- */
+
+const SHOWS: Array<{ title: string; body: string }> = [
+  {
+    title: "Where AI names you",
+    body: "20 questions your customers ask, put to ChatGPT, Gemini and Claude. How often each one names you, and where you rank when it does.",
+  },
+  {
+    title: "Who it names instead",
+    body: "Everyone named in those answers, ranked, so you can see which companies the engines reach for when they leave you out.",
+  },
+  {
+    title: "The pages AI trusts",
+    body: "The sites the answers cite most, and Google's page one and AI Overview for your searches: where to get mentioned next.",
+  },
+  {
+    title: "Your fixes, written",
+    body: "An article that answers the question you miss most, an FAQ, an llms.txt and structured data for your site, plus a check of the site itself.",
+  },
 ];
 
-function DailyChecks() {
+function WhatItShows() {
   return (
-    <section id="checks">
-      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 px-5 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-28">
-        <ul className="order-2 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:order-1">
-          {CHECKS.map((c) => (
-            <li key={c.title} className="bg-ink-soft p-5 sm:p-6">
-              <h3 className="text-[17px] font-semibold tracking-[-0.01em] text-cream">{c.title}</h3>
-              <p className="mt-1.5 text-pretty text-[14px] leading-relaxed text-cream/60">{c.body}</p>
+    <section id="audit">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+        <p className="eyebrow">The free audit</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          See what AI says about you, and what to change.
+        </h2>
+        <ul className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2">
+          {SHOWS.map((s) => (
+            <li key={s.title} className="bg-ink-soft p-6 sm:p-8">
+              <h3 className="text-[20px] font-semibold tracking-[-0.02em] text-cream">{s.title}</h3>
+              <p className="mt-2 max-w-[30rem] text-pretty text-[15px] leading-relaxed text-cream/60">{s.body}</p>
             </li>
           ))}
         </ul>
-        <div className="order-1 lg:order-2">
-          <p className="eyebrow">What it looks for</p>
-          <h2 className="font-display mt-4 text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
-            The leaks you would catch yourself, if you had the time.
-          </h2>
-          <p className="mt-5 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-            Each day Kortex reads your ad accounts and runs its checks. What it finds lands in Needs attention with a proposed fix, so your
-            morning starts with a short list instead of a dashboard.
-          </p>
-          <p className="mt-4 max-w-[30rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-            You can also ask it anything about the account in plain words, such as why ROAS fell last week or which ads to retire.
-          </p>
-        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Then the agent ---------- */
+
+const DOES: Array<{ title: string; body: string }> = [
+  { title: "Answers about your report", body: "Ask what it means and what to fix first. Two questions are free on the report itself." },
+  { title: "Checks again, live", body: "Asks ChatGPT, Gemini and Claude a new question, or reads Google's page one, while you watch." },
+  { title: "Writes what gets you named", body: "Blog posts that answer what your customers ask, and the Medium, LinkedIn and Reddit posts to go with them." },
+  { title: "Watches every week", body: "Asks the engines again each Monday and emails you what changed." },
+  { title: "Works in your own AI tool", body: "Connect Claude, ChatGPT or Cursor and they can read your report and apply the fixes in your site's code." },
+  { title: "Remembers your business", body: "What you sell, who you compete with and how you talk, kept across chats so you never repeat it." },
+];
+
+function TheAgent() {
+  return (
+    <section id="agent" className="pastel-band pastel-three relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+        <p className="eyebrow">Then an agent that fixes it</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Ask Kortex, and it does the work.
+        </h2>
+        <p className="mt-5 max-w-[36rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          After your audit, chat with Kortex. Every account starts with 50 free credits.
+        </p>
+        <ul className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:grid-cols-3">
+          {DOES.map((d) => (
+            <li key={d.title} className="bg-ink-soft p-6">
+              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-cream">{d.title}</h3>
+              <p className="mt-2 text-pretty text-[14px] leading-relaxed text-cream/60">{d.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Competitors' ads and new ads ---------- */
+
+/**
+ * What the same agent does for ads (Kortex Compete and the creative maker), as its own capabilities say
+ * (lib/agent/tools/compete.ts): competitor reports on Meta ads, any advertiser's live ads, daily watching,
+ * new ads from the products in the company's own look, changed by message, in feed, story and square
+ * sizes and as an Ads Manager pack. Every ad it makes is an image for Meta; it does not run campaigns here.
+ */
+const ADS: Array<{ title: string; body: string }> = [
+  { title: "See what your competitors run", body: "Every live Facebook and Instagram ad from the companies you compete with, which ones they keep running for months, and why they work." },
+  { title: "Read any advertiser", body: "Name any company and Kortex reads the ads it is running right now on Facebook and Instagram, from Meta's Ad Library." },
+  { title: "Watch them every day", body: "Kortex checks your competitors daily and tells you in the chat and by email when they launch something new." },
+  { title: "Make your next ads", body: "Image ads made from your real products, prices and photos, in your own logo, type and colours, on the ideas that keep working." },
+  { title: "Change any ad by message", body: "New words, a new photo or a different angle, just by asking. Only what your store or site says goes on an ad." },
+  { title: "Ready for Ads Manager", body: "Download each ad in feed, story and square sizes, or as an Ads Manager pack ready to upload." },
+];
+
+function AdsToo() {
+  return (
+    <section id="ads">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+        <p className="eyebrow">Ads, too</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Know what your competitors run. Then make better ads.
+        </h2>
+        <p className="mt-5 max-w-[36rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          The same agent reads your competitors&rsquo; ads and makes new ones for you, from your own products.
+        </p>
+        <ul className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:grid-cols-3">
+          {ADS.map((d) => (
+            <li key={d.title} className="bg-ink-soft p-6">
+              <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-cream">{d.title}</h3>
+              <p className="mt-2 text-pretty text-[14px] leading-relaxed text-cream/60">{d.body}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -224,19 +386,19 @@ function DailyChecks() {
 /* ---------- How it works ---------- */
 
 const STEPS = [
-  { title: "Connect your ad accounts", body: "Sign in through Meta's or Google's own screen. Kortex reads your last 30 days and suggests its first three changes." },
-  { title: "Read the morning list", body: "Each day's findings, each with a proposed fix and the numbers behind it. Ask follow-up questions in the chat." },
-  { title: "Approve what makes sense", body: "Kortex makes the change in your ad account. New ads and ad sets it creates start paused, for you to switch on." },
-  { title: "See whether it worked", body: "Every change is judged on its ROAS over the following one to two weeks, and the next proposals learn from it." },
+  { title: "Enter your website", body: "And your work email. We send a six-digit code to confirm it is you." },
+  { title: "Kortex runs the audit", body: "About four minutes: the AI engines, Google and your site. You can leave, we email you the link." },
+  { title: "Read your report", body: "Where you are named, who is named instead, the pages to get onto, and your fixes, written." },
+  { title: "Ask Kortex to fix it", body: "Sign in with Google for 50 free credits and keep going in the chat." },
 ];
 
 function How() {
   return (
-    <section id="how" className="pastel-band pastel-three relative px-3 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+    <section id="how">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
         <p className="eyebrow">How it works</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
-          Connect once. Then a short list to approve each day.
+          Your website in. Your report in four minutes.
         </h2>
         <ol className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
@@ -252,17 +414,104 @@ function How() {
   );
 }
 
-/* ---------- The free tools, on the one pastel band ---------- */
+/* ---------- Pricing ---------- */
+
+/**
+ * What Kortex Visibility costs (Hemanth, 2026-10-21: $50 a month, ₹4,999 in India, top-ups for more). The
+ * monthly allowance is not stated until the product meters it in tokens: the page never promises a unit
+ * the app does not show yet. Both buttons start the free audit, the page's one call to action.
+ */
+/** Pro's checkout, a Razorpay payment page for now (₹4,999); replaced once the subscription checkout is built. */
+const PRO_CHECKOUT = "https://rzp.io/rzp/1fANlcjW";
+
+const PLANS: Array<{ name: string; price: string; per: string; note: string; items: string[]; featured?: boolean; cta: { label: string; href: string } }> = [
+  {
+    name: "Free",
+    price: "$0",
+    per: "",
+    note: "To see where you stand",
+    items: ["One full audit per website", "Your four fixes, written", "Two questions to Kortex on your report", "50 free credits to try the agent"],
+    cta: { label: "Start with the free audit", href: "#top" },
+  },
+  {
+    name: "Growth",
+    price: "$50",
+    per: "a month",
+    note: "₹4,999 a month in India",
+    featured: true,
+    items: [
+      "Everything in Free",
+      "Your website checked every week, with a Monday email of what changed",
+      "Live checks with ChatGPT, Gemini, Claude and Google",
+      "Blog, Medium, LinkedIn and Reddit posts that get you named",
+      "Kortex inside Claude, ChatGPT or Cursor",
+      "Competitor ad reports, and your competitors watched every day",
+      "New ads made from your products, in feed, story and square sizes",
+      "A monthly usage allowance, reset each month",
+      "Top-ups whenever you need more",
+    ],
+    cta: { label: "Get Growth", href: PRO_CHECKOUT },
+  },
+];
+
+function Pricing() {
+  return (
+    <section id="pricing" className="pastel-band relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+        <p className="eyebrow">Pricing</p>
+        <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Start free. Move to Growth when you want it done every week.
+        </h2>
+        <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {PLANS.map((p) => (
+            <li
+              key={p.name}
+              className={cn(
+                "flex flex-col rounded-2xl border p-6 sm:p-8",
+                p.featured ? "border-acid/50 bg-ink-soft shadow-[0_30px_80px_-40px_hsl(var(--acid)/0.45)]" : "border-cream/10 bg-ink-soft/70",
+              )}
+            >
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="text-[20px] font-semibold tracking-[-0.02em] text-cream">{p.name}</h3>
+                <span className="text-[13px] text-cream/50">{p.note}</span>
+              </div>
+              <p className="mt-4 flex items-baseline gap-2">
+                {/* The currency sign in the body face: Newsreader draws "$" with two strokes. */}
+                <span className="font-display text-[48px] leading-none text-cream">
+                  <span className="mr-0.5 align-[0.12em] font-sans text-[38px] font-medium tracking-normal">{p.price.slice(0, 1)}</span>
+                  {p.price.slice(1)}
+                </span>
+                {p.per ? <span className="text-[15px] text-cream/55">{p.per}</span> : null}
+              </p>
+              <ul className="mt-6 flex-1 space-y-3">
+                {p.items.map((it) => (
+                  <li key={it} className="flex items-start gap-2.5 text-[14.5px] leading-snug text-cream/75">
+                    <Check className="mt-0.5 size-4 shrink-0 text-acid-ink" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={p.cta.href}
+                {...(p.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
+                className={cn(
+                  "mt-8 inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-semibold transition-transform hover:scale-[1.02]",
+                  p.featured ? "bg-acid text-on-acid" : "border border-cream/20 text-cream hover:bg-cream/[0.05]",
+                )}
+              >
+                {p.cta.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- The other free tools ---------- */
 
 const TOOLS: Array<{ name: string; href: string; title: string; body: string; cta: string; art: ReactNode }> = [
-  {
-    name: "Visibility",
-    href: "https://visibility.kortexagent.co",
-    title: "Does AI recommend you?",
-    body: "See whether ChatGPT, Claude, Perplexity and Google name you when your customers ask, who they name instead, and what to fix.",
-    cta: "Get my free audit",
-    art: <ToolBars rows={[["ChatGPT", 20], ["Perplexity", 70], ["Claude", 8], ["Google", 30]]} />,
-  },
   {
     name: "Compete",
     href: "https://compete.kortexagent.co",
@@ -285,11 +534,11 @@ function FreeTools() {
   return (
     <section id="free">
       <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
-        <p className="eyebrow">Free to use today</p>
+        <p className="eyebrow">Also free</p>
         <h2 className="font-display mt-4 max-w-[44rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
-          Waiting for access? Three Kortex tools are open now.
+          Two more Kortex tools, open to everyone.
         </h2>
-        <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <ul className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
           {TOOLS.map((t) => (
             <li key={t.name}>
               <a
@@ -344,7 +593,7 @@ function Faq() {
       <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-10 rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16 lg:p-14">
         <div>
           <p className="eyebrow">Questions</p>
-          <h2 className="font-display mt-4 text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">Before you connect anything</h2>
+          <h2 className="font-display mt-4 text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">Before you run your audit</h2>
         </div>
         <ul className="divide-y divide-cream/10 border-y border-cream/10">
           {FAQ.map((f, i) => {
@@ -376,5 +625,18 @@ function Faq() {
 /* ---------- The ask, again ---------- */
 
 function FinalAsk() {
-  return <EarlyAccess />;
+  return (
+    <section className="relative overflow-hidden">
+      <div className="relative mx-auto max-w-[1240px] px-5 py-24 text-center sm:px-6 lg:py-32">
+        <h2 className="font-display mx-auto max-w-[44rem] text-balance text-[clamp(2.6rem,5.6vw,4.6rem)] leading-[1] tracking-[-0.015em]">
+          Find out what AI tells your customers.
+        </h2>
+        <p className="mx-auto mt-5 max-w-[34rem] text-[16px] text-cream/65">Free, about four minutes, and the fixes are written for you.</p>
+        <div className="mt-9">
+          <WebsiteBox id="site-final" />
+        </div>
+      </div>
+    </section>
+  );
 }
+
