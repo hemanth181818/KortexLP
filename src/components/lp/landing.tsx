@@ -2,6 +2,7 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check, Minus, Play, Plus } from "lucide-react";
 import { EngineGrid } from "@/components/lp/engine-grid";
+import { JumpTabs } from "@/components/lp/jump-tabs";
 import { WeekChart } from "@/components/lp/case-study";
 import { PERIOD, RESULTS, times } from "@/content/case-studies/kreo";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
@@ -24,8 +25,8 @@ import faq from "@/content/faq.json";
  * written fixes (an article, an FAQ, llms.txt, structured data), about four minutes, one free audit
  * per website; then Ask Kortex with 50 free credits. Names and numbers in the examples are made up.
  *
- * 2026-10-26 (Hemanth: "the landing page isn't doing the work"): the hero carries the 54-second film of
- * the agent at work, the problem gets its own section, and Kreo's own Search Console and GA4 numbers are
+ * 2026-10-26 (Hemanth: "the landing page isn't doing the work"): the 54-second film of the agent at work
+ * sits right below the hero, the hero's jump bar reaches each section without scrolling, and Kreo's own Search Console and GA4 numbers are
  * the proof (content/case-studies/kreo.ts, /case-studies/kreo).
  * Copy rule: "you", "your website", "company", never "brand" or "buyers".
  */
@@ -40,7 +41,7 @@ export default function Landing() {
     <div className="min-h-[100svh] overflow-x-clip bg-ink text-cream">
       <SiteHeader home />
       <Hero />
-      <Problem />
+      <FilmSection />
       <WhatItShows />
       <Proof />
       <TheAgent />
@@ -103,7 +104,7 @@ function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-acid opacity-70" />
               <span className="relative inline-flex size-1.5 rounded-full bg-acid" />
             </span>
-            <span>Free AI visibility audit</span>
+            <span>Free Audit Then an Agent that Fixes it</span>
           </motion.p>
           <motion.h1
             initial={PRERENDERED ? false : { opacity: 0, y: 16 }}
@@ -119,8 +120,8 @@ function Hero() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
             className="mt-6 max-w-[40rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
           >
-            Your customers ask ChatGPT, Gemini, Claude and Google what to buy. Kortex shows whether you are in the answer and who is named
-            instead, then writes the fixes that get you named.
+            See what ChatGPT, Gemini, Claude and Google tell your customers about what you do. Then chat with Kortex, the agent that finds why
+            you are left out and writes the fixes, here or inside your own AI tool.
           </motion.p>
           <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
             <WebsiteBox id="site-hero" />
@@ -139,11 +140,14 @@ function Hero() {
               </span>
             ))}
           </motion.div>
+          <motion.div initial={PRERENDERED ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.45 }} className="mt-8 w-full">
+            <JumpTabs links={JUMPS} />
+          </motion.div>
         </div>
 
         <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1100px] lg:mt-20">
-          <Film />
-          <p className="mt-4 text-center text-[12px] text-cream/40">Kortex at work, in 54 seconds. The numbers in it are an example.</p>
+          <EngineGrid className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
+          <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names are made up.</p>
         </motion.div>
       </div>
     </section>
@@ -198,23 +202,34 @@ function Film() {
   );
 }
 
-/* ---------- The problem ---------- */
+/* ---------- The film, below the hero ---------- */
 
-function Problem() {
+/** The hero's jump bar: each section the page has, in page order. */
+const JUMPS = [
+  { label: "Watch it work", href: "#film" },
+  { label: "The free audit", href: "#audit" },
+  { label: "Kreo's results", href: "#case-study" },
+  { label: "The agent", href: "#agent" },
+  { label: "How it works", href: "#how" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Questions", href: "#faq" },
+];
+
+function FilmSection() {
   return (
-    <section id="problem">
+    <section id="film" className="scroll-mt-16">
       <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
-        <p className="eyebrow">Why it matters</p>
+        <p className="eyebrow">Watch it work</p>
         <h2 className="font-display mt-4 max-w-[48rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
           One question. Four answers. You might be in none of them.
         </h2>
         <p className="mt-5 max-w-[40rem] text-pretty text-[16px] leading-relaxed text-cream/65">
-          Ask an AI what to buy and it names a handful of companies, then stops. If you are not one of them, the customer never hears of
-          you, and you never see it happen: there is no ranking to check and no click to count. The audit is how you see it.
+          Ask an AI what to buy and it names a handful of companies, then stops. In 54 seconds: how Kortex finds where you are left out, why,
+          and what it changes.
         </p>
         <div className="relative mx-auto mt-12 max-w-[1100px]">
-          <EngineGrid className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
-          <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names are made up.</p>
+          <Film />
+          <p className="mt-4 text-center text-[12px] text-cream/40">The numbers in the film are an example.</p>
         </div>
       </div>
     </section>
