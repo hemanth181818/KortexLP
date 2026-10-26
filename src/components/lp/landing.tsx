@@ -1,7 +1,9 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check, Minus, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Minus, Play, Plus } from "lucide-react";
 import { EngineGrid } from "@/components/lp/engine-grid";
+import { WeekChart } from "@/components/lp/case-study";
+import { PERIOD, RESULTS, times } from "@/content/case-studies/kreo";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { EngineLogo, ENGINE_NAME, type EngineId } from "@/components/lp/engine-logos";
 import { LogoMark } from "@/components/lp/logo-mark";
@@ -21,6 +23,10 @@ import faq from "@/content/faq.json";
  * ChatGPT, Gemini and Claude, Google's page one and AI Overview for searches, site checks, four
  * written fixes (an article, an FAQ, llms.txt, structured data), about four minutes, one free audit
  * per website; then Ask Kortex with 50 free credits. Names and numbers in the examples are made up.
+ *
+ * 2026-10-26 (Hemanth: "the landing page isn't doing the work"): the hero carries the 54-second film of
+ * the agent at work, the problem gets its own section, and Kreo's own Search Console and GA4 numbers are
+ * the proof (content/case-studies/kreo.ts, /case-studies/kreo).
  * Copy rule: "you", "your website", "company", never "brand" or "buyers".
  */
 
@@ -34,10 +40,12 @@ export default function Landing() {
     <div className="min-h-[100svh] overflow-x-clip bg-ink text-cream">
       <SiteHeader home />
       <Hero />
+      <Problem />
       <WhatItShows />
+      <Proof />
       <TheAgent />
-      <AdsToo />
       <How />
+      <AdsToo />
       <Pricing />
       <FreeTools />
       <Faq />
@@ -95,7 +103,7 @@ function Hero() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-acid opacity-70" />
               <span className="relative inline-flex size-1.5 rounded-full bg-acid" />
             </span>
-            <span>Free Audit Then an Agent that Fixes it</span>
+            <span>Free AI visibility audit</span>
           </motion.p>
           <motion.h1
             initial={PRERENDERED ? false : { opacity: 0, y: 16 }}
@@ -111,8 +119,8 @@ function Hero() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
             className="mt-6 max-w-[40rem] text-pretty text-[17px] leading-relaxed text-cream/65 sm:text-[18px]"
           >
-            See what ChatGPT, Gemini, Claude and Google tell your customers about what you do. Then chat with Kortex, the agent that finds why
-            you are left out and writes the fixes, here or inside your own AI tool.
+            Your customers ask ChatGPT, Gemini, Claude and Google what to buy. Kortex shows whether you are in the answer and who is named
+            instead, then writes the fixes that get you named.
           </motion.p>
           <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="mt-9 w-full">
             <WebsiteBox id="site-hero" />
@@ -134,9 +142,124 @@ function Hero() {
         </div>
 
         <motion.div initial={PRERENDERED ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: 0.3 }} className="relative mx-auto mt-16 max-w-[1100px] lg:mt-20">
+          <Film />
+          <p className="mt-4 text-center text-[12px] text-cream/40">Kortex at work, in 54 seconds. The numbers in it are an example.</p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * The film: Kortex running an audit, reading the answers and the page, writing the fixes and watching
+ * every week. Encoded for the web from kortex-visibility-wide.mp4 (1600 wide, faststart). Nothing plays
+ * until the visitor asks: then it plays with sound and the browser's own controls.
+ */
+function Film() {
+  const [playing, setPlaying] = useState(false);
+  const start = (v: HTMLVideoElement | null) => {
+    if (!v) return;
+    v.play().catch(() => undefined);
+  };
+  return (
+    <div className="relative overflow-hidden rounded-[22px] border border-cream/15 bg-[#F6F4EE] shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]">
+      {playing ? (
+        <video
+          ref={start}
+          className="block aspect-video w-full"
+          src="/video/kortex-visibility.mp4"
+          poster="/video/kortex-visibility-poster.jpg"
+          controls
+          playsInline
+          preload="auto"
+        >
+          A 54-second film of Kortex auditing a website.
+        </video>
+      ) : (
+        <button type="button" onClick={() => setPlaying(true)} className="group relative block w-full" aria-label="Play the 54-second film of Kortex at work">
+          <img
+            src="/video/kortex-visibility-poster.jpg"
+            alt="Kortex's audit showing how often ChatGPT, Gemini, Claude and Google AI Overview name a company"
+            width={1600}
+            height={900}
+            className="block aspect-video w-full object-cover"
+          />
+          <span className="absolute inset-0 grid place-items-center bg-[#141210]/10 transition-colors group-hover:bg-[#141210]/20">
+            <span className="flex items-center gap-3 rounded-full bg-[#141210] py-3 pl-3 pr-6 text-[15px] font-semibold text-[#F6F4EE] shadow-xl transition-transform group-hover:scale-[1.03]">
+              <span className="grid size-10 place-items-center rounded-full bg-acid text-on-acid">
+                <Play className="ml-0.5 size-4 fill-current" aria-hidden="true" />
+              </span>
+              Watch how it works
+            </span>
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
+/* ---------- The problem ---------- */
+
+function Problem() {
+  return (
+    <section id="problem">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-6 lg:py-28">
+        <p className="eyebrow">Why it matters</p>
+        <h2 className="font-display mt-4 max-w-[48rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          One question. Four answers. You might be in none of them.
+        </h2>
+        <p className="mt-5 max-w-[40rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          Ask an AI what to buy and it names a handful of companies, then stops. If you are not one of them, the customer never hears of
+          you, and you never see it happen: there is no ranking to check and no click to count. The audit is how you see it.
+        </p>
+        <div className="relative mx-auto mt-12 max-w-[1100px]">
           <EngineGrid className="relative shadow-[0_40px_120px_-50px_rgb(0_0_0/0.55)]" />
           <p className="mt-4 text-center text-[12px] text-cream/40">An example question. Names are made up.</p>
-        </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Proof: Kreo's audit ---------- */
+
+function Proof() {
+  const R = RESULTS;
+  const fmt = (n: number) => n.toLocaleString("en-IN");
+  const stats = [
+    { value: times(R.aiVisits.before, R.aiVisits.after), label: `visits from AI assistants, ${fmt(R.aiVisits.before)} to ${fmt(R.aiVisits.after)}` },
+    { value: fmt(R.aiOrders.after), label: `orders from those visits, up from ${R.aiOrders.before}` },
+    { value: times(R.searchOrders.before, R.searchOrders.after), label: `orders from Google search, ${fmt(R.searchOrders.before)} to ${fmt(R.searchOrders.after)}` },
+    { value: `${R.position.before} to ${R.position.after}`, label: "average position on Google" },
+  ];
+  return (
+    <section id="case-study" className="pastel-band pastel-alt relative px-3 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-[1240px] rounded-[28px] border border-white/60 bg-ink/95 p-6 shadow-[0_30px_80px_-40px_rgba(60,50,90,0.35)] sm:p-10 lg:p-14">
+        <p className="eyebrow">Case study</p>
+        <h2 className="font-display mt-4 max-w-[46rem] text-balance text-[clamp(2.3rem,4.6vw,3.6rem)] leading-[1.02] tracking-[-0.01em]">
+          Kreo got 7 times the visits from AI assistants.
+        </h2>
+        <p className="mt-5 max-w-[40rem] text-pretty text-[16px] leading-relaxed text-cream/65">
+          Kreo sells gaming and creator gear in India and runs Kortex in-house. Its own Search Console and Google Analytics, {PERIOD.label} against
+          the same weeks a year before:
+        </p>
+        <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_1fr]">
+          <WeekChart metric="ai" title="Visits from AI assistants, per week" />
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-cream/10 bg-cream/10">
+            {stats.map((s) => (
+              <div key={s.label} className="bg-ink-soft p-5">
+                <dt className="sr-only">{s.label}</dt>
+                <dd>
+                  <span className="font-display block text-[clamp(1.9rem,3.4vw,2.6rem)] leading-none text-cream">{s.value}</span>
+                  <span className="mt-2.5 block text-pretty text-[13px] leading-snug text-cream/60">{s.label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <a href="/case-studies/kreo" className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-semibold text-acid-ink hover:underline">
+          Read the Kreo case study <ArrowRight className="size-4" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

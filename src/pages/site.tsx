@@ -9,6 +9,7 @@ import { GLOSSARY_FAQ, GLOSSARY_META, TERMS } from "@/content/pages/glossary";
 import { POSTS, type Post } from "@/content/blog/posts";
 import homeFaq from "@/content/faq.json";
 import { APP, APP_REF, OG_IMAGE, UPDATED, faqLd, plain, url, webPageLd, type Crumb, type PageHead } from "@/lib/seo";
+import { CaseStudiesView, KreoCaseStudyView, caseStudiesHead, kreoCaseStudyHead } from "@/pages/case-study";
 
 /**
  * Every page except the home page: path to head and element. main.tsx renders
@@ -61,6 +62,7 @@ function cardFor(path: string): Card {
   if (path === "/glossary") return { title: "Ads glossary", body: "ROAS, MER, CPA, frequency, the learning phase and more, in plain words.", href: path };
   if (path === "/faq") return { title: "FAQ", body: "Every question about Kortex, in one place.", href: path };
   if (path === "/blog") return { title: "Blog", body: "Guides to AI visibility, SEO and ad ROAS.", href: path };
+  if (path === "/case-studies/kreo") return { title: "Kreo case study", body: "Visits from AI assistants up 7 times and orders from Google search up 2.2 times, from Kreo's own Google data.", href: path };
   throw new Error(`No card for ${path}`);
 }
 
@@ -499,6 +501,8 @@ const ROUTES: Record<string, Route> = {
   "/faq": { head: faqHead, element: () => <FaqView /> },
   "/glossary": { head: glossaryHead, element: () => <GlossaryView /> },
   "/blog": { head: blogIndexHead, element: () => <BlogIndexView /> },
+  "/case-studies": { head: caseStudiesHead, element: () => <CaseStudiesView /> },
+  "/case-studies/kreo": { head: kreoCaseStudyHead, element: () => <KreoCaseStudyView /> },
   ...Object.fromEntries(POSTS.map((p) => [`/blog/${p.slug}`, { head: () => postHead(p), element: () => <PostView post={p} /> }])),
 };
 

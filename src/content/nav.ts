@@ -13,6 +13,7 @@ export const HEADER_LINKS: NavLink[] = [
   { label: "Meta Ads", href: "/meta-ads" },
   { label: "Google Ads", href: "/google-ads" },
   { label: "Features", href: "/features" },
+  { label: "Case studies", href: "/case-studies" },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
 ];
@@ -51,6 +52,7 @@ export const FOOTER_COLUMNS: Array<{ title: string; links: NavLink[] }> = [
   {
     title: "Learn",
     links: [
+      { label: "Kreo case study", href: "/case-studies/kreo" },
       { label: "Get recommended by ChatGPT", href: "/blog/how-to-get-recommended-by-chatgpt" },
       { label: "What is llms.txt", href: "/blog/what-is-llms-txt" },
       { label: "FAQ", href: "/faq" },
